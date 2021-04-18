@@ -176,6 +176,18 @@
     color: white;
 }
 
+.confirmSignUpBtn:hover{
+    width: 311px;
+    height: 60px;
+    background: white;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #5F3090 ;
+    color: #BB2B7A ;
+    font-size: 25px;
+}
+
 .already{
     display: flex;
     flex-direction: row;

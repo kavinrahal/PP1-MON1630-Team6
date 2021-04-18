@@ -1,5 +1,5 @@
 
-import { Route } from 'react-router';
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
@@ -15,7 +15,16 @@ export default class App extends Component {
 
   render () {
     return (
-      <RegisterPage></RegisterPage>
+      <Router>
+        <div className="App">
+          <Switch>
+            <Route path = "/" exact component = {LoginPage}></Route>
+            <Route path = "/register" exact component = {RegisterPage}></Route>
+          
+          
+          </Switch>
+        </div>
+    </Router>
     );
   }
 }

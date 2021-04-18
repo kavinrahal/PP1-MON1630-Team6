@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
 import './styles/RegisterPage.css';
 import Image from '../addons/reglogo.png';
 import BackDrop from '../addons/City Backdrop.svg';
@@ -72,7 +78,7 @@ function RegisterPage(){
                             <br></br>
                             <div className = "already">
                                 <div className = "alreadyText">Already Have an Account?</div>
-                                <div className = "alreadyLog">Log In!</div>
+                                <div className = "alreadyLog"><Link to = "/">Log In!</Link></div>
                             </div>
                         </div>
                     </div>

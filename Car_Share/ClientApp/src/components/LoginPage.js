@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
 import './styles/LoginPage.css'
 import Image from '../addons/loginlogo.png';
 import bg from '../addons/circlebg.svg';
@@ -43,7 +49,7 @@ function LoginPage(){
                             <div className = "joinText">Don't Have an Account Yet?</div>
                         </div>
                         <br></br>
-                        <button className = "joinBtn">Sign Me Up!</button>
+                        <Link to = "/register"><button className = "joinBtn">Sign Me Up!</button></Link>
                     </div>
                 </div>
             </div>
