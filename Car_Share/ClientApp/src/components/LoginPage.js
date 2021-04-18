@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './LoginPage.css';
+import './styles/LoginPage.css'
 import Image from '../addons/loginlogo.png';
-import bg from '../addons/Circlebg.png';
+import bg from '../addons/circlebg.svg';
 
 function LoginPage(){
 
@@ -23,8 +23,6 @@ function LoginPage(){
                 </div>
                 <div className = "column">
                     <div className = "loginSignup">
-                    
-                    
                         <div className = "loginTitle">
                             <div className = "Log">Log In</div>
                         </div>

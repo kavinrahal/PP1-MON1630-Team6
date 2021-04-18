@@ -2,7 +2,7 @@
     font-family: 'Gidole Regular';
     font-style: normal;
     font-weight: normal;
-    src: local('Gidole Regular'), url('../addons/Gidole-Regular.woff') format('woff');
+    src: local('Gidole Regular'), url('../../addons/Gidole-Regular.woff') format('woff');
 }
 
 .LoginWrapper, body, html{
@@ -29,6 +29,26 @@
     flex-direction: row;
     align-items: flex-start;
     flex-wrap: wrap;
+    background-image: url('../../addons/circlebg.svg');
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: 764px 730px;
+}
+
+.watermarked {
+    position: relative;
+}
+
+.watermarked:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 764.28px;
+    height: 730.28px;
+    left: -313px;
+    top: -300px;
+    background-repeat: no-repeat;
+    opacity: 0.1;
 }
 
 .column{
@@ -74,12 +94,13 @@
 
 .circleBG{
     position: absolute;
-    background-image: url('../addons/Circlebg.png');
-    background-repeat: no-repeat;
     width: 764.28px;
     height: 730.28px;
     left: -313px;
     top: -300px;
+    color: rgba(83, 91, 163, 0.1);
+    stroke-width: 20px;
+    stroke: #535BA3, 10%;
 }
 
 .quote{
@@ -129,7 +150,6 @@
     font-size: 50px;
     color: #1D1E5B;
     align-self: flex-start;
-
 }
 
 .loginBtn{

@@ -8,13 +8,14 @@ import { Counter } from './components/Counter';
 import React, { Component } from 'react';
 import './custom.css'
 import LoginPage from './components/LoginPage';
+import RegisterPage from './components/RegisterPage';
 
 export default class App extends Component {
   static displayName = App.name;
 
   render () {
     return (
-      <LoginPage></LoginPage>
+      <RegisterPage></RegisterPage>
     );
   }
 }
