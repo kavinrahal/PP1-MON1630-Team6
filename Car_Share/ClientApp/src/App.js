@@ -9,6 +9,7 @@ import React, { Component } from 'react';
 import './custom.css'
 import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
+import geolocation from './components/geolocation';
 
 export default class App extends Component {
   static displayName = App.name;
@@ -20,6 +21,7 @@ export default class App extends Component {
           <Switch>
             <Route path = "/" exact component = {LoginPage}></Route>
             <Route path = "/register" exact component = {RegisterPage}></Route>
+            <Route path = "/geolocation" exact component = {geolocation}></Route>
           
           
           </Switch>

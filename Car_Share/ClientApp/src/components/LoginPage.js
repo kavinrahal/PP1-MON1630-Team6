@@ -49,7 +49,7 @@ function LoginPage(){
                             <div className = "joinText">Don't Have an Account Yet?</div>
                         </div>
                         <br></br>
-                        <Link to = "/register"><button className = "joinBtn">Sign Me Up!</button></Link>
+                        <Link to = "/geolocation"><button className = "joinBtn">Sign Me Up!</button></Link>
                     </div>
                 </div>
             </div>
