@@ -9,6 +9,7 @@ import React, { Component } from 'react';
 import './custom.css'
 import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
+import Dashboard from "./components/Dashboard";
 
 export default class App extends Component {
   static displayName = App.name;
@@ -18,7 +19,7 @@ export default class App extends Component {
       <Router>
         <div className="App">
           <Switch>
-            <Route path = "/" exact component = {LoginPage}></Route>
+            <Route path = "/" exact component = {Dashboard}></Route>
             <Route path = "/register" exact component = {RegisterPage}></Route>
           
           

@@ -42,11 +42,11 @@ function RegisterPage(){
                         <div className = "fields">
                             <div className = "names">
                                 <div className = "first">
-                                    <div className = "signUpLabel">First Name</div>
+                                    <div className = "signUpLabel">Name</div>
                                     <input type = "text" className = "signUpText" placeholder = "  First Name"></input>
                                 </div>
                                 <div className = "last">
-                                    <div className = "signUpLabel">Last Name</div>
+                                    <div className = "signUpLabel">Address</div>
                                     <input type = "text" className = "signUpText" placeholder = "  Last Name"></input>
                                 </div>
                             </div>
