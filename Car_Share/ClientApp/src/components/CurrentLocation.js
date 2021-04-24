@@ -10,7 +10,7 @@ const mapStyles = {
 };
 
 export class CurrentLocation extends Component {
-
+    
     constructor(props) {
         super(props);
         const {lat, lng} = this.props.initialCenter;
@@ -72,7 +72,7 @@ export class CurrentLocation extends Component {
                             lat: coords.latitude,
                             lng: coords.longitude
                         }
-                    });
+                    }); 
                 });
             }
         }
@@ -108,7 +108,7 @@ export class CurrentLocation extends Component {
 }
 
 CurrentLocation.defaultProps = {
-    zoom: 14,
+    zoom: 20,
     initialCenter: {
         lat: -37.840935,
         lng: 144.946457

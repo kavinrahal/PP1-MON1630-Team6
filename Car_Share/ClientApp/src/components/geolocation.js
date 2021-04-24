@@ -26,10 +26,10 @@ export class FindingVehicles extends Component {
         };
     }
 
-    onMarkerClick = (props, marker, e) =>
+    onMarkerClick = (props, userMarker, e) =>
         this.setState({
             selectedPlace: props,
-            activeMarker: marker,
+            activeMarker: userMarker,
             showingInfoWindow: true
         });
 
