@@ -1,0 +1,417 @@
+@font-face {
+    font-family: 'Gidole Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Gidole Regular'), url('../../addons/Gidole-Regular.woff') format('woff');
+}
+
+.BookingHistoryWrapper {
+
+  align-items: center;
+  overflow: auto; 
+  /* padding-bottom: 200px; */
+  background: linear-gradient(54.94deg, #1C1D57 24.38%, #161892 99.99%);
+   height: 100%; 
+    overflow-y: scroll; /* adds scrollbar */
+  
+}
+
+.NavBar {
+  max-width: 95%;
+  margin: auto;
+  text-align: center;
+  overflow: auto;
+  color: white;
+  padding: 10px;
+  /* border-radius: 5px; */
+}
+
+.header{
+    text-align: center;
+    margin: auto;
+    /* width: 50%; */
+    font-size: 50px;
+    min-height: 100px;
+    color: #1D1E5B;
+    align-self: flex-start;
+    color: white;
+    padding: 30px;
+
+}
+
+.body{
+  /* display: flex; */
+  align-items: center;
+  margin: auto;
+  justify-content: space-between;
+  /* text-align: center; */
+}
+
+
+.history_element {
+  background: #f4f4f4;
+  max-width: 95%;
+  margin: 5px;  
+  padding: 10px 20px;
+  cursor: pointer;
+  /* margin: auto; */
+  /* width: 50%; */
+ 
+}
+
+.task.reminder {
+  border-left: 5px solid green;
+}
+
+.task h3{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+
+
+/* //end */
+
+.LoginWrapper, body, html{
+    font-family: 'Gidole Regular';
+    height: 100%;
+    overflow: hidden;
+}
+
+.LoginWrapper{
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.row1{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    background-image: url('../../addons/circlebg.svg');
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: 764px 730px;
+}
+
+.watermarked {
+    position: relative;
+}
+
+.watermarked:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 764.28px;
+    height: 730.28px;
+    left: -313px;
+    top: -300px;
+    background-repeat: no-repeat;
+    opacity: 0.1;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-basis: 100%;
+    flex: 1;
+    background: #FAFAFA;
+    height: 100vh;
+}
+
+.longColumn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-basis: 100%;
+    flex: 2;
+    background: linear-gradient(54.94deg, #1C1D57 24.38%, #161892 99.99%);
+    min-height: 300px;
+    height: 100vh;
+    overflow: hidden;
+    border: none;
+}
+
+.title{
+    margin-left: 50px;
+    margin-top: 30px;
+    align-self: flex-start;
+}
+
+.whiteT{
+    color: white;
+    font-size: 30px;
+}
+
+.yellowT
+{
+    color: #F4CE47;
+    font-size: 30px;
+}
+
+.circleBG{
+    position: absolute;
+    width: 764.28px;
+    height: 730.28px;
+    left: -313px;
+    top: -300px;
+    color: rgba(83, 91, 163, 0.1);
+    stroke-width: 20px;
+    stroke: #535BA3, 10%;
+}
+
+.quote{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.drive{
+    font-size: 40px;
+    color: white;
+}
+
+.with{
+    font-size: 40px;
+    color: rgba(255, 255, 255, 0.56);
+}
+
+.midlogo{
+    width: 370px;
+    height: 236px;
+}
+
+.about{
+    display: flex;
+    align-self: flex-start;
+    justify-self: flex-end;
+    font-size: 20px;
+    text-decoration: underline;
+    color: #E5E5E5;
+    margin-left: 50px;
+    margin-bottom: 30px;
+}
+
+.loginTitle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 308px;
+    margin-top: -10px;
+}
+
+.Log, .Join{
+    font-size: 50px;
+    color: #1D1E5B;
+    align-self: flex-start;
+}
+
+.loginBtn{
+    width: 311px;
+    height: 48px;
+    background: #F4CE47;
+    border-radius: 5px;
+    border-style: none;
+    color: white;
+    font-size: 25px;
+}
+
+.loginBtn:hover{
+    width: 311px;
+    height: 48px;
+    background: white;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #F4CE47;
+    color: #F4CE47;
+    font-size: 25px;
+}
+
+.loginInput{
+    width: 308px;
+    height: 47px;
+    background: #FFFFFF;
+    border: 0.5px solid rgba(0, 0, 0, 0.33);
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.emailLabel, .passwordLabel{
+    font-size: 20px;
+    align-self: flex-start;
+}
+
+.email, .password{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.or {
+    width: 70%;
+    margin: .7em auto;
+    overflow: hidden;
+    text-align: center;
+    font-weight:300;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.43);
+}
+.or:before, .or:after {
+    content: "";
+    display: inline-block;
+    width: 50%;
+    margin: 0 .5em 0 -55%;
+    vertical-align: middle;
+    border-bottom: 1px solid;
+}
+.or:after {
+    margin: 0 -55% 0 .5em;
+}
+
+.join{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.joinText{
+    font-size: 25px;
+    color: rgba(29, 30, 91, 0.7);
+}
+
+.joinBtn{
+    width: 311px;
+    height: 48px;
+    background: linear-gradient(90deg, #BB2B7A 0%, #5F3090 100%, #E9C2F9 100%);
+    border-radius: 5px;
+    border-style: none;
+    color: white;
+    font-size: 25px;
+}
+
+.joinBtn:hover{
+    width: 311px;
+    height: 48px;
+    background: white;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #5F3090 ;
+    color: #BB2B7A ;
+    font-size: 25px;
+}
+
+@media (max-width: 768px){
+    .LoginWrapper, body, html{
+        height: 100%;
+        background: linear-gradient(54.94deg, #1C1D57 24.38%, #161892 99.99%);
+        overflow-x: hidden;
+        overflow-y: visible;
+    }
+
+    .row{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .longColumn{
+        width: 100%;
+        background: none;
+        flex: 1;
+    }
+
+    .column{
+        width: 100%;
+        background: none;
+    }
+
+    .whiteT, .yellowT{
+        font-size: 20px;
+    }
+
+    .drive{
+        font-size: 30px;
+        color: white;
+    }
+    
+    .with{
+        font-size: 30px;
+        color: rgba(255, 255, 255, 0.56);
+    }
+
+    .about{
+        display: flex;
+        align-self: flex-end;
+        top: 0%;
+        margin-right: 30px;
+    }
+
+    .Log{
+        color: white;
+        font-size: 40px;
+    }
+
+    .Join{
+        color: white;
+        font-size: 40px;
+        align-self: center;
+    }
+
+    .emailLabel, .passwordLabel{
+        color:  rgba(255, 255, 255, 0.56);
+        font-weight: 300;
+    }
+
+    .loginInput{
+        background-color: rgba(83, 91, 163, 0.4);
+        color: rgba(255, 255, 255, 0.56);
+        border-radius: 25px;
+    }
+
+    .loginBtn{
+        border-radius: 25px;
+    }
+
+    .loginSignup{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .joinText{
+        color: rgba(255, 255, 255, 0.56);
+        font-size: 20px;
+    }
+
+    .joinBtn{
+        border-radius: 25px;
+    }
+
+    .or{
+        color: rgba(255, 255, 255, 0.56);
+    }
+
+
+}
+
