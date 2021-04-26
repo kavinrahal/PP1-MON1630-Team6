@@ -1,10 +1,15 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using CarShare.Data;
+using CarShare.Services;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using React.AspNet;
 
 namespace CarShare
 {
@@ -21,13 +26,34 @@ namespace CarShare
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllersWithViews();
+            var razorBuilder = services.AddControllersWithViews();
+            #if DEBUG
+            razorBuilder.AddRazorRuntimeCompilation();
+            #endif
+
+            services.AddDbContextPool<DatabaseContext>(options =>
+            {
+                options.UseLazyLoadingProxies();
+                options.UseSqlServer(Configuration.GetConnectionString("Default"),
+                    sqlServerOptionsAction: sqlOptions =>
+                    {
+                        sqlOptions.EnableRetryOnFailure();
+                    });
+            });
+
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddScoped<CustomerService>();
+            services.AddReact();
+
+            services.AddRazorPages();
+
+            services.AddAuthentication();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,11 +76,15 @@ namespace CarShare
 
             app.UseRouting();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
 
             app.UseSpa(spa =>
@@ -66,6 +96,9 @@ namespace CarShare
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+
+
+            app.UseCors("ReactPolicy");
         }
     }
 }
