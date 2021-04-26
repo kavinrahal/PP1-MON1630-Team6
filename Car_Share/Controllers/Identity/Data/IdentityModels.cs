@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Identity;
 
 namespace CarShare.Controllers.Identity.Data
 {
-    // Add profile data for application users by adding properties to the MCBAUser class
     [Table("AspNetUsers")]
     public class User : IdentityUser
     {
