@@ -42,7 +42,7 @@ function LoginPage(){
                             <input type = "password" className = "loginInput" placeholder = "  Password"></input>
                         </div>
                         <br></br>
-                        <button className = "loginBtn">Log In</button>
+                        <Link to = "/dashboard"><button className = "loginBtn">Log In</button></Link>
                         <div className = "or">or</div>
                         <div className = "join">
                             <div className = "Join">Join Us Today!</div>

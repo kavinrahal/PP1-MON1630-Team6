@@ -62,10 +62,12 @@ export default function Dashboard() {
             </div>
 
             <div className = "dashRow">
-              <div className = 'allCars'>
-                <div className = "allCarsText">View All Cars</div>
-                <div className = "allCarsLogo"><img src = {allCars} ></img></div>
-              </div>
+              <Link to = "/viewAllCars">
+                <div className = 'allCars'>
+                  <div className = "allCarsText">View All Cars</div>
+                  <div className = "allCarsLogo"><img src = {allCars} ></img></div>
+                </div>
+              </Link>
             </div>
           </div>
 

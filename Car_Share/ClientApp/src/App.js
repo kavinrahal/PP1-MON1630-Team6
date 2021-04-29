@@ -11,6 +11,7 @@ import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
 import Dashboard from "./components/Dashboard";
 
+
 export default class App extends Component {
   static displayName = App.name;
 
@@ -19,10 +20,10 @@ export default class App extends Component {
       <Router>
         <div className="App">
           <Switch>
-            <Route path = "/" exact component = {Dashboard}></Route>
+            <Route path = "/" exact component = {LoginPage}></Route>
             <Route path = "/register" exact component = {RegisterPage}></Route>
-          
-          
+            <Route path = "/viewAllCars" exact component = {{/*add view all cars page name here*/}}></Route>
+            <Route path = "/dashboard" exact component = {Dashboard}></Route>
           </Switch>
         </div>
     </Router>
