@@ -8,8 +8,10 @@ import {
 import SideBar from './SideBar';
 import SideBarMobile from './SideBarMobile';
 import './styles/Dashboard.css';
-import BackDrop from '../addons/Circle bg.svg';
 import allCars from '../addons/AllCarsLogo.svg';
+import locateLogo from '../addons/LocateLogo.png';
+import searchLogo from '../addons/SearchLogo.svg';
+import cityback from '../addons/City Backdrop.svg';
 
 const viewportContext = React.createContext({});
 
@@ -51,23 +53,41 @@ export default function Dashboard() {
       <div className = "dashboardWrapper">
         <WhichSideBar />
         <div className = "dashboard">
+          {/*<div className = "cityBack"><img src = {cityback}></img></div>*/}
           <div className = "row1 dashTitle">
             <div className = "blueT">Car</div>
             <div className = "yellowT">Share</div>
             <div className = "blueT">Scheme</div>
           </div>
           <div className = "dash">
-            <div className = "currentBooking">
-              <div className = "currentBookText">Current Booking</div>
+            <div className = "currentBooking hvr-grow">
+              <div className = "currentBookText"><div className = "bookText">Current Booking</div></div>
             </div>
 
             <div className = "dashRow">
+              
+              <div className = "dashBtn newBook hvr-grow">
+                <div className = "newBookText">Make a New Booking!</div>
+                <img className = "cityB" src = {cityback}></img>
+                
+              </div>
+              <div className = "dashBtn locateParking hvr-grow">
+                <div className = "dashBtnText">Locate Parking</div>
+                <div className = "dashBtnLogo"><img className = "locateLogo" src = {locateLogo} ></img></div>
+              </div>
               <Link to = "/viewAllCars">
-                <div className = 'allCars'>
-                  <div className = "allCarsText">View All Cars</div>
-                  <div className = "allCarsLogo"><img src = {allCars} ></img></div>
+                <div className = 'dashBtn allCars hvr-grow'>
+                  <div className = "dashBtnText">View All Cars</div>
+                  <div className = "dashBtnLogo"><img className = "allCarsLogo" src = {allCars} ></img></div>
                 </div>
               </Link>
+              <div className = "dashBtn searchCar hvr-grow">
+                <div className = "dashBtnText">Search for Car</div>
+                <div className = "dashBtnLogo"><img className = "searchLogo" src = {searchLogo} ></img></div>
+              </div>
+              
+
+
             </div>
           </div>
 

@@ -37,10 +37,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 95%; 
     align-self: center;
     height: 80%;
-    background: cornsilk;
 }
 
 .dashTitle{
@@ -50,33 +50,143 @@
 .currentBooking{
     display: flex;
     flex-direction: column;
-    height: 20%;
+    height: 35%;
     width: 95%;
-    background: crimson;
+    background: url('../../addons/Map.PNG');
+    background-size: cover;
+    background-repeat: no-repeat;
+    justify-content: flex-end;
     align-self: center;
     margin-top: 30px;
+    filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
+}
+
+.currentBookText{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.7);
+    height: 30%;
+}
+
+.bookText{
+    font-size: 30px;
+    color: #1D1E5B;
+    margin-left: 20px;
 }
 
 .dashRow{
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
     flex-wrap: wrap;
-    width: 95%;
+    justify-content: space-around;
+    width: 100%;
     margin-top: 30px;
 }
 
-.allCars{
+.dashBtn{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 30px;
+    justify-content: center;
+    height: 200px;
+    width: 200px;
     font-size: 30px;
     color: #1D1E5B;
     background: #FFFFFF;
     filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
 }
 
-.allCarsText{
+.dashBtnText{
     margin-bottom: 20px;
+}
+
+.newBook{
+    background: linear-gradient(54.94deg, #1C1D57 24.38%, #161892 99.99%);
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.newBookText{
+    position: absolute;
+    text-align: center;
+}
+
+.cityB{
+    height: 25%;
+    align-self: flex-end;
+    width: 100%;
+}
+
+.hvr-grow {
+    vertical-align: middle;
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    transition-duration: 0.5s;
+    transition-property: transform;
+}
+
+.hvr-grow:hover,
+.hvr-grow:focus,
+.hvr-grow:active {
+    transform: scale(1.05, 1.05);
+}
+
+.cityBack{
+    position: absolute;
+    bottom: 0;
+}
+
+@media (max-width: 1200px){
+
+    .dashboardWrapper{
+        background-position-x: 50px;
+    }
+
+    .dashRow{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    .dashBtn{
+        margin: 15px;
+    }
+}
+
+@media (max-width: 584px){
+    
+    .dashBtn{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 115px;
+        width: 115px;
+        font-size: 18px;
+        color: #1D1E5B;
+        background: #FFFFFF;
+        filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
+    }
+
+    .dashBtnLogo{
+        height: 50%;
+    }
+
+    .dashBtnText{
+        margin-bottom: 10px;
+    }
+
+    .locateLogo, .allCarsLogo, .searchLogo{
+        height: 80%;
+    }
+
 }
