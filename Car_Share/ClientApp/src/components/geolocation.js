@@ -16,7 +16,18 @@ const mapStyles = {
     height: '100%'
 };
 
-export class FindingVehicles extends Component {
+const carData = [{
+    id: 1,
+    name: "Car1",
+    description: "Mercedes",
+    location: {
+        lat: 37.8147,
+        lng: 144.9517
+    },
+    city: "Melbourne"
+},]
+
+export class MapContainer extends Component {
     constructor(props) {
         super(props);
         this.state= {
@@ -48,6 +59,11 @@ export class FindingVehicles extends Component {
                 centerAroundCurrentLocation
                 google={this.props.google}
             >
+                {carData.map(item => {
+                    return(
+                        <Marker key={item.name} position={item.location} />
+                    );
+                })}
                 <Marker
                     onClick={this.onMarkerClick}
                     name={'Your Current Location'}
@@ -68,4 +84,4 @@ export class FindingVehicles extends Component {
 
 export default GoogleApiWrapper({
     apiKey: 'AIzaSyDIjzYEK-Jozakh-bWq0Qpn1bVKLl4NCzg'
-})(FindingVehicles);
+})(MapContainer);

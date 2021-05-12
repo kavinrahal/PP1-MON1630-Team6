@@ -10,7 +10,7 @@ const mapStyles = {
 };
 
 export class CurrentLocation extends Component {
-    
+
     constructor(props) {
         super(props);
         const {lat, lng} = this.props.initialCenter;
@@ -38,7 +38,7 @@ export class CurrentLocation extends Component {
             const {google} = this.props;
             const mapRef=this.refs.map;
             const node = ReactDOM.findDOMNode(mapRef);
-
+            
             let {zoom} = this.props;
             const {lat,lng} = this.state.currentLocation;
             const center = new google.maps.LatLng(lat, lng);
@@ -49,7 +49,7 @@ export class CurrentLocation extends Component {
                     zoom: zoom
                 }
             );
-            this.map = new google.maps.Map(node, mapConfig);
+            this.map = new google.maps.Map(node, mapConfig, document.getElementById("map"));
         }
     }
 
@@ -95,7 +95,6 @@ export class CurrentLocation extends Component {
 
     render() {
         const style = Object.assign({}, mapStyles.map);
-
         return(
             <div>
                 <div style = {style} ref = {"map"}>
@@ -118,3 +117,4 @@ CurrentLocation.defaultProps = {
 };
 
 export default CurrentLocation;
+
