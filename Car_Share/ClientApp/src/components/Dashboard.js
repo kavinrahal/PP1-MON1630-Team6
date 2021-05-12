@@ -42,7 +42,7 @@ const useViewport = () => {
 
 const WhichSideBar = () => {
   const { width } = useViewport();
-  const breakpoint = 1024;
+  const breakpoint = 1200;
 
   return width < breakpoint ? <SideBarMobile /> : <SideBar />;
 };

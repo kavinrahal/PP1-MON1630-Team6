@@ -144,15 +144,28 @@
 
 @media (max-width: 1200px){
 
+    .newBook{
+        background: linear-gradient(54.94deg, #1C1D57 24.38%, #161892 99.99%);
+        color: white;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
     .dashboardWrapper{
         background-position-x: 50px;
+    }
+
+    .dash{
+        justify-content: flex-start;
     }
 
     .dashRow{
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
         flex-wrap: wrap;
-        justify-content: flex-start;
         width: 100%;
         margin-top: 30px;
     }
@@ -163,7 +176,28 @@
 }
 
 @media (max-width: 584px){
-    
+
+    .newBook{
+        background: linear-gradient(54.94deg, #1C1D57 24.38%, #161892 99.99%);
+        color: white;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .bookText{
+        font-size: 25px;
+    }
+
+    .dashRow{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-top: 30px;
+    }
+
     .dashBtn{
         display: flex;
         flex-direction: column;
