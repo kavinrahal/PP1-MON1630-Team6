@@ -1,36 +1,18 @@
 import React, {useEffect, useState } from 'react';
 import { GoogleMap,  Marker, InfoWindow, useJsApiLoader } from '@react-google-maps/api';
-
+import carData from "./carData.json";
+import DropdownSearch from './searchBar';
 
 export const MapContainer = () => {
 
     const mapStyles = {
-        width: '1000px',
-        height: '1000px'
+        width: '400px',
+        height: '400px'
     };
-
-    const carData = [{
-        id: 1,
-        name: "Car 1",
-        location: {
-            lat: -37.8147,
-            lng: 144.9517
-        },
-        city: "Melbourne"
-        },
-        {
-            id: 2,
-            name: "Car 2",
-            location: {
-                lat: -37.8184,
-                lng: 144.9525
-            },
-            city: "Melbourne"
-        }
-    ]
 
     const [currentPos, setCurrentPos] = useState({});
     const [selected, setSelected] = useState({});
+    const [value, setValue] = useState(null);
 
     const getCurrentPos = position => {
         const currentPos = {
@@ -46,12 +28,11 @@ export const MapContainer = () => {
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(getCurrentPos);
-
     });
 
-    return renderMap()
+    return RenderMap()
 
-    function renderMap() {
+    function RenderMap() {
         const { isLoaded } = useJsApiLoader({
             id: 'google-map-script',
             googleMapsApiKey: "AIzaSyDIjzYEK-Jozakh-bWq0Qpn1bVKLl4NCzg"
@@ -70,6 +51,7 @@ export const MapContainer = () => {
         }, [])
 
             return isLoaded ? (
+            <div>
                 <GoogleMap
                     mapContainerStyle={mapStyles}
                     zoom={15}
@@ -90,7 +72,7 @@ export const MapContainer = () => {
                         )
                     })
                 }
-
+                
                 {
                     selected.location && 
                     (
@@ -103,7 +85,11 @@ export const MapContainer = () => {
                     </InfoWindow>
                     )
                 }
-            </GoogleMap>  
+            </GoogleMap>
+            <div style={{width:200}}>
+                <DropdownSearch options={carData} id='id' label='type' prompt='Select Vehicle Type...' value={value} onChange={val => setValue(val)}/>
+            </div>
+        </div>  
         )  : <></>
     }
 }

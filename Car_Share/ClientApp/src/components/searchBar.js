@@ -27,9 +27,6 @@ export default function DropdownSearch({options, id, label, prompt, value, onCha
         return "";
     }
 
-    function createMarker() {
-        if(item[label] == "SUV") return 
-    }
     return (
         <div className='dd'>
             <div className='control' onClick={() => setOpen((prev) => !prev)}>

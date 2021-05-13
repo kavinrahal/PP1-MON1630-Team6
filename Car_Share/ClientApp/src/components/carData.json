@@ -1,0 +1,21 @@
+[{
+    "id": 1,
+    "name": "Car 1",
+    "type": "SUV",
+    "location": {
+        "lat": -37.8147,
+        "lng": 144.9517
+    },
+    "city": "Melbourne"
+    },
+    {
+        "id": 2,
+        "name": "Car 2",
+        "type": "Convertible",
+        "location": {
+            "lat": -37.8184,
+            "lng": 144.9525
+        },
+        "city": "Melbourne"
+    }
+]
