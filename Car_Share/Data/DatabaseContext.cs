@@ -1,4 +1,4 @@
-﻿using CarShare.Controllers.Identity.Data;
+﻿using CarShare.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using CarShare.Models;

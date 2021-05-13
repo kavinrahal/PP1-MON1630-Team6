@@ -11,43 +11,43 @@ namespace CarShare.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("ReactPolicy")]
-    public class CustomerController : ControllerBase
+    public class CarController : ControllerBase
     {
-        private readonly CustomerService customerService;
-        public CustomerController(CustomerService customerService)
+        private readonly CarService carService;
+        public CarController(CarService carService)
         {
-            this.customerService = customerService;
+            this.carService = carService;
         }
-        // GET api/customer
+        // GET api/car
         [HttpGet]
-        public IEnumerable<Customer> GetAll()
+        public IEnumerable<Car> GetAll()
         {
-            return customerService.GetAll();
+            return carService.GetAll();
         }
-        // GET api/customer/5
+        // GET api/car/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            return Ok(customerService.Get(id));
+            return Ok(carService.Get(id));
         }
-        // POST api/customer
+        // POST api/car
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Customer customer)
+        public async Task<IActionResult> Post([FromBody] Car car)
         {
-            return CreatedAtAction("Get", new { id = customer.CustomerID }, customerService.Add(customer));
+            return CreatedAtAction("Get", new { id = car.CarID }, carService.Add(car));
         }
-        // PUT api/customer/5
+        // PUT api/car/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Customer customer)
+        public async Task<IActionResult> Put(int id, [FromBody] Car car)
         {
-            customerService.Update(id, customer);
+            carService.Update(id, car);
             return NoContent();
         }
-        // DELETE api/customer/5
+        // DELETE api/car/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            customerService.Delete(id);
+            carService.Delete(id);
             return NoContent();
         }
         public override NoContentResult NoContent()

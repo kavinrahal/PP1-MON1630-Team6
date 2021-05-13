@@ -57,7 +57,7 @@ namespace CarShare
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -78,6 +78,7 @@ namespace CarShare
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseCors("ReactPolicy");
 
             app.UseEndpoints(endpoints =>
             {
@@ -97,8 +98,8 @@ namespace CarShare
                 }
             });
 
-
-            app.UseCors("ReactPolicy");
+            serviceProvider.GetService<DatabaseContext>().Database.EnsureCreated();
+            
         }
     }
 }

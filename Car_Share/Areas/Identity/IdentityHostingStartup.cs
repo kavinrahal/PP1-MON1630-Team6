@@ -1,5 +1,4 @@
-﻿using CarShare.Controllers.Identity.Data;
-//using CarShare.Areas.Identity.Pages.Account;
+﻿using CarShare.Areas.Identity.Data;
 using CarShare.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;

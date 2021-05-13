@@ -1,4 +1,4 @@
-﻿using CarShare.Controllers.Identity.Data;
+﻿using CarShare.Areas.Identity.Data;
 using CarShare.Models;
 using CarShare.Services;
 using System.Linq;

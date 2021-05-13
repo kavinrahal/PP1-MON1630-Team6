@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using CarShare.Models;
 using Microsoft.AspNetCore.Identity;
 
-namespace CarShare.Controllers.Identity.Data
+namespace CarShare.Areas.Identity.Data
 {
     [Table("AspNetUsers")]
     public class User : IdentityUser
