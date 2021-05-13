@@ -1,14 +1,12 @@
 /* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
+@font-face {
+  font-family: 'Gidole Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Gidole Regular'), url('./addons/Gidole-Regular.woff') format('woff');
 }
 
-code {
-  color: #E01A76;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+html, body{
+  font-family: 'Gidole Regular';
+  height: 100vh;
 }

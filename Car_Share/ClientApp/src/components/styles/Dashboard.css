@@ -1,0 +1,226 @@
+.dashboardWrapper{
+    display: flex;
+    flex-direction: row;
+    background: url('../../addons/Circle\ bg.svg');
+    background-size: 30%;
+    background-position-x: 250px;
+    background-repeat: no-repeat;
+}
+
+.dashboard{
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    flex-direction: column;
+}
+
+.row1{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.blueT{
+    color: 040C4F;
+    font-size: 30px;
+}
+
+.yellowT
+{
+    color: #F4CE47;
+    font-size: 30px;
+}
+
+.dash{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 95%; 
+    align-self: center;
+    height: 80%;
+}
+
+.dashTitle{
+    margin-left: 30px;
+}
+
+.currentBooking{
+    display: flex;
+    flex-direction: column;
+    height: 35%;
+    width: 95%;
+    background: url('../../addons/Map.PNG');
+    background-size: cover;
+    background-repeat: no-repeat;
+    justify-content: flex-end;
+    align-self: center;
+    margin-top: 30px;
+    filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
+}
+
+.currentBookText{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.7);
+    height: 30%;
+}
+
+.bookText{
+    font-size: 30px;
+    color: #1D1E5B;
+    margin-left: 20px;
+}
+
+.dashRow{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.dashBtn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    width: 200px;
+    font-size: 30px;
+    color: #1D1E5B;
+    background: #FFFFFF;
+    filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
+}
+
+.dashBtnText{
+    margin-bottom: 20px;
+}
+
+.newBook{
+    background: linear-gradient(54.94deg, #1C1D57 24.38%, #161892 99.99%);
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.newBookText{
+    position: absolute;
+    text-align: center;
+}
+
+.cityB{
+    height: 25%;
+    align-self: flex-end;
+    width: 100%;
+}
+
+.hvr-grow {
+    vertical-align: middle;
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    transition-duration: 0.5s;
+    transition-property: transform;
+}
+
+.hvr-grow:hover,
+.hvr-grow:focus,
+.hvr-grow:active {
+    transform: scale(1.05, 1.05);
+}
+
+.cityBack{
+    position: absolute;
+    bottom: 0;
+}
+
+@media (max-width: 1200px){
+
+    .newBook{
+        background: linear-gradient(54.94deg, #1C1D57 24.38%, #161892 99.99%);
+        color: white;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dashboardWrapper{
+        background-position-x: 50px;
+    }
+
+    .dash{
+        justify-content: flex-start;
+    }
+
+    .dashRow{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    .dashBtn{
+        margin: 15px;
+    }
+}
+
+@media (max-width: 584px){
+
+    .newBook{
+        background: linear-gradient(54.94deg, #1C1D57 24.38%, #161892 99.99%);
+        color: white;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .bookText{
+        font-size: 25px;
+    }
+
+    .dashRow{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    .dashBtn{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 115px;
+        width: 115px;
+        font-size: 18px;
+        color: #1D1E5B;
+        background: #FFFFFF;
+        filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
+    }
+
+    .dashBtnLogo{
+        height: 50%;
+    }
+
+    .dashBtnText{
+        margin-bottom: 10px;
+    }
+
+    .locateLogo, .allCarsLogo, .searchLogo{
+        height: 80%;
+    }
+
+}
