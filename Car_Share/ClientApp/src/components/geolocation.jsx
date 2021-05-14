@@ -30,6 +30,7 @@ export const MapContainer = () => {
         navigator.geolocation.getCurrentPosition(getCurrentPos);
     });
 
+
     return RenderMap()
 
     function RenderMap() {
@@ -81,7 +82,12 @@ export const MapContainer = () => {
                         clickable={true}
                         onCloseClick={() => setSelected({})}
                     >
+                    <>
                     <p>{selected.name}</p>
+                    <p>{"Type: " + selected.type}</p>
+                    <p>{"Make: " + selected.make}</p>
+                    <p>{"Model: " + selected.model}</p>
+                    </>
                     </InfoWindow>
                     )
                 }

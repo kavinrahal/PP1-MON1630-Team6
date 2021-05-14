@@ -1,6 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import { GoogleMap,  Marker, InfoWindow, useJsApiLoader } from '@react-google-maps/api';
-import carData from "./carData.json";
 import './styles/searchBar.css';
 
 export default function DropdownSearch({options, id, label, prompt, value, onChange}) {
@@ -8,6 +6,7 @@ export default function DropdownSearch({options, id, label, prompt, value, onCha
     const [open, setOpen] = useState(false);
     const ref = useRef(null);
     const [query, setQuery] = useState("");
+
     useEffect(() => {
         document.addEventListener("click", close)
         return () => document.removeEventListener("click", close);
@@ -38,7 +37,7 @@ export default function DropdownSearch({options, id, label, prompt, value, onCha
             <div className={`options ${open ? "open" : null}`}>
                 {
                     filter(options).map((item) => (
-                        <div key={item[id]} className={`option ${value === item ? "selected": null}`} onClick={() => {setQuery(""); onChange(item); setOpen(false);}}>{item[label]}</div>
+                        <div key={item[id]} className={`option ${value === item ? "selected": null}`} onClick={() => {setQuery(""); onChange(item); setOpen(false); console.log(item.type)}}>{item[label]}</div>
                     ))
                 }
             </div>
