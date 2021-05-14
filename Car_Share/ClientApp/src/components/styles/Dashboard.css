@@ -177,14 +177,7 @@
 
 @media (max-width: 584px){
 
-    .newBook{
-        background: linear-gradient(54.94deg, #1C1D57 24.38%, #161892 99.99%);
-        color: white;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-    }
+    
 
     .bookText{
         font-size: 25px;
@@ -209,6 +202,15 @@
         color: #1D1E5B;
         background: #FFFFFF;
         filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
+    }
+
+    .newBook{
+        background: linear-gradient(54.94deg, #1C1D57 24.38%, #161892 99.99%);
+        color: white;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
     }
 
     .dashBtnLogo{
