@@ -1,9 +1,10 @@
 import React, {useEffect, useState } from 'react';
 import { GoogleMap,  Marker, InfoWindow, useJsApiLoader } from '@react-google-maps/api';
+import DropdownBar from './dropdownBar';
 import carData from "./carData.json";
-import DropdownSearch from './searchBar';
 
 export const MapContainer = () => {
+
 
     const mapStyles = {
         width: '400px',
@@ -12,7 +13,7 @@ export const MapContainer = () => {
 
     const [currentPos, setCurrentPos] = useState({});
     const [selected, setSelected] = useState({});
-    const [value, setValue] = useState(null);
+    const [showMarker, setShowMarker] = useState(false);
 
     const getCurrentPos = position => {
         const currentPos = {
@@ -29,7 +30,6 @@ export const MapContainer = () => {
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(getCurrentPos);
     });
-
 
     return RenderMap()
 
@@ -93,12 +93,12 @@ export const MapContainer = () => {
                 }
             </GoogleMap>
             <div style={{width:200}}>
-                <DropdownSearch options={carData} id='id' label='type' prompt='Select Vehicle Type...' value={value} onChange={val => setValue(val)}/>
+                <DropdownBar/>
             </div>
         </div>  
         )  : <></>
     }
 }
-
+ 
 export default MapContainer;
 

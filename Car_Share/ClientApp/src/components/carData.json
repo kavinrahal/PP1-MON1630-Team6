@@ -1,13 +1,14 @@
-[{
-    "id": 1,
-    "name": "Car 1",
-    "type": "SUV",
-    "make": "Audi" ,
-    "model": "Q5",
-    "location": {
-        "lat": -37.8147,
-        "lng": 144.9517
-    }
+[
+    {
+        "id": 1,
+        "name": "Car 1",
+        "type": "SUV",
+        "make": "Audi" ,
+        "model": "Q5",
+        "location": {
+            "lat": -37.8147,
+            "lng": 144.9517
+        }
     },
     {
         "id": 2,
@@ -19,7 +20,7 @@
             "lat": -37.81477338406039,
             "lng": 144.95345785777215
         }
-        },
+    },
     {
         "id": 3,
         "name": "Car 3",
@@ -29,6 +30,17 @@
         "location": {
             "lat": -37.8184,
             "lng": 144.9525
+        }
+    },
+    {
+        "id": 4,
+        "name": "Car 4",
+        "type": "Hatchback",
+        "make": "Hyundai" ,
+        "model": "i30",
+        "location": {
+            "lat": -37.8131,
+            "lng": 144.9510
         }
     }
 ]
