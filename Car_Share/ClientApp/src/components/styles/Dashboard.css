@@ -1,9 +1,10 @@
 .dashboardWrapper{
     display: flex;
     flex-direction: row;
-    background: url('../../addons/Circle\ bg.svg');
-    background-size: 30%;
+    background: url('../../addons/Circle\ bg.svg'), url('../../addons/CityExtBack.svg');
+    background-size: 30%, 100%;
     background-position-x: 250px;
+    background-position-y: 0, bottom;
     background-repeat: no-repeat;
 }
 
@@ -154,7 +155,7 @@
     }
 
     .dashboardWrapper{
-        background-position-x: 50px;
+        background-position-x: 50px, 0;
     }
 
     .dash{

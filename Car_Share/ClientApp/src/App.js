@@ -10,6 +10,7 @@ import './custom.css'
 import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
 import Dashboard from "./components/Dashboard";
+import Profile from "./components/Profile";
 
 
 export default class App extends Component {
@@ -24,6 +25,7 @@ export default class App extends Component {
             <Route path = "/register" exact component = {RegisterPage}></Route>
             <Route path = "/viewAllCars" exact component = {{/*add view all cars page name here*/}}></Route>
             <Route path = "/dashboard" exact component = {Dashboard}></Route>
+            <Route path = "/profile" exact component = {Profile}></Route>
           </Switch>
         </div>
     </Router>

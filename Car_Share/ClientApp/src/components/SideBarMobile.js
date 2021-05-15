@@ -72,9 +72,9 @@ const SideBarMobile = () => {
                     </div>
                 </SidebarHeader>
                 <Menu iconShape="square">
-                    <MenuItem><img className = "homeLogo" src = {homeLogo}></img>Home</MenuItem>
+                    <MenuItem><Link to = "dashboard"><img className = "homeLogo" src = {homeLogo}></img>Home</Link></MenuItem>
                     <MenuItem><img className = "historyLogo" src = {historyLogo}></img>History</MenuItem>
-                    <MenuItem><img className = "profileLogo" src = {profileLogo}></img>Profile</MenuItem>
+                    <MenuItem><Link to = "profile"><img className = "profileLogo" src = {profileLogo}></img>Profile</Link></MenuItem>
                     <MenuItem><img className = "reportLogo" src = {reportLogo}></img>Report a Problem</MenuItem>
                     <MenuItem><img className = "settingsLogo" src = {settingsLogo}></img>Settings</MenuItem>
                     <br></br>

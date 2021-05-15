@@ -5,7 +5,7 @@
     src: local('Gidole Regular'), url('../../addons/Gidole-Regular.woff') format('woff');
 }
 
-.registerWrapper, body, html{
+.registerWrapper{
     font-family: 'Gidole Regular';
     height: 100%;
 }
