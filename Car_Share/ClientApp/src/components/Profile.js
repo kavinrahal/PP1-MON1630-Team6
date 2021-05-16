@@ -8,10 +8,6 @@ import {
 import SideBar from './SideBar';
 import SideBarMobile from './SideBarMobile';
 import './styles/Profile.css';
-import allCars from '../addons/AllCarsLogo.svg';
-import locateLogo from '../addons/LocateLogo.png';
-import searchLogo from '../addons/SearchLogo.svg';
-import cityback from '../addons/City Backdrop.svg';
 
 const viewportContext = React.createContext({});
 
@@ -51,10 +47,10 @@ export default function Profile(){
     return(
         <ViewportProvider>
             <div className = "profileWrapper">
-                <WhichSideBar></WhichSideBar>
+                <WhichSideBar className = "sideB"></WhichSideBar>
                 <div className = "profile">
                     <div className = "rowProfile">
-                        <div className = "profileTitle">Profile</div>
+                        <div className = "profileTitle">My Profile</div>
                         <div className = "pageTitle">
                             <div className = "blueT">Car</div>
                             <div className = "yellowT">Share</div>
@@ -66,38 +62,38 @@ export default function Profile(){
                       <div className = "profileDetails">
                         <div className = "profileNames">
                           <div className = "profileFirst">
-                              <div className = "signUpLabel">Change Name</div>
-                              <input type = "text" className = "signUpText" placeholder = "  User First"></input>
+                              <div className = "profileLabel">Change Name</div>
+                              <input type = "text" className = "profileText" placeholder = "  User First"></input>
                           </div>
                           <div className = "profileLast">
-                              <div className = "signUpLabel">Change Address</div>
-                              <input type = "text" className = "signUpText" placeholder = "  User Address"></input>
+                              <div className = "profileLabel">Change Address</div>
+                              <input type = "text" className = "profileText" placeholder = "  User Address"></input>
                           </div>
                         </div>
                         <br></br>
                         <div className = "profileContact">
                             <div className = "profileSignUpEmail">
-                                <div className = "signUpLabel">Change Email</div>
-                                <input type = "email" className = "signUpText" placeholder = "  User Email"></input>
+                                <div className = "profileLabel">Change Email</div>
+                                <input type = "email" className = "profileText" placeholder = "  User Email"></input>
                             </div>
                             <div className = "profilePhone">
-                                <div className = "signUpLabel">Change Phone Number</div>
-                                <input type = "text" className = "signUpText" placeholder = "  User Phone"></input>
+                                <div className = "profileLabel">Change Phone Number</div>
+                                <input type = "text" className = "profileText" placeholder = "  User Phone"></input>
                             </div>
                         </div>
                         <br></br>
                         <div className = "profilePasswords">
                           <div className = "profileSignUpPassword">
-                              <div className = "signUpLabel">Change Password</div>
-                              <input type = "password" className = "signUpText" placeholder = "  User Password"></input>
+                              <div className = "profileLabel">Change Password</div>
+                              <input type = "password" className = "profileText" placeholder = "  User Password"></input>
                           </div>
                           <div className = "profileConfirmPassword">
-                              <div className = "signUpLabel">Confirm New Password</div>
-                              <input type = "password" className = "signUpText" placeholder = "  Confirm Password"></input>
+                              <div className = "profileLabel">Confirm New Password</div>
+                              <input type = "password" className = "profileText" placeholder = "  Confirm Password"></input>
                           </div>
                         </div>
                         <br></br>
-                        <button className = "saveProfile">Save Changes</button>
+                        <button className = "saveProfile hvr-sweep-to-right">Save Changes</button>
                       </div>
                   </div>
                 </div>

@@ -78,7 +78,7 @@ const SideBarMobile = () => {
                     <MenuItem><img className = "reportLogo" src = {reportLogo}></img>Report a Problem</MenuItem>
                     <MenuItem><img className = "settingsLogo" src = {settingsLogo}></img>Settings</MenuItem>
                     <br></br>
-                    <button className = "logOutBtn" id = "logOutBtn">SIGN OUT</button>
+                    <button className = "logOutBtn hvr-sweep-to-right-red" id = "logOutBtn">SIGN OUT</button>
                 </Menu>
             </ProSidebar>
         </div>
