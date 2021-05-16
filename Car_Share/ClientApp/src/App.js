@@ -11,6 +11,7 @@ import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
 import Dashboard from "./components/Dashboard";
 import Profile from "./components/Profile";
+import BookingHistory from "./components/BookingHistory";
 
 
 export default class App extends Component {
@@ -26,6 +27,7 @@ export default class App extends Component {
             <Route path = "/viewAllCars" exact component = {{/*add view all cars page name here*/}}></Route>
             <Route path = "/dashboard" exact component = {Dashboard}></Route>
             <Route path = "/profile" exact component = {Profile}></Route>
+            <Route path = "/booking_history" exact component = {BookingHistory}></Route>
           </Switch>
         </div>
     </Router>

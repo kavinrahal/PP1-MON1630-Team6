@@ -73,12 +73,12 @@ const SideBarMobile = () => {
                 </SidebarHeader>
                 <Menu iconShape="square">
                     <MenuItem><Link to = "dashboard"><img className = "homeLogo" src = {homeLogo}></img>Home</Link></MenuItem>
-                    <MenuItem><img className = "historyLogo" src = {historyLogo}></img>History</MenuItem>
+                    <MenuItem><Link to = "booking_history"><img className = "historyLogo" src = {historyLogo}></img>History</Link></MenuItem>
                     <MenuItem><Link to = "profile"><img className = "profileLogo" src = {profileLogo}></img>Profile</Link></MenuItem>
                     <MenuItem><img className = "reportLogo" src = {reportLogo}></img>Report a Problem</MenuItem>
                     <MenuItem><img className = "settingsLogo" src = {settingsLogo}></img>Settings</MenuItem>
                     <br></br>
-                    <button className = "logOutBtn hvr-sweep-to-right-red" id = "logOutBtn">SIGN OUT</button>
+                    <button className = "logOutBtn hvr-sweep-to-right-red"><Link to = "/">SIGN OUT</Link></button>
                 </Menu>
             </ProSidebar>
         </div>
