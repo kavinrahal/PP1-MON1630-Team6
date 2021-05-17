@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./styles/LoginPage.css";
 import Image from "../addons/loginlogo.png";
@@ -25,7 +25,7 @@ function LoginPage() {
     return data;
   };
   const createBasicAuthToken = (email, password) => {
-    return "Basic " + window.btoa(username + ":" + password);
+    return "Basic " + window.btoa(email + ":" + password);
   };
   return (
     <div className="LoginWrapper">
@@ -51,6 +51,8 @@ function LoginPage() {
             <div className="email">
               <div className="emailLabel">Email</div>
               <input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 type="text"
                 className="loginInput"
                 placeholder="  Email"
@@ -60,6 +62,8 @@ function LoginPage() {
             <div className="password">
               <div className="passwordLabel">Password</div>
               <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 className="loginInput"
                 placeholder="  Password"

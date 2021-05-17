@@ -19,12 +19,12 @@ function RegisterPage() {
     // e.preventDefault();
     if (password != confirmPassword) {
       alert("Password Mismatch!");
-      history.push({
-        pathname: "/",
-        state: {
-          response: "messageFromServer",
-        },
-      });
+      // history.push({
+      //   pathname: "/",
+      //   state: {
+      //     response: "messageFromServer",
+      //   },
+      // });
       return;
     }
 
@@ -111,6 +111,7 @@ function RegisterPage() {
                 <div className="last">
                   <div className="signUpLabel">Address</div>
                   <input
+                    value={address}
                     onChange={(e) => setAddress(e.target.value)}
                     type="text"
                     className="signUpText"
@@ -123,6 +124,7 @@ function RegisterPage() {
                 <div className="signUpEmail">
                   <div className="signUpLabel">Email</div>
                   <input
+                    value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     type="email"
                     className="signUpText"
@@ -132,6 +134,7 @@ function RegisterPage() {
                 <div className="phone">
                   <div className="signUpLabel">Phone Number</div>
                   <input
+                    value={mobile}
                     onChange={(e) => setMobile(e.target.value)}
                     type="text"
                     className="signUpText"
@@ -144,6 +147,7 @@ function RegisterPage() {
                 <div className="signUpPassword">
                   <div className="signUpLabel">Password</div>
                   <input
+                    value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     type="password"
                     className="signUpText"
@@ -153,6 +157,7 @@ function RegisterPage() {
                 <div className="confirmPassword">
                   <div className="signUpLabel">Confirm Password</div>
                   <input
+                    value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     type="password"
                     className="signUpText"
@@ -171,9 +176,9 @@ function RegisterPage() {
                 className="confirmSignUpBtn"
                 onClick={() => handleSubmit()}
               >
-                Sign Up Post
+                Sign Up
               </button>
-              <button className="confirmSignUpBtn">Sign Up!</button>
+              {/* <button className="confirmSignUpBtn">Sign Up!</button> */}
               <br></br>
               <br></br>
               <div className="already">
