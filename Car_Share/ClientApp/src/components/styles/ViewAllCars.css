@@ -15,7 +15,7 @@
     }
   }
 
-.BookingHistoryWrapper {
+.ViewAllCarsWrapper {
     display: flex;
     flex-direction: row;
     background: url('../../addons/Circle\ bg.svg'), url('../../addons/CityExtBack.svg');
@@ -25,7 +25,7 @@
     background-repeat: no-repeat;
 }
 
-.bookingHistory{
+.viewAllCars{
     display: flex;
     justify-content: center;
     height: 100vh;
@@ -57,7 +57,7 @@
     align-self: center;
 }
 
-.booking{
+.allCars{
     display: flex;
     flex-direction: column;
     width: 95%; 
@@ -89,7 +89,7 @@
     right: 1.5%;
 }
 
-.filterLocation, .filterCar{
+.filterBox{
     border-radius: 5px;
     margin-right: 5px;
 }
@@ -105,7 +105,7 @@
     height: 30px;
 }
 
-.history_element {
+.carDetails_element {
     animation: 1s ease-out 0s 1 slideInFromLeft;
     animation-duration: 0.5s;
     background: #f4f4f4;

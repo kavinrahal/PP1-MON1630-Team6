@@ -10,7 +10,6 @@ import './styles/BookingHistory.css';
 import BookingHistoryElement from './BookingHistoryElement';
 import SideBar from './SideBar';
 import SideBarMobile from './SideBarMobile';
-import {Animated} from "react-animated-css";
 
 
 function BookingHistory() {
@@ -104,7 +103,6 @@ function BookingHistory() {
         } else {
             setDisplayHistorys(historys)
         }
-
     }
 
     const viewportContext = React.createContext({});

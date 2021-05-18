@@ -12,6 +12,7 @@ import RegisterPage from './components/RegisterPage';
 import Dashboard from "./components/Dashboard";
 import Profile from "./components/Profile";
 import BookingHistory from "./components/BookingHistory";
+import ViewAllCars from "./components/ViewAllCars";
 
 
 export default class App extends Component {
@@ -24,10 +25,10 @@ export default class App extends Component {
           <Switch>
             <Route path = "/" exact component = {LoginPage}></Route>
             <Route path = "/register" exact component = {RegisterPage}></Route>
-            <Route path = "/viewAllCars" exact component = {{/*add view all cars page name here*/}}></Route>
             <Route path = "/dashboard" exact component = {Dashboard}></Route>
             <Route path = "/profile" exact component = {Profile}></Route>
             <Route path = "/booking_history" exact component = {BookingHistory}></Route>
+            <Route path = "/viewAllCars" exact component = {ViewAllCars}></Route>
           </Switch>
         </div>
     </Router>
