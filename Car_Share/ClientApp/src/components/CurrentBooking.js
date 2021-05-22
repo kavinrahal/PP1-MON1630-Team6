@@ -24,8 +24,8 @@ export default function CurrentBooking(){
                 body: "Coupe",
                 colour: "Red"
             },
-            start_time: '2021-05-22T18:30:00.000+05:30',
-            end_time: '2021-05-22T23:59:00.000+05:30',
+            start_time: '2021-05-23T18:30:00.000+05:30',
+            end_time: '2021-05-23T23:59:00.000+05:30',
             price: 450,
         }
     )
@@ -77,10 +77,13 @@ export default function CurrentBooking(){
 
     const Completionist = () => <span className = "terminate">Please Return Car Now.</span>;
 
+    const [hideResults, setHideResults] = React.useState(true);
+
     const renderer = ({ hours, minutes, seconds, completed }) => {
         if (completed) {
-        // Render a complete state
-        return <Completionist />;
+            setHideResults(false);
+            // Render a complete state
+            return <Completionist />;
         } else {
         // Render a countdown
         return (
@@ -127,8 +130,8 @@ export default function CurrentBooking(){
                                 </div>
                             </div>
                             <div className = "buttonCont">
-                                    <button className = "cancelCurrentBooking hvr-sweep-to-right-red">CANCEL BOOKING</button>
-                                </div>
+                                {hideResults ? <button className = "cancelCurrentBooking hvr-sweep-to-right-red">CANCEL BOOKING</button> :  null}    
+                            </div>
                         </div>
                     </div>
                 </div>
