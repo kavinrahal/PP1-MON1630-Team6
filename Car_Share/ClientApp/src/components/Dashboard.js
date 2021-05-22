@@ -47,22 +47,22 @@ const WhichSideBar = () => {
   return width < breakpoint ? <SideBarMobile /> : <SideBar />;
 };
 
+
 export default function Dashboard() {
   return (
     <ViewportProvider>
       <div className = "dashboardWrapper">
         <WhichSideBar />
         <div className = "dashboard">
-          {/*<div className = "cityBack"><img src = {cityback}></img></div>*/}
           <div className = "row1 dashTitle">
             <div className = "blueT">Car</div>
             <div className = "yellowT">Share</div>
             <div className = "blueT">Scheme</div>
           </div>
           <div className = "dash">
-            <div className = "currentBooking hvr-grow">
+            <Link to = "/currentBooking" className = "currentBookingNav hvr-grow">
               <div className = "currentBookText"><div className = "bookText">Current Booking</div></div>
-            </div>
+            </Link>
 
             <div className = "dashRow">
               
@@ -85,9 +85,6 @@ export default function Dashboard() {
                 <div className = "dashBtnText">Search for Car</div>
                 <div className = "dashBtnLogo"><img className = "searchLogo" src = {searchLogo} ></img></div>
               </div>
-              
-
-
             </div>
           </div>
 

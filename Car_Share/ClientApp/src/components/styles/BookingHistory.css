@@ -109,7 +109,6 @@
     animation: 1s ease-out 0s 1 slideInFromLeft;
     animation-duration: 0.5s;
     background: #f4f4f4;
-    background-image: url('../../addons/BookingCar.png');
     background-position: right;
     background-size: 100px, 100px;
     background-repeat: no-repeat;

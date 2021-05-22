@@ -1,9 +1,5 @@
 
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import { Layout } from './components/Layout';
-import { Home } from './components/Home';
-import { FetchData } from './components/FetchData';
-import { Counter } from './components/Counter';
 
 import React, { Component } from 'react';
 import './custom.css'
@@ -13,6 +9,8 @@ import Dashboard from "./components/Dashboard";
 import Profile from "./components/Profile";
 import BookingHistory from "./components/BookingHistory";
 import ViewAllCars from "./components/ViewAllCars";
+import CurrentBooking from "./components/CurrentBooking";
+import MakeBooking from "./components/MakeBooking";
 
 
 export default class App extends Component {
@@ -29,6 +27,8 @@ export default class App extends Component {
             <Route path = "/profile" exact component = {Profile}></Route>
             <Route path = "/booking_history" exact component = {BookingHistory}></Route>
             <Route path = "/viewAllCars" exact component = {ViewAllCars}></Route>
+            <Route path = "/currentBooking" exact component = {CurrentBooking}></Route>
+            <Route path = "/makeBooking" exact component = {MakeBooking}></Route>
           </Switch>
         </div>
     </Router>

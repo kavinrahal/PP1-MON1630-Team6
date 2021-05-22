@@ -1,0 +1,121 @@
+@keyframes fadeIn {
+    0% {opacity:0;}
+    50% {opacity:1;}
+    100%{opacity: 0;}
+}
+
+.CurrentBookingWrapper {
+    display: flex;
+    flex-direction: row;
+    background: url('../../addons/circlebgwhite.svg'), url('../../addons/CityExtBackWhite.svg'), linear-gradient(54.94deg, #1C1D57 24.38%, #161892 99.99%);
+    background-size: 30%, 100%, 100%;
+    background-position-x: 250px, 0, 0;
+    background-position-y:0, bottom, 0;
+    background-repeat: no-repeat;
+}
+
+.currentBookingTitle{
+    color: white;
+    font-size: 60px;
+    margin-left: 25px;
+}
+
+.currentBooking{
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    flex-direction: column;
+}
+
+.rowBooking{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-self: flex-start;
+    width: 100%;
+}
+
+.bookingTitle{
+    font-size: 60px;
+    margin-left: 25px;
+    color: #040C4F;
+}
+
+.pageTitle{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-right: 30px;
+    align-self: center;
+}
+
+.current{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%; 
+    align-self: center;
+    height: 80%;
+}
+
+.countDown{
+    color: white;
+    font-size: 45px;
+    text-align: center;
+    background: url('../../addons/currentBookingGif.gif');
+    background-position-y: center;
+    background-position-x: left;
+    background-size: 200px;
+    background-repeat: no-repeat;
+    width: 80%;
+}
+
+.inProgress{
+    animation: fadeIn 2s;
+    animation-iteration-count: infinite;
+    color: green;
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.terminate{
+    color: #EE0F0F;
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.bookingDetails{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(196, 196, 196, 0));
+    border-radius: 15px 15px 15px 15px;
+}
+
+.deets{
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    color: white;
+    margin-top: 40px;
+    width: 50%;
+    justify-content: space-between;
+}
+
+
+
+.cDetails, .bDetails{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    text-align: center;
+}
+
+.bTitle, .cTitle{
+    font-size: 30px;
+    text-align: center;
+}

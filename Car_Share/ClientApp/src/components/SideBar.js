@@ -39,7 +39,7 @@ function SideBar(){
                     <MenuItem><img className = "reportLogo" src = {reportLogo}></img>Report a Problem</MenuItem>
                     <MenuItem><img className = "settingsLogo" src = {settingsLogo}></img>Settings</MenuItem>
                     <br></br>
-                    <button className = "logOutBtn hvr-sweep-to-right-red">SIGN OUT</button>
+                    <button className = "logOutBtn hvr-sweep-to-right-red"><Link className = "logText" to = "/">SIGN OUT</Link></button>
                 </Menu>
             </ProSidebar>
         </div>

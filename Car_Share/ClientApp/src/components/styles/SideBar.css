@@ -203,3 +203,7 @@
     width: 70px;
     min-width: 70px;
 }
+
+#logText:hover{
+    color: #EE0F0F;
+}
