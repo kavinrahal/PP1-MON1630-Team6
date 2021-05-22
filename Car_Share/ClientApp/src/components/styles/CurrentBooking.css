@@ -56,9 +56,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 95%; 
+    width: 100%; 
     align-self: center;
-    height: 80%;
+    height: 100%;
 }
 
 .countDown{
@@ -88,34 +88,64 @@
 }
 
 .bookingDetails{
+    animation: 1s ease-out 0s 1 slideUp;
+    animation-duration: 1s;
     width: 100%;
     display: flex;
     flex-direction: column;
     height: 100%;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(196, 196, 196, 0));
-    border-radius: 15px 15px 15px 15px;
+    /* background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(196, 196, 196, 0)); */
+    background: white;
+    border-radius: 30px 30px 0px 0px;
 }
 
 .deets{
     display: flex;
     flex-direction: row;
     align-self: center;
-    color: white;
-    margin-top: 40px;
-    width: 50%;
+    color: #040C4F;
+    margin-top: 30px;
+    width: 90%;
     justify-content: space-between;
 }
-
-
 
 .cDetails, .bDetails{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    width: 50%;
     font-size: 20px;
     text-align: center;
+    margin: 5px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255);
+    filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
 }
 
 .bTitle, .cTitle{
     font-size: 30px;
     text-align: center;
+}
+
+.buttonCont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    align-self: center;
+}
+
+.cancelCurrentBooking{
+    width: 200px;
+    height: 60px;
+    background-color: #EE0F0F;
+    color: white;
+    font-size: 21px;
+    border-radius: 5px;
+    border-style: none;
+    transition: 0.5px;
+    align-self: center;
+    margin-top: 15px;
 }

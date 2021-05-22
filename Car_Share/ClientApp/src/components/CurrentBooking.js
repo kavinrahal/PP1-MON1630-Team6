@@ -110,14 +110,14 @@ export default function CurrentBooking(){
                         <Countdown date={Date.now() + difference} renderer={renderer}/>
                         <div className = "bookingDetails">
                             <div className = "deets">
-                                <div className = "bDetails">
+                                <div className = "bDetails hvr-grow">
                                     <div className = "bTitle">Booking Details</div>
                                     <div>Booking ID: {currentBooking.booking_id}</div>
                                     <div>Start Time: {stringStart}</div>
                                     <div>End Time: {stringEnd}</div>
                                     <div>Fair: ${currentBooking.price}</div>
                                 </div>
-                                <div className = "cDetails">
+                                <div className = "cDetails hvr-grow">
                                     <div className = "cTitle">Car Details</div>
                                     <div>Car ID: {currentBooking.car_details.car_id}</div>
                                     <div>Make: {currentBooking.car_details.make}</div>
@@ -126,6 +126,9 @@ export default function CurrentBooking(){
                                     <div>Colour: {currentBooking.car_details.colour}</div>
                                 </div>
                             </div>
+                            <div className = "buttonCont">
+                                    <button className = "cancelCurrentBooking hvr-sweep-to-right-red">CANCEL BOOKING</button>
+                                </div>
                         </div>
                     </div>
                 </div>
