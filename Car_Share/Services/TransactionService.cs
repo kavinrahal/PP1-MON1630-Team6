@@ -6,44 +6,44 @@ using CarShare.Models;
 
 namespace CarShare.Services
 {
-    public class BookingService : IRepository<Booking, int>
+    public class TransactionService : IRepository<Transaction, int>
     {
         private readonly DatabaseContext _context;
 
-        public BookingService(DatabaseContext context)
+        public TransactionService(DatabaseContext context)
         {
             _context = context;
         }
 
-        public Booking Get(int id)
+        public Transaction Get(int id)
         {
-            return _context.Booking.Find(id);
+            return _context.Transaction.Find(id);
         }
 
-        public IEnumerable<Booking> GetAll()
+        public IEnumerable<Transaction> GetAll()
         {
-            return _context.Booking.ToList();
+            return _context.Transaction.ToList();
         }
 
-        public int Add(Booking car)
+        public int Add(Transaction transaction)
         {
-            _context.Booking.Add(car);
+            _context.Transaction.Add(transaction);
             _context.SaveChanges();
 
-            return car.BookingID;
+            return transaction.TransactionID;
         }
 
         public int Delete(int id)
         {
-            _context.Booking.Remove(_context.Booking.Find(id));
+            _context.Transaction.Remove(_context.Transaction.Find(id));
             _context.SaveChanges();
 
             return id;
         }
 
-        public int Update(int id, Booking car)
+        public int Update(int id, Transaction transaction)
         {
-            _context.Booking.Update(car);
+            _context.Transaction.Update(transaction);
             _context.SaveChanges();
 
             return id;

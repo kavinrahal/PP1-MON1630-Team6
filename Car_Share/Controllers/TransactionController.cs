@@ -11,43 +11,43 @@ namespace CarShare.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("ReactPolicy")]
-    public class BookingController : ControllerBase
+    public class TransactionController : ControllerBase
     {
-        private readonly BookingService customerService;
-        public BookingController(BookingService customerService)
+        private readonly TransactionService transactionService;
+        public TransactionController(TransactionService transactionService)
         {
-            this.customerService = customerService;
+            this.transactionService = transactionService;
         }
-        // GET api/customer
+        // GET api/transaction
         [HttpGet]
-        public IEnumerable<Booking> GetAll()
+        public IEnumerable<Transaction> GetAll()
         {
-            return customerService.GetAll();
+            return transactionService.GetAll();
         }
-        // GET api/customer/5
+        // GET api/transaction/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            return Ok(customerService.Get(id));
+            return Ok(transactionService.Get(id));
         }
-        // POST api/customer
+        // POST api/transaction
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Booking customer)
+        public async Task<IActionResult> Post([FromBody] Transaction transaction)
         {
-            return CreatedAtAction("Get", new { id = customer.BookingID }, customerService.Add(customer));
+            return CreatedAtAction("Get", new { id = transaction.TransactionID }, transactionService.Add(transaction));
         }
-        // PUT api/customer/5
+        // PUT api/transaction/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Booking customer)
+        public async Task<IActionResult> Put(int id, [FromBody] Transaction transaction)
         {
-            customerService.Update(id, customer);
+            transactionService.Update(id, transaction);
             return NoContent();
         }
-        // DELETE api/customer/5
+        // DELETE api/transaction/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            customerService.Delete(id);
+            transactionService.Delete(id);
             return NoContent();
         }
         public override NoContentResult NoContent()
