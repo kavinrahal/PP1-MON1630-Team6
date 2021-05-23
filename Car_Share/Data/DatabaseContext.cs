@@ -15,8 +15,9 @@ namespace CarShare.Data
         public DbSet<Customer> Customer { get; set; }
         public DbSet<Car> Car { get; set; }
         public DbSet<Transaction> Transaction { get; set; }
+        public DbSet<Booking> Booking { get; set; }
 
-        
+
         // Identity (Login) Tables        
         protected override void OnModelCreating(ModelBuilder builder)
         {

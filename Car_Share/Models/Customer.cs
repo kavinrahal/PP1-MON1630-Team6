@@ -34,6 +34,5 @@ namespace CarShare.Models
         public string Phone { get; set; }
 
         public virtual List<Transaction> Transactions { get; init; }
-        //public virtual Account Accounts { get; set; }
     }
 }

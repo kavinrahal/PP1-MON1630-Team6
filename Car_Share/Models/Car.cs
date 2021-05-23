@@ -12,36 +12,22 @@ namespace CarShare.Models
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CarID { get; init; }
 
-        [Required, StringLength(1), Display(Name = "Car Type")]
-        public char CarType { get; init; }
-
-        [ForeignKey("Account"), Display(Name = "Account Number")]
-        public int CustomerID { get; init; }
-        public virtual Customer Customer { get; init; }
-
-        [StringLength(255)]
-        public string Note { get; init; }
-
-        [Required]
-        public DateTime ModifyDate { get; init; }
-        public DateTime LocalDate => ModifyDate.ToLocalTime();
-
-        public Car()
-        {
-            ModifyDate = DateTime.UtcNow;
-        }
-
-        public Car(char carType, string note = null)
-        {
-            CarType = carType;
-            Note = note;
-            ModifyDate = DateTime.UtcNow;
-        }
-
-        // rego number
-        // make & model
-        // fuel cap & amount
-        // fuel type
+        [Required, StringLength(1), Display(Name = "Body Type")]
+        public char BodyType { get; init; }
+        [Required, StringLength(6), Display(Name = "Registration Number")]
+        public string Rego { get; init; }
+        [Required, StringLength(20)]
+        public string Model { get; init; }
+        [Required, StringLength(20)]
+        public string Colour { get; init; }
+        [StringLength(20), Display(Name = "Operating Schedule")]
+        public string Schedule { get; init; }
+        [Display(Name = "Fuel Capacity")]
+        public int Fcap { get; init; }
+        [Display(Name = "Fuel Amount")]
+        public int Famo { get; init; }
+        [StringLength(20), Display(Name = "Fuel Type")]
+        public string Ftyp { get; init; }
 
     }
 }
