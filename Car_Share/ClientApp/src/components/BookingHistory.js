@@ -10,6 +10,46 @@ import './styles/BookingHistory.css';
 import BookingHistoryElement from './BookingHistoryElement';
 import SideBar from './SideBar';
 import SideBarMobile from './SideBarMobile';
+import { ViewportProvider, WhichSideBar } from './ViewPort_Helper';
+
+// // ========================= View Stuff ============================
+
+// const viewportContext = React.createContext({});
+
+// const ViewportProvider = ({ children }) => {
+//     const [width, setWidth] = React.useState(window.innerWidth);
+//     const [height, setHeight] = React.useState(window.innerHeight);
+//     const handleWindowResize = () => {
+//         setWidth(window.innerWidth);
+//         setHeight(window.innerHeight);
+//     };
+
+//     React.useEffect(() => {
+//         window.addEventListener("resize", handleWindowResize);
+//         return () => window.removeEventListener("resize", handleWindowResize);
+//     }, []);
+
+//     return (
+//         <viewportContext.Provider value={{ width, height }}>
+//             {children}
+//         </viewportContext.Provider>
+//     );
+// };
+
+// const useViewport = () => {
+//     const { width, height } = React.useContext(viewportContext);
+//     return { width, height };
+// };
+
+// const WhichSideBar = () => {
+//     const { width } = useViewport();
+//     const breakpoint = 1200;
+
+//     return width < breakpoint ? <SideBarMobile /> : <SideBar />;
+// };
+
+
+// // ========================= End of view stuff ============================
 
 
 function BookingHistory() {
@@ -105,83 +145,83 @@ function BookingHistory() {
         }
     }
 
-    const viewportContext = React.createContext({});
+    // const viewportContext = React.createContext({});
 
-    const ViewportProvider = ({ children }) => {
-    const [width, setWidth] = React.useState(window.innerWidth);
-    const [height, setHeight] = React.useState(window.innerHeight);
-    const handleWindowResize = () => {
-        setWidth(window.innerWidth);
-        setHeight(window.innerHeight);
-    };
+    // const ViewportProvider = ({ children }) => {
+    //     const [width, setWidth] = React.useState(window.innerWidth);
+    //     const [height, setHeight] = React.useState(window.innerHeight);
+    //     const handleWindowResize = () => {
+    //         setWidth(window.innerWidth);
+    //         setHeight(window.innerHeight);
+    //     };
 
-    React.useEffect(() => {
-        window.addEventListener("resize", handleWindowResize);
-        return () => window.removeEventListener("resize", handleWindowResize);
-    }, []);
+    //     React.useEffect(() => {
+    //         window.addEventListener("resize", handleWindowResize);
+    //         return () => window.removeEventListener("resize", handleWindowResize);
+    //     }, []);
 
-    return (
-        <viewportContext.Provider value={{ width, height }}>
-        {children}
-        </viewportContext.Provider>
-    );
-    };
+    //     return (
+    //         <viewportContext.Provider value={{ width, height }}>
+    //             {children}
+    //         </viewportContext.Provider>
+    //     );
+    // };
 
-    const useViewport = () => {
-    const { width, height } = React.useContext(viewportContext);
-    return { width, height };
-    };
+    // const useViewport = () => {
+    //     const { width, height } = React.useContext(viewportContext);
+    //     return { width, height };
+    // };
 
-    const WhichSideBar = () => {
-    const { width } = useViewport();
-    const breakpoint = 1200;
+    // const WhichSideBar = () => {
+    //     const { width } = useViewport();
+    //     const breakpoint = 1200;
 
-    return width < breakpoint ? <SideBarMobile /> : <SideBar />;
-    };
+    //     return width < breakpoint ? <SideBarMobile /> : <SideBar />;
+    // };
 
     return (
         <ViewportProvider>
-        <div className='BookingHistoryWrapper'>
-            <WhichSideBar />
-            <div className = "bookingHistory">
-                <div className = "rowBooking">
-                    <div className = "bookingTitle">Booking History</div>
-                    <div className = "pageTitle">
-                        <div className = "blueT">Car</div>
-                        <div className = "yellowT">Share</div>
-                        <div className = "blueT">Scheme</div>
+            <div className='BookingHistoryWrapper'>
+                <WhichSideBar />
+                <div className="bookingHistory">
+                    <div className="rowBooking">
+                        <div className="bookingTitle">Booking History</div>
+                        <div className="pageTitle">
+                            <div className="blueT">Car</div>
+                            <div className="yellowT">Share</div>
+                            <div className="blueT">Scheme</div>
+                        </div>
                     </div>
-                </div>
-                <div className = "booking">
-                    <div className='filterSection'>
-                        <button className = "orderBtn hvr-sweep-to-right" onClick={() => sort()}>Asc/Desc</button>
-                        <select className = "filterLocation" onChange={(e) => setLocation(e.target.value)}>
-                            <option value="" >Filter by Location</option>
-                            {populateLocation.map((loc) => (
-                                <option key={loc} value={loc} >{loc}</option>
-                            ))
+                    <div className="booking">
+                        <div className='filterSection'>
+                            <button className="orderBtn hvr-sweep-to-right" onClick={() => sort()}>Asc/Desc</button>
+                            <select className="filterLocation" onChange={(e) => setLocation(e.target.value)}>
+                                <option value="" >Filter by Location</option>
+                                {populateLocation.map((loc) => (
+                                    <option key={loc} value={loc} >{loc}</option>
+                                ))
+                                }
+                            </select>
+                            <select className="filterCar" onChange={(e) => setCarId(e.target.value)}>
+                                <option value="" >Filter by Car</option>
+                                {populateCar.map((car) => (
+                                    <option key={car} value={car} >{car}</option>
+                                ))
+                                }
+                            </select>
+                            <button className="filterBtn hvr-sweep-to-right" onClick={() => onClick()}>Filter</button>
+                        </div>
+                        <div className='displaySection'>
+                            {displayHistorys.length > 0 ?
+                                displayHistorys.map((history) => (
+                                    <BookingHistoryElement className='history_element' key={history.id} element={history} />))
+                                : <h5 className='history_element' style={{ textAlign: 'center', background: '#f4f4f4' }} >No Available Slots found!</h5>
                             }
-                        </select>
-                        <select className = "filterCar" onChange={(e) => setCarId(e.target.value)}>
-                            <option value="" >Filter by Car</option>
-                            {populateCar.map((car) => (
-                                <option key={car} value={car} >{car}</option>
-                            ))
-                            }
-                        </select>
-                        <button className = "filterBtn hvr-sweep-to-right" onClick={() => onClick()}>Filter</button>
-                    </div>
-                    <div className='displaySection'>
-                        {displayHistorys.length > 0 ?
-                            displayHistorys.map((history) => (
-                                <BookingHistoryElement className='history_element' key={history.id} element={history} />))
-                            : <h5 className='history_element' style={{ textAlign: 'center', background: '#f4f4f4'}} >No Available Slots found!</h5>
-                        }
 
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </ViewportProvider>
     )
 }
