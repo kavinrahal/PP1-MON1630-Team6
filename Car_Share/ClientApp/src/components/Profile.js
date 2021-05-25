@@ -10,17 +10,7 @@ import SideBarMobile from './SideBarMobile';
 import './styles/Profile.css';
 import { ViewportProvider, WhichSideBar } from './ViewPort_Helper';
 
-export default function Profile(){
-  const [userDetails, setUserDetails] = useState (
-    {
-        userId: 1,
-        name: "Kavin Abeysinghe",
-        address: "420, A'Beckett Street",
-        email: "kavinrahal@gmail.com",
-        phoneNum: "0402001311"
-    }
-  )
-  const viewportContext = React.createContext({});
+// const viewportContext = React.createContext({});
 
 // const ViewportProvider = ({ children }) => {
 //   const [width, setWidth] = React.useState(window.innerWidth);
@@ -54,7 +44,19 @@ export default function Profile(){
 //   return width < breakpoint ? <SideBarMobile /> : <SideBar />;
 // };
 
+
 export default function Profile() {
+
+  const [userDetails, setUserDetails] = useState(
+    {
+      userId: 1,
+      name: "Kavin Abeysinghe",
+      address: "420, A'Beckett Street",
+      email: "kavinrahal@gmail.com",
+      phoneNum: "0402001311"
+    }
+  )
+
   return (
     <ViewportProvider>
       <div className="profileWrapper">
@@ -111,5 +113,4 @@ export default function Profile() {
       </div>
     </ViewportProvider>
   );
-
 }
