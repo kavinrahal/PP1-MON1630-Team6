@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -9,41 +9,51 @@ import SideBar from './SideBar';
 import SideBarMobile from './SideBarMobile';
 import './styles/Profile.css';
 
-const viewportContext = React.createContext({});
+export default function Profile(){
+  const [userDetails, setUserDetails] = useState (
+    {
+        userId: 1,
+        name: "Kavin Abeysinghe",
+        address: "420, A'Beckett Street",
+        email: "kavinrahal@gmail.com",
+        phoneNum: "0402001311"
+    }
+  )
+  const viewportContext = React.createContext({});
 
-const ViewportProvider = ({ children }) => {
-  const [width, setWidth] = React.useState(window.innerWidth);
-  const [height, setHeight] = React.useState(window.innerHeight);
-  const handleWindowResize = () => {
-    setWidth(window.innerWidth);
-    setHeight(window.innerHeight);
+  const ViewportProvider = ({ children }) => {
+    const [width, setWidth] = React.useState(window.innerWidth);
+    const [height, setHeight] = React.useState(window.innerHeight);
+    const handleWindowResize = () => {
+      setWidth(window.innerWidth);
+      setHeight(window.innerHeight);
+    };
+
+    React.useEffect(() => {
+      window.addEventListener("resize", handleWindowResize);
+      return () => window.removeEventListener("resize", handleWindowResize);
+    }, []);
+
+    return (
+      <viewportContext.Provider value={{ width, height }}>
+        {children}
+      </viewportContext.Provider>
+    );
   };
 
-  React.useEffect(() => {
-    window.addEventListener("resize", handleWindowResize);
-    return () => window.removeEventListener("resize", handleWindowResize);
-  }, []);
+  const useViewport = () => {
+    const { width, height } = React.useContext(viewportContext);
+    return { width, height };
+  };
 
-  return (
-    <viewportContext.Provider value={{ width, height }}>
-      {children}
-    </viewportContext.Provider>
-  );
-};
+  const WhichSideBar = () => {
+    const { width } = useViewport();
+    const breakpoint = 1200;
 
-const useViewport = () => {
-  const { width, height } = React.useContext(viewportContext);
-  return { width, height };
-};
+    return width < breakpoint ? <SideBarMobile /> : <SideBar />;
+  };
 
-const WhichSideBar = () => {
-  const { width } = useViewport();
-  const breakpoint = 1200;
 
-  return width < breakpoint ? <SideBarMobile /> : <SideBar />;
-};
-
-export default function Profile(){
     return(
         <ViewportProvider>
             <div className = "profileWrapper">
@@ -63,33 +73,33 @@ export default function Profile(){
                         <div className = "profileNames">
                           <div className = "profileFirst">
                               <div className = "profileLabel">Change Name</div>
-                              <input type = "text" className = "profileText" placeholder = "  User First"></input>
+                              <input type = "text" className = "profileText" value = {userDetails.name} required></input>
                           </div>
                           <div className = "profileLast">
                               <div className = "profileLabel">Change Address</div>
-                              <input type = "text" className = "profileText" placeholder = "  User Address"></input>
+                              <input type = "text" className = "profileText" value = {userDetails.address} required></input>
                           </div>
                         </div>
                         <br></br>
                         <div className = "profileContact">
                             <div className = "profileSignUpEmail">
                                 <div className = "profileLabel">Change Email</div>
-                                <input type = "email" className = "profileText" placeholder = "  User Email"></input>
+                                <input type = "email" className = "profileText" value = {userDetails.email} required></input>
                             </div>
                             <div className = "profilePhone">
                                 <div className = "profileLabel">Change Phone Number</div>
-                                <input type = "text" className = "profileText" placeholder = "  User Phone"></input>
+                                <input type = "text" className = "profileText" value = {userDetails.phoneNum} required></input>
                             </div>
                         </div>
                         <br></br>
                         <div className = "profilePasswords">
                           <div className = "profileSignUpPassword">
                               <div className = "profileLabel">Change Password</div>
-                              <input type = "password" className = "profileText" placeholder = "  User Password"></input>
+                              <input type = "password" className = "profileText" placeholder = "  User Password" required></input>
                           </div>
                           <div className = "profileConfirmPassword">
                               <div className = "profileLabel">Confirm New Password</div>
-                              <input type = "password" className = "profileText" placeholder = "  Confirm Password"></input>
+                              <input type = "password" className = "profileText" placeholder = "  Confirm Password" required></input>
                           </div>
                         </div>
                         <br></br>

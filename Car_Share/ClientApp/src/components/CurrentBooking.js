@@ -25,8 +25,9 @@ export default function CurrentBooking(){
                 colour: "Red"
             },
             start_time: '2021-05-23T18:30:00.000+05:30',
-            end_time: '2021-05-23T23:59:00.000+05:30',
+            end_time: '2021-05-23T12:05:00.000+05:30',
             price: 450,
+            completed: 'in progress'
         }
     )
     

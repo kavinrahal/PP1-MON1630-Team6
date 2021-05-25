@@ -34,12 +34,12 @@ function LoginPage(){
                         </div>
                         <div className = "email">
                             <div className = "emailLabel">Email</div>
-                            <input type = "text" className = "loginInput" placeholder = "  Email"></input>
+                            <input type = "text" className = "loginInput" placeholder = "  Email" required></input>
                         </div>
                         <br></br>
                         <div className = "password">
                             <div className = "passwordLabel">Password</div>
-                            <input type = "password" className = "loginInput" placeholder = "  Password"></input>
+                            <input type = "password" className = "loginInput" placeholder = "  Password" required></input>
                         </div>
                         <br></br>
                         <Link to = "/dashboard"><button className = "loginBtn">Log In</button></Link>

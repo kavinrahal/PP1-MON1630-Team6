@@ -43,33 +43,33 @@ function RegisterPage(){
                             <div className = "names">
                                 <div className = "first">
                                     <div className = "signUpLabel">Name</div>
-                                    <input type = "text" className = "signUpText" placeholder = "  First Name"></input>
+                                    <input type = "text" className = "signUpText" placeholder = "  First Name" required></input>
                                 </div>
                                 <div className = "last">
                                     <div className = "signUpLabel">Address</div>
-                                    <input type = "text" className = "signUpText" placeholder = "  Last Name"></input>
+                                    <input type = "text" className = "signUpText" placeholder = "  Last Name" required></input>
                                 </div>
                             </div>
                             <br></br>
                             <div className = "contact">
                                 <div className = "signUpEmail">
                                     <div className = "signUpLabel">Email</div>
-                                    <input type = "email" className = "signUpText" placeholder = "  Email"></input>
+                                    <input type = "email" className = "signUpText" placeholder = "  Email" required></input>
                                 </div>
                                 <div className = "phone">
                                     <div className = "signUpLabel">Phone Number</div>
-                                    <input type = "text" className = "signUpText" placeholder = "  Phone Number"></input>
+                                    <input type = "text" className = "signUpText" placeholder = "  Phone Number" required></input>
                                 </div>
                             </div>
                             <br></br>
                             <div className = "passwords">
                                 <div className = "signUpPassword">
                                     <div className = "signUpLabel">Password</div>
-                                    <input type = "password" className = "signUpText" placeholder = "  Password"></input>
+                                    <input type = "password" className = "signUpText" placeholder = "  Password" required></input>
                                 </div>
                                 <div className = "confirmPassword">
                                     <div className = "signUpLabel">Confirm Password</div>
-                                    <input type = "password" className = "signUpText" placeholder = "  Confirm Password"></input>
+                                    <input type = "password" className = "signUpText" placeholder = "  Confirm Password" required></input>
                                 </div>
                             </div>
                             <br></br>
