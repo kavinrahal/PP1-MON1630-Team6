@@ -1,6 +1,11 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import './styles/RegisterPage.css';
 import { ViewportProvider, WhichSideBar } from './ViewPort_Helper';
+// import MakeBooking from './MakeBooking'
+
+import { Link, Redirect, useHistory } from "react-router-dom";
+
+
 
 
 // // ========================= View Stuff ============================
@@ -43,6 +48,7 @@ import { ViewportProvider, WhichSideBar } from './ViewPort_Helper';
 // // ========================= End of view stuff ============================
 
 function SearchPage() {
+    const history = useHistory();
 
     const [make, setMake] = useState(0)
     const [model, setModel] = useState(0)
@@ -129,6 +135,17 @@ function SearchPage() {
         // setReminder(false)
     }
 
+    const onClick = () => {
+
+        history.push({
+            pathname: '/make_booking',
+            // search: '?update=true',  // query string
+            state: {  // location state
+                id: rego,
+            },
+        });
+
+    }
 
 
 
@@ -158,8 +175,11 @@ function SearchPage() {
                                     <input type="submit" value="Search"></input>
                                 </form>
                             </div>
+
                         </div>
+
                         <div className='displaySection'>
+
                             {/* STYLE HERE */}
                             <h2>Car Details:</h2>
                             {
@@ -177,10 +197,9 @@ function SearchPage() {
                                         {model}
                                     </h2>
                                     {/* BUTTON HERE */}
-                                    <button>Book here</button>
+                                    <button onClick={() => onClick()}>Book here</button>
                                 </div>
                             }
-
                         </div>
                     </div>
                 </div>
