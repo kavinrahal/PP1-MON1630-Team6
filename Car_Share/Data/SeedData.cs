@@ -17,7 +17,8 @@ namespace CarShare.Data
             var roleManager = serviceProvider.GetRequiredService<RoleManager<Role>>();
 
             var customerService = serviceProvider.GetRequiredService<CustomerService>();
-                
+            var carService = serviceProvider.GetRequiredService<CarService>();
+            var bookingService = serviceProvider.GetRequiredService<BookingService>();
 
             // Look for any users (just as a litmus for a seeded database). If none, proceed
             if (!userManager.Users.Any())
@@ -73,6 +74,27 @@ namespace CarShare.Data
                 // Assign new Admin to "Admin" Role
                 if (adminResult.Succeeded)
                     userManager.AddToRoleAsync(testAdmin, "Admin").Wait();
+
+                var car1 = carService.Add(
+                    new Car()
+                    {
+                        BodyType = 'S',
+                        Rego = "ABC123",
+                        Make = "Ford",
+                        Model = "Falcon",
+                        Colour = "Dark Blue"
+                    });
+
+                bookingService.Add(
+                    new Booking()
+                    {
+                        CustomerID = customerID,
+                        CarID = car1,
+                        Amount = 100,
+                        StartTime = new DateTime(2021, 05, 27,0,0,0),
+                        EndTime = new DateTime(2021, 05, 27, 12, 0, 0),
+                        Active = true
+                    });
             }
         }
     }

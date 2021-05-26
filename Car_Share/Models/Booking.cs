@@ -5,35 +5,37 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CarShare.Models
 {
-    public record Booking
+    public class Booking
     {
         // ----------------------MODEL---------------------
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int BookingID { get; init; }
+        public int BookingID { get; set; }
 
-        [Required, ForeignKey("Account"), Display(Name = "Account Number")]
-        public int CustomerID { get; init; }
-        public virtual Customer Customer { get; init; }
-        [Required, ForeignKey("Account"), Display(Name = "Account Number")]
-        public int CarID { get; init; }
-        public virtual Car Car { get; init; }
+        [Required, ForeignKey("Customer")]
+        public int CustomerID { get; set; }
+        public virtual Customer Customer { get; set; }
+        [Required, ForeignKey("Car")]
+        public int CarID { get; set; }
+        public virtual Car Car { get; set; }
 
         [Column(TypeName = "money")]
-        public decimal Amount { get; init; }
+        public decimal Amount { get; set; }
         public string AmountString => String.Format("{0:C}", Amount);
 
-        public DateTime StartTime { get; init; }
-        public DateTime EndTime { get; init; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
 
+        public bool Active { get; set; }
 
-        public Booking(int customerID, int carID, decimal amount, DateTime startTime, DateTime endTime)
+        /*public Booking(int customerID, int carID, decimal amount, DateTime startTime, DateTime endTime)
         {
             CustomerID = customerID;
             CarID = carID;
             Amount = amount;
             StartTime = startTime;
             EndTime = endTime;
-        }
+            Active = true;
+        }*/
     }
 }

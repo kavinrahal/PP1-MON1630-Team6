@@ -17,6 +17,8 @@ namespace CarShare.Models
         [Required, StringLength(6), Display(Name = "Registration Number")]
         public string Rego { get; init; }
         [Required, StringLength(20)]
+        public string Make { get; init; }
+        [Required, StringLength(20)]
         public string Model { get; init; }
         [Required, StringLength(20)]
         public string Colour { get; init; }
@@ -28,6 +30,8 @@ namespace CarShare.Models
         public int Famo { get; init; }
         [StringLength(20), Display(Name = "Fuel Type")]
         public string Ftyp { get; init; }
+
+        public virtual List<Booking> Bookings { get; init; }
 
     }
 }

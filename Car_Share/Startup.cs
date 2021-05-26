@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using React.AspNet;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 
 namespace CarShare
 {
@@ -25,6 +26,8 @@ namespace CarShare
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers().AddNewtonsoftJson(options =>
+            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             var razorBuilder = services.AddControllersWithViews();
             #if DEBUG
@@ -49,6 +52,9 @@ namespace CarShare
             });
 
             services.AddScoped<CustomerService>();
+            services.AddScoped<CarService>();
+            services.AddScoped<BookingService>();
+            services.AddScoped<TransactionService>();
             services.AddReact();
 
             services.AddRazorPages();

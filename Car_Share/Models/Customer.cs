@@ -33,6 +33,8 @@ namespace CarShare.Models
         [Required, StringLength(15), RegularExpression(@"^\+61 [0-9]{4} [0-9]{4}$")]
         public string Phone { get; set; }
 
-        public virtual List<Transaction> Transactions { get; init; }
+        public virtual List<Booking> Bookings { get; set; }
+
+        public virtual List<Transaction> Transactions { get; set; }
     }
 }
