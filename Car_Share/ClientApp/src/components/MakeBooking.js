@@ -18,18 +18,17 @@ export default function MakeBooking(props) {
 
   }
 
-
-  const [startDate, setStartDate] = useState(new Date())
-  const [endDate, setEndDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(new Date)
+  const [endDate, setEndDate] = useState(new Date);
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
-  const [maxEndTime, setMaxEndTime] = useState('');
+
 
   const [availableStartHours, setAvailableStartHours] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]);
+  const [availStart, setAvailStart] = useState([]);
   const [availableEndHours, setAvailableEndHours] = useState([]);
 
-
-  const [currentBooking, setCurrentBooking] = useState(
+  const [currentBooking, setCurrentBooking] = useState([
     {
       booking_id: 1,
       customer_id: 1,
@@ -40,8 +39,8 @@ export default function MakeBooking(props) {
         body: "Coupe",
         colour: "Red"
       },
-      start_time: '2021-05-27T5:00:00.000',
-      end_time: '2021-05-27T10:00:00.000',
+      start_time: '2021-05-27T00:00:00.000',
+      end_time: '2021-05-27T06:00:00.000',
       price: 450,
       completed: 'in progress'
     },
@@ -59,8 +58,23 @@ export default function MakeBooking(props) {
       end_time: '2021-05-27T14:00:00.000',
       price: 450,
       completed: 'in progress'
-    }
-  )
+    },
+    {
+      booking_id: 1,
+      customer_id: 1,
+      car_details: {
+        car_id: 1,
+        make: "Toyota",
+        model: "Supra",
+        body: "Coupe",
+        colour: "Red"
+      },
+      start_time: '2021-05-27T22:00:00.000',
+      end_time: '2021-05-28T10:00:00.000',
+      price: 450,
+      completed: 'in progress'
+    },
+  ])
   const [preBooked, setPreBooked] = useState([
     {
       id: 1,
@@ -79,81 +93,181 @@ export default function MakeBooking(props) {
   ])
 
 
-  const handleStartDate = (date) => {
-    setStartDate(date)
-    setAvailableStartHours([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24])
-    console.log('Before')
 
-    console.log(availableEndHours)
-    setAvailableEndHours([])
-    console.log('After')
+  const handleStartDate = (sdate) => {
+    setStartDate(sdate)
 
-    console.log(availableEndHours)
+    setAvailStart([])
+    setStartTime()
+    setEndTime()
   }
 
-  const handleMinDate = (date) => {
-    setEndDate(date)
-
-    console.log('ENDDATE')
-    console.log(endDate)
-    var day = moment().format("LLL");
-    console.log(moment('2021-05-26T23:00:00.000+05:30').format("LLL"))
-    console.log(moment('2021-05-26T23:00:00.000+05:30').format("LL") == moment(endDate).format("LL"))
+  const handleEndDate = (edate) => {
+    setEndDate(edate)
+    setAvailStart([])
+    setStartTime()
+    setEndTime('')
+    console.log('endTime')
+    console.log(endTime)
   }
-
 
   const handleStartTime = (e) => {
     setStartTime(e.target.value)
-    setEndTime()
+
+    setAvailStart([])
     setAvailableEndHours([])
+    setEndTime()
   }
 
-  // Check for Selected Start and End Date
-  for (var i = 0; i < currentBooking.length; i++) {
-    var booked_start = currentBooking[i].start_time
-    console.log('booked_start')
-    console.log(booked_start)
+  const handleEndTime = (e) => {
+    setEndTime(e.target.value)
 
+    setAvailStart([])
+    setAvailableEndHours([])
+    setEndTime()
   }
 
-
-  // // Check for Matching Bookings on selected date
-  // for (var i = 0; i < preBooked.length; i++) {
-  //   var pre_booked_dates = preBooked[i].booking_date
-  //   var startDate_object = new Date(startDate)
-  //   var startDate_moment = moment(startDate_object).format("DD-MM-YYYY")
-
-  //   // if found, check already booked slots
-  //   if (pre_booked_dates == startDate_moment) {
-  //     for (var count = 0; count < availableStartHours.length; count++) {
-  //       if (preBooked[i].start_time == count + 1) {
-  //         var length = preBooked[i].end_time - preBooked[i].start_time
-  //         // Delete Start time
-  //         delete availableStartHours[count]
-  //         // Delete Start time - 1
-  //         delete availableStartHours[count - 1]
-  //         // Loop to delete length of booking
-  //         for (var j = 0; j < length; j++) {
-  //           delete availableStartHours[count + j]
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
-
-
-  if (startTime && !endTime) {
-    console.log()
-    for (var i = 0; i < availableStartHours.length; i++) {
-      if (availableStartHours.includes(parseInt(startTime) + 1 + i)) {
-        availableEndHours.push(parseInt(startTime) + 1 + i)
-      }
-      if (!availableStartHours.includes(parseInt(startTime) + 2 + i)) {
-        break
-      }
+  // Creates Initial 24 Available Hours to populate StartTime Select List
+  if (startDate) {
+    for (var j = 0; j < 24; j++) {
+      var option = moment(startDate).hours(j).minutes('').format("LLL")
+      availStart.push(option)
     }
   }
 
+  // User Select Dates
+  // Search Pre Booked for all car ID 
+  // Match car ID
+  // Check for get avail base on date and time
+  for (var i = 0; i < currentBooking.length; i++) {
+    // Match car ID
+    // TODO
+    // Match Dates
+
+    // -- START select list var to moment objects --
+    var startDate_moment = moment(startDate).format("LL")
+    var bookedStartDate_moment = moment(currentBooking[i].start_time).format("LL")
+    // -- END select list var to moment objects --
+    var endDate_moment = moment(endDate).format("LL")
+    var bookedEndDate_moment = moment(currentBooking[i].end_time).format("LL")
+    // -- Database var to moment objects --
+    var bookedStartTime_moment = moment(currentBooking[i].start_time)
+    var bookedEndTime_moment = moment(currentBooking[i].end_time)
+
+    // Check selecetd start date with Database to update Available times
+    if (startDate_moment == bookedStartDate_moment) {
+      // -- Getting Duration --
+      var bookingLength_moment = moment.duration(bookedEndTime_moment.diff(bookedStartTime_moment))
+      var bookingLength = bookingLength_moment.asHours()
+
+      // -- Delete by Duration if same day booking --
+      if (bookedStartDate_moment == bookedEndDate_moment) {
+        for (var h = 0; h < bookingLength; h++) {
+          var to_delete = moment(bookedStartTime_moment).add(h, 'hours').format("LLL")
+          var index = availStart.indexOf(to_delete)
+          delete availStart[index]
+        }
+        // -- Delete from Start of booking to end of the day if booking ends after --
+      } else if (bookedStartDate_moment != bookedEndDate_moment) {
+        for (var k = 0; k < availStart.length; k++) {
+          var to_delete = moment(bookedStartTime_moment).add(k, 'hours').format("LLL")
+          var index = availStart.indexOf(to_delete)
+          delete availStart[index]
+        }
+      }
+      // -- Check if database booking ends on select day, delete from start of day to end of booking --
+    } else if (startDate_moment == bookedEndDate_moment) {
+      // -- Get Duration --
+      var duration_moment = moment.duration(bookedEndTime_moment.diff(startDate_moment))
+      var duration = duration_moment.asHours()
+      for (var j = 0; j < duration; j++) {
+        var to_delete = moment(startDate_moment).add(j, 'hours').format("LLL")
+        var index = availStart.indexOf(to_delete)
+        console.log(to_delete)
+        delete availStart[index]
+      }
+    }
+
+    // -- Check for End Times --
+    if (endDate_moment) { }
+
+    // if (startDate_moment == bookedStartDate_moment && endDate_moment == bookedEndDate_moment) {
+    //   // Remove them from Available
+    //   console.log("Called start")
+    //   console.log(startDate_moment)
+    //   console.log(bookedStartDate_moment)
+    //   console.log(endDate_moment)
+    //   console.log(bookedEndDate_moment)
+    //   var bookingLength_moment = moment.duration(bookedEndTime_moment.diff(bookedStartTime_moment))
+    //   var bookingLength = bookingLength_moment.asHours()
+
+    //   // for (var o = bookingLength - 1; o >= 0; o--) {
+    //   //   console.log(bookedStartTime_moment.format("LLL"))
+    //   //   var index = availStart.indexOf(bookedStartTime_moment.format("LLL"))
+    //   //   console.log(availStart[index + o])
+    //   //   delete availStart[index + o]
+    //   //   // availStart.splice(index + o, 1)
+    //   //   console.log(availStart.length)
+    //   // }
+
+    //   while (bookingLength >= 0) {
+    //     var index = availStart.indexOf(bookedStartTime_moment.format("LLL"))
+    //     // console.log(availStart[index + bookingLength - 1])
+    //     // availStart.splice((index + bookingLength - 1), 1)
+    //     // console.log(availStart.length)
+    //     delete availStart[index + bookingLength - 1]
+    //     console.log("deleted " + availStart[index + bookingLength - 1])
+    //     // index--
+    //     bookingLength--
+    //   }
+    // }
+    // // If only start date matched, means Booking was made the whole day so delete rest of list
+    // if (startDate_moment == bookedStartDate_moment && startDate_moment != bookedEndDate_moment) {
+    //   console.log("Called mid")
+    //   console.log(startDate_moment)
+    //   console.log(currentBooking[i])
+    //   console.log(bookedStartDate_moment)
+    //   console.log(endDate_moment)
+    //   console.log(bookedEndDate_moment)
+    //   var index = availStart.indexOf(bookedStartTime_moment.format("LLL"))
+    //   for (var k = 0; k < availStart.length; k++) {
+    //     delete availStart[index + k - 1]
+    //   }
+    // }
+    // // If only END date matched, means Booking was made previous day to end now therefore will only start after
+    // if (startDate_moment != bookedStartDate_moment && startDate_moment == bookedEndDate_moment) {
+    //   console.log("Called end")
+    //   console.log(startDate_moment)
+    //   console.log(bookedStartDate_moment)
+    //   console.log(endDate_moment)
+    //   console.log(bookedEndDate_moment)
+    //   var index = availStart.indexOf(bookedEndTime_moment.format("LLL"))
+    //   for (var k = 0; k < availStart.length; k++) {
+    //     console.log("deleted " + availStart[index - k - 1])
+    //     delete availStart[index - k - 1]
+    //   }
+    // }
+
+  }
+
+
+  if (startTime && !endTime) {
+    if (endDate_moment == startDate_moment) {
+      for (var i = 0; i < availStart.length; i++) {
+        var a = moment(startTime).add((i + 1), 'hours')
+        var b = a.format("LLL")
+        if (availStart.includes(b)) {
+          availableEndHours.push(b)
+          console.log(startTime)
+        }
+        var c = moment(startTime).add((i + 2), 'hours')
+        var d = a.format("LLL")
+        if (!availStart.includes(d)) {
+          break
+        }
+      }
+    }
+  }
 
   const [carDetails, setCarDetails] = useState([
     {
@@ -198,7 +312,7 @@ export default function MakeBooking(props) {
     },
   ])
 
-
+  console.log(availStart)
   return (
 
 
@@ -222,14 +336,15 @@ export default function MakeBooking(props) {
               </div>
               <div className='displaySection'>
                 Availaibilty
-                   {/* <MakeBookingSelect availHours={availableStartHours} onChange={() => test()} />)) */}
                 <div>
-                  <DatePicker selected={startDate} onChange={date => handleStartDate(date)} minDate={new Date()} />
-                  <DatePicker selected={endDate} onChange={date => handleMinDate(date)} minDate={new Date()} />
+                  Start
+                  <DatePicker selected={startDate} onChange={sdate => handleStartDate(sdate)} minDate={new Date()} />
+                  End
+                  <DatePicker selected={endDate} onChange={edate => handleEndDate(edate)} minDate={new Date()} />
                   <div>
                     <select className="start_time" onChange={(e) => handleStartTime(e)}>
                       <option value="" >Start Time</option>
-                      {availableStartHours.map((start) => (
+                      {availStart.map((start) => (
                         <option value={start} >{start}</option>
                       ))
                       }
