@@ -10,51 +10,17 @@ import SideBarMobile from './SideBarMobile';
 import './styles/Profile.css';
 import { ViewportProvider, WhichSideBar } from './ViewPort_Helper';
 
-export default function Profile(){
-  const [userDetails, setUserDetails] = useState (
+export default function Profile() {
+  const [userDetails, setUserDetails] = useState(
     {
-        userId: 1,
-        name: "Kavin Abeysinghe",
-        address: "420, A'Beckett Street",
-        email: "kavinrahal@gmail.com",
-        phoneNum: "0402001311"
+      userId: 1,
+      name: "Kavin Abeysinghe",
+      address: "420, A'Beckett Street",
+      email: "kavinrahal@gmail.com",
+      phoneNum: "0402001311"
     }
   )
-  const viewportContext = React.createContext({});
 
-// const ViewportProvider = ({ children }) => {
-//   const [width, setWidth] = React.useState(window.innerWidth);
-//   const [height, setHeight] = React.useState(window.innerHeight);
-//   const handleWindowResize = () => {
-//     setWidth(window.innerWidth);
-//     setHeight(window.innerHeight);
-//   };
-
-//   React.useEffect(() => {
-//     window.addEventListener("resize", handleWindowResize);
-//     return () => window.removeEventListener("resize", handleWindowResize);
-//   }, []);
-
-//   return (
-//     <viewportContext.Provider value={{ width, height }}>
-//       {children}
-//     </viewportContext.Provider>
-//   );
-// };
-
-// const useViewport = () => {
-//   const { width, height } = React.useContext(viewportContext);
-//   return { width, height };
-// };
-
-// const WhichSideBar = () => {
-//   const { width } = useViewport();
-//   const breakpoint = 1200;
-
-//   return width < breakpoint ? <SideBarMobile /> : <SideBar />;
-// };
-
-export default function Profile() {
   return (
     <ViewportProvider>
       <div className="profileWrapper">
