@@ -1,0 +1,60 @@
+﻿@model string
+
+@{
+    if (Model != null)
+    {
+        <li class="divider"></li>
+
+        if (Model == "Customer")
+        {
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbardrop" data-toggle="dropdown">
+                    ATM
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/Banking/Deposit">Deposit</a>
+                    <a class="dropdown-item" href="/Banking/Withdraw">Withdraw</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbardrop" data-toggle="dropdown">
+                    Transfer
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/Banking/Transfer">Local Transfer</a>
+                    <a class="dropdown-item" href="/Banking/PayAnyone">Pay Anyone</a>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="/MyStatements/">My Statements</a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbardrop" data-toggle="dropdown">
+                    BillPay™
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/BillPays/">View Agenda</a>
+                    <a class="dropdown-item" href="/BillPays/New">New Payment</a>
+                </div>
+            </li>
+        }
+
+        else if (Model == "Admin")
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Customer" asp-action="Index">Customers</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Transaction" asp-action="Index">Transactions</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Admin" asp-controller="BillPay" asp-action="Index">BillPays</a>
+            </li>
+        }
+    }
+}
