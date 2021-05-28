@@ -81,6 +81,9 @@ function RegisterPage() {
                         setConfirmPassword("");
 
                         // Redirect to Login page
+                        history.push({
+                            pathname: '/',
+                        });
                     }
                 })
                 .catch((error) => {
