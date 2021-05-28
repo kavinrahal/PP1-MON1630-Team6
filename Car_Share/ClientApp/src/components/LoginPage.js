@@ -3,6 +3,7 @@ import { useHistory } from "react-router";
 import './styles/LoginPage.css'
 import Image from '../addons/loginlogo.png';
 import Link from 'react-router-dom/Link'
+import Popup from './Popup'
 
 
 function LoginPage() {
@@ -12,6 +13,7 @@ function LoginPage() {
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState(new Map);
     const [loginFailed, setLoginFailed] = useState(false);
+    const [isLoggingIn, setIsLoggingIn] = useState(false);
 
 
     const validate = () => {
@@ -33,6 +35,7 @@ function LoginPage() {
 
 
     const handleLogin = async () => {
+        setIsLoggingIn(true)
         if (validate()) {
             let found = false;
             const res = await fetch("https://localhost:5001/api/customer")
@@ -53,8 +56,10 @@ function LoginPage() {
                     // reset fields
                     setEmail("")
                     setPassword("")
+                    setIsLoggingIn(false)
                     // Set Session Variable
                     sessionStorage.setItem("username", res[index].customerName)
+                    sessionStorage.setItem("isLoggedIn", true)
                     // redirect 
                     history.push({
                         pathname: '/dashboard',
@@ -64,7 +69,7 @@ function LoginPage() {
             if (!found) {
                 // set error message
                 console.log('failed')
-
+                setIsLoggingIn(false)
                 setLoginFailed(true)
             }
         }
@@ -72,6 +77,14 @@ function LoginPage() {
 
     return (
         <div className="LoginWrapper">
+            {isLoggingIn && <Popup
+                content={<>
+                    <b>Design your Popup</b>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <button>Test button</button>
+                </>}
+            // handleClose={ }
+            />}
             <div className="row">
                 <div className="longColumn">
                     <div className="row1 title">
