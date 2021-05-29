@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import { useHistory } from "react-router";
 import './styles/LoginPage.css'
 import Image from '../addons/loginlogo.png';
-import Link from 'react-router-dom/Link'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
 import Popup from './Popup'
 
 
@@ -107,7 +112,7 @@ function LoginPage() {
                             <div className="Log">Log In</div>
                         </div>
                         <div className="email">
-                            <div className="emailLabel">Email <span class="errorMessage"> {errors.get("password")} </span> </div>
+                            <div className="emailLabel">Email <span className="errorMessage"> {errors.get("password")} </span> </div>
                             <input
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -118,7 +123,7 @@ function LoginPage() {
                         </div>
                         <br></br>
                         <div className="password">
-                            <div className="passwordLabel">Password <span class="errorMessage"> {errors.get("password")} </span> </div>
+                            <div className="passwordLabel">Password <span className="errorMessage"> {errors.get("password")} </span> </div>
                             <input
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
@@ -128,7 +133,7 @@ function LoginPage() {
                                 required></input>
                         </div>
                         <br></br>
-                        {loginFailed && <div class="errorMessage" > login failed, please try again </div>}
+                        {loginFailed && <div className="errorMessage" > login failed, please try again </div>}
                         <button className="loginBtn" onClick={() => handleLogin()}>Log In</button>
                         <div className="or">or</div>
                         <div className="join">

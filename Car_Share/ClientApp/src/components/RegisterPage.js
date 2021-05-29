@@ -60,7 +60,7 @@ function RegisterPage() {
                 phone: phone,
                 password: password,
             };
-            console.log(JSON.stringify(customer));
+            // console.log(JSON.stringify(customer));
 
             const res = await fetch("https://localhost:5001/api/customer", {
                 method: "POST",

@@ -59,7 +59,7 @@ function SearchPage() {
     }
 
     const onClick = () => {
-        console.log(car)
+        // console.log(car)
         history.push({
             pathname: '/make_booking',
             // search: '?update=true',  // query string
