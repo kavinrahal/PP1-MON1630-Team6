@@ -78,7 +78,7 @@ namespace CarShare.Data
                 var car1 = carService.Add(
                     new Car()
                     {
-                        BodyType = 'S',
+                        BodyType = "S",
                         Rego = "ABC123",
                         Make = "Ford",
                         Model = "Falcon",
