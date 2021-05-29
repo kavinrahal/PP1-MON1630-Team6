@@ -24,15 +24,10 @@
 }
 
 .blueT{
-    color: 040C4F;
+    color: #040C4F;
     font-size: 30px;
 }
 
-.yellowT
-{
-    color: #F4CE47;
-    font-size: 30px;
-}
 
 .dash{
     display: flex;
@@ -177,8 +172,6 @@
 }
 
 @media (max-width: 584px){
-
-    
 
     .bookText{
         font-size: 25px;
