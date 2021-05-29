@@ -1,32 +1,39 @@
 
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import { Layout } from './components/Layout';
-import { Home } from './components/Home';
-import { FetchData } from './components/FetchData';
-import { Counter } from './components/Counter';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import React, { Component } from 'react';
 import './custom.css'
 import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
 import Dashboard from "./components/Dashboard";
-
-
+import Profile from "./components/Profile";
+import BookingHistory from "./components/BookingHistory";
+import ViewAllCars from "./components/ViewAllCars";
+import CurrentBooking from "./components/CurrentBooking";
+import MakeBooking from "./components/MakeBooking";
+import SearchPage from "./components/SearchPage";
+import PrivateRoute from './PrivateRoute'
 export default class App extends Component {
   static displayName = App.name;
 
-  render () {
+  render() {
     return (
       <Router>
         <div className="App">
           <Switch>
-            <Route path = "/" exact component = {LoginPage}></Route>
-            <Route path = "/register" exact component = {RegisterPage}></Route>
-            <Route path = "/viewAllCars" exact component = {{/*add view all cars page name here*/}}></Route>
-            <Route path = "/dashboard" exact component = {Dashboard}></Route>
+            <Route path="/" exact component={LoginPage}></Route>
+            <Route path="/register" exact component={RegisterPage}></Route>
+            {/* <Route path="/dashboard" exact component={Dashboard}></Route> */}
+            <PrivateRoute path="/dashboard" component={Dashboard} />
+            <PrivateRoute path="/profile" exact component={Profile} />
+            <PrivateRoute path="/booking_history" exact component={BookingHistory} />
+            <PrivateRoute path="/viewAllCars" exact component={ViewAllCars} />
+            <PrivateRoute path="/currentBooking" exact component={CurrentBooking} />
+            <PrivateRoute path="/make_booking" exact component={MakeBooking} />
+            <PrivateRoute path="/search_page" exact component={SearchPage} />
           </Switch>
         </div>
-    </Router>
+      </Router>
     );
   }
 }

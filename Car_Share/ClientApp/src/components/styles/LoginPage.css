@@ -5,7 +5,7 @@
     src: local('Gidole Regular'), url('../../addons/Gidole-Regular.woff') format('woff');
 }
 
-.LoginWrapper, body, html{
+.LoginWrapper{
     font-family: 'Gidole Regular';
     height: 100%;
     overflow: hidden;
@@ -276,7 +276,11 @@
         background: none;
     }
 
-    .whiteT, .yellowT{
+    .yellowT{
+        font-size: 20px;
+    }
+
+    .whiteT{
         font-size: 20px;
     }
 
@@ -337,12 +341,11 @@
 
     .joinBtn{
         border-radius: 25px;
+        margin-bottom: 15px;
     }
 
     .or{
         color: rgba(255, 255, 255, 0.56);
     }
-
-
 }
 
