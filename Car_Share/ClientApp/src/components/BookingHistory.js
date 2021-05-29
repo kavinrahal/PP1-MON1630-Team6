@@ -7,43 +7,7 @@ function BookingHistory() {
 
     const [historys, setHistorys] = useState([])
     const [loading, setLoading] = useState(true)
-    // const [historys, setHistorys] = useState([{
-    //     active: false,
-    //     bookingID: 7,
-    //     carID: 2,
-    //     customerID: 1,
-    //     endTime: "2021-04-27T12:00:00",
-    //     startTime: "2021-04-27T00:00:00",
-    //     location: "s"
-    // },
-    // {
-    //     active: false,
-    //     bookingID: 3,
-    //     carID: 3,
-    //     customerID: 1,
-    //     endTime: "2021-02-27T12:00:00",
-    //     startTime: "2021-02-27T00:00:00",
-    //     location: "s"
-    // },
-    // {
-    //     active: false,
-    //     bookingID: 1,
-    //     carID: 4,
-    //     customerID: 1,
-    //     endTime: "2021-01-27T12:00:00",
-    //     startTime: "2021-01-27T00:00:00",
-    //     location: "a"
-    // },
-    // {
-    //     active: false,
-    //     bookingID: 2,
-    //     carID: 2,
-    //     customerID: 1,
-    //     endTime: "2020-05-27T12:00:00",
-    //     startTime: "2021-05-27T00:00:00",
-    //     location: "s"
-    // }
-    // ])
+
     useEffect(() => {
         fetch("https://localhost:5001/api/booking")
             .then(response => {
@@ -61,8 +25,6 @@ function BookingHistory() {
                             tmp.push(data[index])
                         }
                     }
-                }
-                for (let index = 0; index < tmp.length; index++) {
                 }
                 setHistorys(tmp)
                 setDisplayHistorys(tmp)
@@ -88,22 +50,6 @@ function BookingHistory() {
 
     // ascending/descending state
     const [sortDown, setSortDown] = useState(true)
-
-    const handleFilter = (carIDFilter) => {
-        if (carIDFilter != "") {
-            setCarFilter(carIDFilter)
-            let copy = [...historys]
-            setDisplayHistorys(copy.filter((history) => history.carID == carIDFilter))
-        }
-    }
-
-    const handleLocationFilter = (locationFilter) => {
-        if (locationFilter != "") {
-            setLocationFilter(locationFilter)
-            let copy = [...historys]
-            setDisplayHistorys(historys.filter((history) => history.location == locationFilter))
-        }
-    }
 
     // Sorts by Start Date
     const sort = () => {
@@ -138,6 +84,18 @@ function BookingHistory() {
 
     // HANDLE FILTER 
     const onClick = () => {
+        if (locationFilter != '' && carFilter != '') {
+            setDisplayHistorys(historys.filter((history) => history.location == locationFilter && history.carID == carFilter))
+        } else if (locationFilter != '') {
+            setDisplayHistorys(historys.filter((history) => history.location == locationFilter))
+        } else if (carFilter != '') {
+            setDisplayHistorys(historys.filter((history) => history.carID == carFilter))
+        } else {
+            setDisplayHistorys(historys)
+        }
+
+    }
+    const reset = () => {
         setLocationFilter("")
         setCarFilter("")
         setDisplayHistorys(historys)
@@ -159,23 +117,24 @@ function BookingHistory() {
                     <div className="booking">
                         <div className='filterSection'>
                             <button className="orderBtn hvr-sweep-to-right" onClick={() => sort()}>Asc/Desc</button>
-                            <select className="filterLocation" value={locationFilter} onChange={(e) => handleLocationFilter(e.target.value)}>
-                                {/* <select className="filterLocation" onChange={(e) => handleFilter(e.target.value)}> */}
+                            <select className="filterLocation" value={locationFilter} onChange={(e) => setLocationFilter(e.target.value)}>
+
                                 <option value="" >Filter by Location</option>
                                 {populateLocation.map((loc) => (
                                     <option key={loc} value={loc} >{loc}</option>
                                 ))
                                 }
                             </select>
-                            {/* <select className="filterCar" onChange={(e) => setCarFilter(e.target.value)}> */}
-                            <select className="filterCar" value={carFilter} onChange={(e) => handleFilter(e.target.value)}>
+
+                            <select className="filterCar" value={carFilter} onChange={(e) => setCarFilter(e.target.value)}>
                                 <option value="" >Filter by Car</option>
                                 {populateCar.map((car) => (
                                     <option key={car} value={car} >{car}</option>
                                 ))
                                 }
                             </select>
-                            <button className="filterBtn hvr-sweep-to-right" onClick={() => onClick()}>Clear Filters</button>
+                            <button className="filterBtn hvr-sweep-to-right" onClick={() => onClick()}>Filter</button>
+                            <button className="filterBtn hvr-sweep-to-right" onClick={() => reset()}>Clear</button>
                         </div>
 
                         {loading && <div className='history_element'><h4 style={{ textAlign: "center" }}>loading</h4></div>}

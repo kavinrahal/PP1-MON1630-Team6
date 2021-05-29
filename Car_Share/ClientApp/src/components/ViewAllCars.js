@@ -1,73 +1,87 @@
-import React, { Component, useState } from 'react';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
-
+import React, { useEffect, useState } from 'react';
 import './styles/ViewAllCars.css';
-import BookingHistoryElement from './BookingHistoryElement';
-import SideBar from './SideBar';
-import SideBarMobile from './SideBarMobile';
 import CarDetailsElement from './CarDetailsElement';
 import { ViewportProvider, WhichSideBar } from './ViewPort_Helper';
 
 function ViewAllCars() {
+    // const [carDetails, setCarDetails] = useState([
+    //     {
+    //         carID: 1,
+    //         rego: 'dummy_rego1',
+    //         make: 'dummy_make1',
+    //         model: 'dummy_model1',
+    //         bodyType: 'dummy_body1',
+    //         colour: 'dummy_colour'
+    //     },
+    //     {
+    //         carID: 2,
+    //         rego: 'dummy_rego2',
+    //         make: 'dummy_make2',
+    //         model: 'dummy_model2',
+    //         bodyType: 'dummy_body2',
+    //         colour: 'dummy_colour1'
+    //     },
+    //     {
+    //         carID: 3,
+    //         rego: 'dummy_rego3',
+    //         make: 'dummy_make3',
+    //         model: 'dummy_model3',
+    //         bodyType: 'dummy_body3',
+    //         colour: 'dummy_colour'
+    //     },
+    //     {
+    //         carID: 4,
+    //         rego: 'dummy_rego3',
+    //         make: 'dummy_make3',
+    //         model: 'dummy_model3',
+    //         bodyType: 'dummy_body3',
+    //         colour: 'dummy_colour'
+    //     },
+    //     {
+    //         carID: 5,
+    //         rego: 'dummy_rego2',
+    //         make: 'dummy_make2',
+    //         model: 'dummy_model2',
+    //         bodyType: 'dummy_body2',
+    //         colour: 'dummy_colour1'
+    //     },
+    // ])
 
-    const [carDetails, setCarDetails] = useState([
-        {
-            id: 1,
-            rego: 'dummy_rego1',
-            make: 'dummy_make1',
-            model: 'dummy_model1',
-            body: 'dummy_body1',
-            colour: 'dummy_colour'
-        },
-        {
-            id: 2,
-            rego: 'dummy_rego2',
-            make: 'dummy_make2',
-            model: 'dummy_model2',
-            body: 'dummy_body2',
-            colour: 'dummy_colour1'
-        },
-        {
-            id: 3,
-            rego: 'dummy_rego3',
-            make: 'dummy_make3',
-            model: 'dummy_model3',
-            body: 'dummy_body3',
-            colour: 'dummy_colour'
-        },
-        {
-            id: 4,
-            rego: 'dummy_rego3',
-            make: 'dummy_make3',
-            model: 'dummy_model3',
-            body: 'dummy_body3',
-            colour: 'dummy_colour'
-        },
-        {
-            id: 5,
-            rego: 'dummy_rego2',
-            make: 'dummy_make2',
-            model: 'dummy_model2',
-            body: 'dummy_body2',
-            colour: 'dummy_colour1'
-        },
-    ])
+
+    const [loading, setLoading] = useState(true)
+    const [carDetails, setCarDetails] = useState([])
+
+    useEffect(() => {
+        fetch("https://localhost:5001/api/car")
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                }
+                throw response
+            })
+            .then(data => {
+                setCarDetails(data)
+                setDisplayCars(data)
+            })
+            .catch(error => {
+                console.log(error)
+            }).finally(() => {
+                setLoading(false)
+            })
+
+    }, [])
+
 
     const [make, setMake] = useState(0)
     const [model, setModel] = useState(0)
-    const [body, setBody] = useState(0)
+    const [bodyType, setBodyType] = useState(0)
     const [colour, setColour] = useState(0)
 
     const [displayCars, setDisplayCars] = useState(carDetails)
 
     const populateMake = [...new Set(carDetails.map(function (item) { return item["make"]; }))];
     const populateModel = [...new Set(carDetails.map(function (item) { return item["model"]; }))];
-    const populateBody = [...new Set(carDetails.map(function (item) { return item["body"]; }))];
+    const populateBody = [...new Set(carDetails.map(function (item) { return item["bodyType"]; }))];
     const populateColour = [...new Set(carDetails.map(function (item) { return item["colour"]; }))];
 
     const [sortDown, setSortDown] = useState(true)
@@ -76,27 +90,35 @@ function ViewAllCars() {
         const copy = [...displayCars]
         if (sortDown) {
             copy.sort(function (a, b) {
-                return b.id - a.id
+                return b.carID - a.carID
             })
         } else {
             copy.sort(function (a, b) {
-                return a.id - b.id
+                return a.carID - b.carID
             })
         }
         setSortDown(!sortDown);
         setDisplayCars(copy);
     }
 
+    const clear = () => {
+        setModel("")
+        setMake("")
+        setColour("")
+        setBodyType("")
+        setDisplayCars(carDetails)
+    }
+
 
     const onClick = () => {
-        if (make != '' && model != '' && body != '' && colour != '') {
-            setDisplayCars(carDetails.filter((car) => car.make == make && car.model == model && car.body == body && car.colour == colour))
+        if (make != '' && model != '' && bodyType != '' && colour != '') {
+            setDisplayCars(carDetails.filter((car) => car.make == make && car.model == model && car.bodyType == bodyType && car.colour == colour))
         } else if (make != '') {
             setDisplayCars(carDetails.filter((car) => car.make == make))
         } else if (model != '') {
             setDisplayCars(carDetails.filter((car) => car.model == model))
-        } else if (body != '') {
-            setDisplayCars(carDetails.filter((car) => car.body == body))
+        } else if (bodyType != '') {
+            setDisplayCars(carDetails.filter((car) => car.bodyType == bodyType))
         }
         else if (colour != '') {
             setDisplayCars(carDetails.filter((car) => car.colour == colour))
@@ -104,71 +126,38 @@ function ViewAllCars() {
         else if (make != '' && model != '') {
             setDisplayCars(carDetails.filter((car) => car.make == make && car.model == model))
         }
-        else if (make != '' && body != '') {
-            setDisplayCars(carDetails.filter((car) => car.make == make && car.body == body))
+        else if (make != '' && bodyType != '') {
+            setDisplayCars(carDetails.filter((car) => car.make == make && car.bodyType == bodyType))
         }
         else if (make != '' && colour != '') {
             setDisplayCars(carDetails.filter((car) => car.make == make && car.colour == colour))
         }
-        else if (model != '' && body != '') {
-            setDisplayCars(carDetails.filter((car) => car.model == model && car.body == body))
+        else if (model != '' && bodyType != '') {
+            setDisplayCars(carDetails.filter((car) => car.model == model && car.bodyType == bodyType))
         }
         else if (model != '' && colour != '') {
             setDisplayCars(carDetails.filter((car) => car.model == model && car.colour == colour))
         }
-        else if (body != '' && colour != '') {
-            setDisplayCars(carDetails.filter((car) => car.body == body && car.colour == colour))
+        else if (bodyType != '' && colour != '') {
+            setDisplayCars(carDetails.filter((car) => car.bodyType == bodyType && car.colour == colour))
         }
-        else if (make != '' && model != '' && body != '') {
-            setDisplayCars(carDetails.filter((car) => car.make == make && car.model == model && car.body == car.body))
+        else if (make != '' && model != '' && bodyType != '') {
+            setDisplayCars(carDetails.filter((car) => car.make == make && car.model == model && car.bodyType == car.bodyType))
         }
-        else if (make != '' && body != '' && colour != '') {
-            setDisplayCars(carDetails.filter((car) => car.make == make && car.body == body && car.body == car.body))
+        else if (make != '' && bodyType != '' && colour != '') {
+            setDisplayCars(carDetails.filter((car) => car.make == make && car.bodyType == bodyType && car.bodyType == car.bodyType))
         }
         else if (make != '' && model != '' && colour != '') {
             setDisplayCars(carDetails.filter((car) => car.make == make && car.model == model && car.colour == car.colour))
         }
-        else if (model != '' && body != '' && colour != '') {
-            setDisplayCars(carDetails.filter((car) => car.model == model && car.body == body && car.colour == car.colour))
+        else if (model != '' && bodyType != '' && colour != '') {
+            setDisplayCars(carDetails.filter((car) => car.model == model && car.bodyType == bodyType && car.colour == car.colour))
         }
         else {
             setDisplayCars(carDetails)
         }
     }
 
-    // const viewportContext = React.createContext({});
-
-    // const ViewportProvider = ({ children }) => {
-    // const [width, setWidth] = React.useState(window.innerWidth);
-    // const [height, setHeight] = React.useState(window.innerHeight);
-    // const handleWindowResize = () => {
-    //     setWidth(window.innerWidth);
-    //     setHeight(window.innerHeight);
-    // };
-
-    // React.useEffect(() => {
-    //     window.addEventListener("resize", handleWindowResize);
-    //     return () => window.removeEventListener("resize", handleWindowResize);
-    // }, []);
-
-    // return (
-    //     <viewportContext.Provider value={{ width, height }}>
-    //     {children}
-    //     </viewportContext.Provider>
-    // );
-    // };
-
-    // const useViewport = () => {
-    // const { width, height } = React.useContext(viewportContext);
-    // return { width, height };
-    // };
-
-    // const WhichSideBar = () => {
-    // const { width } = useViewport();
-    // const breakpoint = 1200;
-
-    // return width < breakpoint ? <SideBarMobile /> : <SideBar />;
-    // };
 
     return (
         <ViewportProvider>
@@ -186,28 +175,28 @@ function ViewAllCars() {
                     <div className="allCars">
                         <div className='filterSection'>
                             <button className="orderBtn hvr-sweep-to-right" onClick={() => sort()}>Asc/Desc</button>
-                            <select className="filterBox" onChange={(e) => setMake(e.target.value)}>
+                            <select className="filterBox" value={make} onChange={(e) => setMake(e.target.value)}>
                                 <option value="" >Filter by Make</option>
                                 {populateMake.map((loc) => (
                                     <option key={loc} value={loc} >{loc}</option>
                                 ))
                                 }
                             </select>
-                            <select className="filterBox" onChange={(e) => setModel(e.target.value)}>
+                            <select className="filterBox" value={model} onChange={(e) => setModel(e.target.value)}>
                                 <option value="" >Filter by Model</option>
                                 {populateModel.map((car) => (
                                     <option key={car} value={car} >{car}</option>
                                 ))
                                 }
                             </select>
-                            <select className="filterBox" onChange={(e) => setBody(e.target.value)}>
+                            <select className="filterBox" value={bodyType} onChange={(e) => setBodyType(e.target.value)}>
                                 <option value="" >Filter by Body</option>
                                 {populateBody.map((car) => (
                                     <option key={car} value={car} >{car}</option>
                                 ))
                                 }
                             </select>
-                            <select className="filterBox" onChange={(e) => setColour(e.target.value)}>
+                            <select className="filterBox" value={colour} onChange={(e) => setColour(e.target.value)}>
                                 <option value="" >Filter by Colour</option>
                                 {populateColour.map((car) => (
                                     <option key={car} value={car} >{car}</option>
@@ -215,15 +204,19 @@ function ViewAllCars() {
                                 }
                             </select>
                             <button className="filterBtn hvr-sweep-to-right" onClick={() => onClick()}>Filter</button>
+                            <button className="filterBtn hvr-sweep-to-right" onClick={() => clear()}>Clear</button>
                         </div>
 
-                        <div className='displaySection'>
-                            {displayCars.length > 0 ?
-                                displayCars.map((car) => (
-                                    <CarDetailsElement className='history_element' key={car.id} element={car} />))
-                                : <h5 className='history_element' style={{ textAlign: 'center', background: '#f4f4f4' }} >No Available Slots found!</h5>
-                            }
-                        </div>
+                        {loading && <div className='history_element'><h4 style={{ textAlign: "center" }}>loading</h4></div>}
+
+                        {!loading &&
+                            <div className='displaySection'>
+                                {displayCars.length > 0 ?
+                                    displayCars.map((car) => (
+                                        <CarDetailsElement className='history_element' key={car.carID} element={car} />))
+                                    : <h5 className='history_element' style={{ textAlign: 'center', background: '#f4f4f4' }} >No Available Slots found!</h5>
+                                }
+                            </div>}
                     </div>
 
                 </div>
