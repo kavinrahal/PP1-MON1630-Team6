@@ -12,8 +12,7 @@ import ViewAllCars from "./components/ViewAllCars";
 import CurrentBooking from "./components/CurrentBooking";
 import MakeBooking from "./components/MakeBooking";
 import SearchPage from "./components/SearchPage";
-
-
+import PrivateRoute from './PrivateRoute'
 export default class App extends Component {
   static displayName = App.name;
 
@@ -24,13 +23,14 @@ export default class App extends Component {
           <Switch>
             <Route path="/" exact component={LoginPage}></Route>
             <Route path="/register" exact component={RegisterPage}></Route>
-            <Route path="/dashboard" exact component={Dashboard}></Route>
-            <Route path="/profile" exact component={Profile}></Route>
-            <Route path="/booking_history" exact component={BookingHistory}></Route>
-            <Route path="/viewAllCars" exact component={ViewAllCars}></Route>
-            <Route path="/currentBooking" exact component={CurrentBooking}></Route>
-            <Route path="/make_booking" exact component={MakeBooking}></Route>
-            <Route path="/search_page" exact component={SearchPage}></Route>
+            {/* <Route path="/dashboard" exact component={Dashboard}></Route> */}
+            <PrivateRoute path="/dashboard" component={Dashboard} />
+            <PrivateRoute path="/profile" exact component={Profile} />
+            <PrivateRoute path="/booking_history" exact component={BookingHistory} />
+            <PrivateRoute path="/viewAllCars" exact component={ViewAllCars} />
+            <PrivateRoute path="/currentBooking" exact component={CurrentBooking} />
+            <PrivateRoute path="/make_booking" exact component={MakeBooking} />
+            <PrivateRoute path="/search_page" exact component={SearchPage} />
           </Switch>
         </div>
       </Router>
