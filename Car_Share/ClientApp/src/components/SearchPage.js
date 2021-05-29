@@ -1,118 +1,52 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles/RegisterPage.css';
 import { ViewportProvider, WhichSideBar } from './ViewPort_Helper';
-// import MakeBooking from './MakeBooking'
-
-import { Link, Redirect, useHistory } from "react-router-dom";
-
-
-
-
-// // ========================= View Stuff ============================
-
-// const viewportContext = React.createContext({});
-
-// const ViewportProvider = ({ children }) => {
-//     const [width, setWidth] = React.useState(window.innerWidth);
-//     const [height, setHeight] = React.useState(window.innerHeight);
-//     const handleWindowResize = () => {
-//         setWidth(window.innerWidth);
-//         setHeight(window.innerHeight);
-//     };
-
-//     React.useEffect(() => {
-//         window.addEventListener("resize", handleWindowResize);
-//         return () => window.removeEventListener("resize", handleWindowResize);
-//     }, []);
-
-//     return (
-//         <viewportContext.Provider value={{ width, height }}>
-//             {children}
-//         </viewportContext.Provider>
-//     );
-// };
-
-// const useViewport = () => {
-//     const { width, height } = React.useContext(viewportContext);
-//     return { width, height };
-// };
-
-// const WhichSideBar = () => {
-//     const { width } = useViewport();
-//     const breakpoint = 1200;
-
-//     return width < breakpoint ? <SideBarMobile /> : <SideBar />;
-// };
-
-
-// // ========================= End of view stuff ============================
+import { useHistory } from "react-router-dom";
 
 function SearchPage() {
     const history = useHistory();
-
+    const [loading, setLoading] = useState(true)
+    const [car, setCar] = useState(0)
     const [make, setMake] = useState(0)
     const [model, setModel] = useState(0)
-    const [body, setBody] = useState(0)
+    const [bodyType, setBodyType] = useState(0)
     const [colour, setColour] = useState(0)
 
     const [rego, setRego] = useState('')
     const [found, setFound] = useState(false)
     const [initial, setInitial] = useState(true)
 
-    const [carDetails, setCarDetails] = useState([
-        {
-            id: 1,
-            rego: 'dummy_rego1',
-            make: 'dummy_make1',
-            model: 'dummy_model1',
-            body: 'dummy_body1',
-            colour: 'dummy_colour'
-        },
-        {
-            id: 2,
-            rego: 'dummy_rego2',
-            make: 'dummy_make2',
-            model: 'dummy_model2',
-            body: 'dummy_body2',
-            colour: 'dummy_colour1'
-        },
-        {
-            id: 3,
-            rego: 'dummy_rego3',
-            make: 'dummy_make3',
-            model: 'dummy_model3',
-            body: 'dummy_body3',
-            colour: 'dummy_colour'
-        },
-        {
-            id: 4,
-            rego: 'dummy_rego3',
-            make: 'dummy_make3',
-            model: 'dummy_model3',
-            body: 'dummy_body3',
-            colour: 'dummy_colour'
-        },
-        {
-            id: 5,
-            rego: 'dummy_rego2',
-            make: 'dummy_make2',
-            model: 'dummy_model2',
-            body: 'dummy_body2',
-            colour: 'dummy_colour1'
-        },
-    ])
+    const [carDetails, setCarDetails] = useState([])
 
+    useEffect(() => {
+        fetch("https://localhost:5001/api/car")
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                }
+                throw response
+            })
+            .then(data => {
+                setCarDetails(data)
+            })
+            .catch(error => {
+                console.log(error)
+            }).finally(() => {
+                setLoading(false)
+            })
 
+    }, [])
 
     const onSubmit = (e) => {
         e.preventDefault()
         var rego_num = Number(rego);
         var arrayLength = carDetails.length;
         for (var i = 0; i < arrayLength; i++) {
-            if (carDetails[i].id == rego_num) {
+            if (carDetails[i].carID == rego_num) {
+                setCar(carDetails[i])
                 setMake(carDetails[i].make)
                 setModel(carDetails[i].model)
-                setBody(carDetails[i].body)
+                setBodyType(carDetails[i].bodyType)
                 setColour(carDetails[i].colour)
 
                 setFound(true)
@@ -122,33 +56,19 @@ function SearchPage() {
                 setInitial(false)
             }
         }
-
-        // if (!text) {
-        //     alert('Please add a task')
-        //     return
-        // }
-
-        // onAdd({ text, day, reminder })
-
-        // setText('')
-        // setDay('')
-        // setReminder(false)
     }
 
     const onClick = () => {
-
+        console.log(car)
         history.push({
             pathname: '/make_booking',
             // search: '?update=true',  // query string
             state: {  // location state
-                id: rego,
+                car: car,
             },
         });
 
     }
-
-
-
     return (
         <ViewportProvider>
             <div className="ViewAllCarsWrapper">
@@ -166,13 +86,16 @@ function SearchPage() {
                         <div className='filterSection'>
                             <div className="profileSignUpEmail">
                                 {/* STYLE ERROR MESSAGE HERE */}
-                                {!found && !initial && < div > Couldn't find a car with entered ID </div>}
+                                {!found && !loading && !initial && < div > Couldn't find a car with entered ID </div>}
+
                                 {/* STYLE TEXT BOX LABEL HERE */}
                                 <div className="profileLabel"> Search using the Registration ID of car.. </div>
                                 {/* STYLE FORM HERE */}
+
                                 <form onSubmit={onSubmit}>
                                     <input type="text" placeholder=" e.g. 2" value={rego} onChange={(e) => setRego(e.target.value)}></input>
-                                    <input type="submit" value="Search"></input>
+                                    {loading && <h5>loading</h5>}
+                                    {!loading && <input type="submit" value="Search"></input>}
                                 </form>
                             </div>
 
@@ -181,6 +104,7 @@ function SearchPage() {
                         <div className='displaySection'>
 
                             {/* STYLE HERE */}
+
                             <h2>Car Details:</h2>
                             {
                                 found && <div>
@@ -188,7 +112,7 @@ function SearchPage() {
                                         {make}
                                     </h2>
                                     <h2>
-                                        {body}
+                                        {bodyType}
                                     </h2>
                                     <h2>
                                         {colour}
