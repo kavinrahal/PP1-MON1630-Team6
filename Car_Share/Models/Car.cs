@@ -12,8 +12,8 @@ namespace CarShare.Models
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CarID { get; init; }
 
-        [Required, StringLength(1), Display(Name = "Body Type")]
-        public char BodyType { get; init; }
+        [Required, StringLength(20), Display(Name = "Body Type")]
+        public string BodyType { get; init; }
         [Required, StringLength(6), Display(Name = "Registration Number")]
         public string Rego { get; init; }
         [Required, StringLength(20)]
