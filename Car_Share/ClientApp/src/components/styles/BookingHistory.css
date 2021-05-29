@@ -5,7 +5,7 @@
     src: local('Gidole Regular'), url('../../addons/Gidole-Regular.woff') format('woff');
 }
 
-@keyframes slideInFromLeft {
+@keyframes slideUp {
     0% {
         
       transform: translateY(500%);
@@ -106,7 +106,7 @@
 }
 
 .history_element {
-    animation: 1s ease-out 0s 1 slideInFromLeft;
+    animation: 1s ease-out 0s 1 slideUp;
     animation-duration: 0.5s;
     background: #f4f4f4;
     background-position: right;
