@@ -7,7 +7,7 @@ import Popup from './Popup'
 
 
 function LoginPage() {
-    const history = useHistory();
+    const history = useHistory(new Map);
     const [customerList, setCustomerList] = useState(null)
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -35,8 +35,8 @@ function LoginPage() {
 
 
     const handleLogin = async () => {
-        setIsLoggingIn(true)
         if (validate()) {
+            setIsLoggingIn(true)
             let found = false;
             const res = await fetch("https://localhost:5001/api/customer")
                 .then(response => {
@@ -59,7 +59,9 @@ function LoginPage() {
                     setIsLoggingIn(false)
                     // Set Session Variable
                     sessionStorage.setItem("username", res[index].customerName)
+                    sessionStorage.setItem("customerID", res[index].customerID)
                     sessionStorage.setItem("isLoggedIn", true)
+
                     // redirect 
                     history.push({
                         pathname: '/dashboard',
@@ -126,7 +128,7 @@ function LoginPage() {
                                 required></input>
                         </div>
                         <br></br>
-                        {loginFailed && <div class="errorMessage" > sdsds </div>}
+                        {loginFailed && <div class="errorMessage" > login failed, please try again </div>}
                         <button className="loginBtn" onClick={() => handleLogin()}>Log In</button>
                         <div className="or">or</div>
                         <div className="join">
@@ -134,7 +136,7 @@ function LoginPage() {
                             <div className="joinText">Don't Have an Account Yet?</div>
                         </div>
                         <br></br>
-                        <Link to="/dashboard"><button className="joinBtn">Sign Me Up!</button></Link>
+                        <Link to="/register"><button className="joinBtn">Sign Me Up!</button></Link>
                     </div>
                 </div>
             </div>
