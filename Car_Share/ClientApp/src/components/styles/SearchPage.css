@@ -1,0 +1,109 @@
+.resultDetails{
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    overflow: hidden;
+    border-radius: 30px 30px 30px 30px;
+    background: rgba(255, 255, 255);
+    filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
+    animation: 1s ease-out 0s 1 slideUp;
+    animation-duration: 1s;
+}
+
+.detailsRow{
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+}
+
+.allCars{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.searchFilter{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.searchTitle{
+    text-align: center;
+    color: #1D1E5B;
+    font-size: 25px;
+}
+
+.carSearchForm{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+}
+
+.carSearchBtn{
+    background: #1D1E5B;
+    border-radius: 5px;
+    color: white;
+    border-style: solid;
+    border-width: 0.5px;
+    border-color: white;
+    height: 40px;
+    width: 25%;
+    margin-left: 5px;
+    align-self: center;
+}
+
+.searchBar{
+    width: 70%;
+    height: 40px;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 0.5px;
+    border-color: #1D1E5B;
+}
+
+.searchDisplay{
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    overflow: hidden;
+}
+
+.detailsTitle{
+    align-self: center;
+    font-size: 35px;
+    margin-top: 15px;
+}
+
+.detailsBook{
+    background: #1D1E5B;
+    border-radius: 5px;
+    color: white;
+    border-style: solid;
+    border-width: 0.5px;
+    border-color: white;
+    height: 45px;
+    width: 100%;
+    margin-top: 15px;
+    font-size: 20px;
+    align-self: center;
+}
+
+.detailField{
+    margin-left: 5px;
+}
+
+.deetsCar{
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+}

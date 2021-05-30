@@ -137,7 +137,7 @@ function BookingHistory() {
                             <button className="filterBtn hvr-sweep-to-right" onClick={() => reset()}>Clear</button>
                         </div>
 
-                        {loading && <div className='history_element'><h4 style={{ textAlign: "center" }}>loading</h4></div>}
+                        {loading && <div className='history_element'><h4 style={{ textAlign: "center" }}>Loading...</h4></div>}
 
                         {!loading &&
                             <div className='displaySection'>

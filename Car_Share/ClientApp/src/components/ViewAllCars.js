@@ -4,48 +4,6 @@ import CarDetailsElement from './CarDetailsElement';
 import { ViewportProvider, WhichSideBar } from './ViewPort_Helper';
 
 function ViewAllCars() {
-    // const [carDetails, setCarDetails] = useState([
-    //     {
-    //         carID: 1,
-    //         rego: 'dummy_rego1',
-    //         make: 'dummy_make1',
-    //         model: 'dummy_model1',
-    //         bodyType: 'dummy_body1',
-    //         colour: 'dummy_colour'
-    //     },
-    //     {
-    //         carID: 2,
-    //         rego: 'dummy_rego2',
-    //         make: 'dummy_make2',
-    //         model: 'dummy_model2',
-    //         bodyType: 'dummy_body2',
-    //         colour: 'dummy_colour1'
-    //     },
-    //     {
-    //         carID: 3,
-    //         rego: 'dummy_rego3',
-    //         make: 'dummy_make3',
-    //         model: 'dummy_model3',
-    //         bodyType: 'dummy_body3',
-    //         colour: 'dummy_colour'
-    //     },
-    //     {
-    //         carID: 4,
-    //         rego: 'dummy_rego3',
-    //         make: 'dummy_make3',
-    //         model: 'dummy_model3',
-    //         bodyType: 'dummy_body3',
-    //         colour: 'dummy_colour'
-    //     },
-    //     {
-    //         carID: 5,
-    //         rego: 'dummy_rego2',
-    //         make: 'dummy_make2',
-    //         model: 'dummy_model2',
-    //         bodyType: 'dummy_body2',
-    //         colour: 'dummy_colour1'
-    //     },
-    // ])
 
 
     const [loading, setLoading] = useState(true)
@@ -207,7 +165,7 @@ function ViewAllCars() {
                             <button className="filterBtn hvr-sweep-to-right" onClick={() => clear()}>Clear</button>
                         </div>
 
-                        {loading && <div className='history_element'><h4 style={{ textAlign: "center" }}>loading</h4></div>}
+                        {loading && <div className='history_element'><h4 style={{ textAlign: "center" }}>Loading...</h4></div>}
 
                         {!loading &&
                             <div className='displaySection'>

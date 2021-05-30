@@ -20,11 +20,6 @@
     flex-direction: column;
 }
 
-.blueT{
-    color: #040C4F;
-    font-size: 30px;
-}
-
 .settingsTitle{
     display: flex;
     flex-direction: row;

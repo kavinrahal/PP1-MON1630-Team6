@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './styles/RegisterPage.css';
 import { ViewportProvider, WhichSideBar } from './ViewPort_Helper';
 import { useHistory } from "react-router-dom";
+import './styles/SearchPage.css';
 
 function SearchPage() {
     const history = useHistory();
@@ -84,44 +85,54 @@ function SearchPage() {
                     </div>
                     <div className="allCars">
                         <div className='filterSection'>
-                            <div className="profileSignUpEmail">
+                            <div className="searchFilter">
                                 {/* STYLE ERROR MESSAGE HERE */}
-                                {!found && !loading && !initial && < div > Couldn't find a car with entered ID </div>}
+                                {!found && !loading && !initial && <div> Could not find a car with entered ID </div>}
 
-                                {/* STYLE TEXT BOX LABEL HERE */}
-                                <div className="profileLabel"> Search using the Registration ID of car.. </div>
+                                
+                                <div className="searchTitle">Search Using the Registration ID of Car</div>
                                 {/* STYLE FORM HERE */}
 
-                                <form onSubmit={onSubmit}>
-                                    <input type="text" placeholder=" e.g. 2" value={rego} onChange={(e) => setRego(e.target.value)}></input>
-                                    {loading && <h5>loading</h5>}
-                                    {!loading && <input type="submit" value="Search"></input>}
+                                <form className = "carSearchForm" onSubmit={onSubmit}>
+                                    <input className = "searchBar" type="text" placeholder=" E.g. 2" value={rego} onChange={(e) => setRego(e.target.value)}></input>
+                                    {loading && <h5>Loading...</h5>}
+                                    {!loading && <input className = "carSearchBtn hvr-sweep-to-right"  type="submit" value="Search"></input>}
                                 </form>
                             </div>
 
                         </div>
 
-                        <div className='displaySection'>
+                        <div className='searchDisplay'>
 
                             {/* STYLE HERE */}
-
-                            <h2>Car Details:</h2>
+                            
                             {
-                                found && <div>
-                                    <h2>
-                                        {make}
-                                    </h2>
-                                    <h2>
-                                        {bodyType}
-                                    </h2>
-                                    <h2>
-                                        {colour}
-                                    </h2>
-                                    <h2>
-                                        {model}
-                                    </h2>
-                                    {/* BUTTON HERE */}
-                                    <button onClick={() => onClick()}>Book here</button>
+                                found && 
+                                <div className = "resultDetails">
+                                    
+                                    <h2 className = "detailsTitle">Car Details:</h2>
+                                    <div className = "deetsCar">
+                                        <div className = "detailsRow">
+                                            <div className = "detailLabel">Make: </div>
+                                            <div className = "detailField"> {make}</div>
+                                        </div>
+                                        
+                                        <div className = "detailsRow">
+                                            <div className = "detailLabel">Body Type: </div>
+                                            <div className = "detailField"> {bodyType}</div>
+                                        </div>
+                                        <div className = "detailsRow">
+                                            <div className = "detailLabel">Colour: </div>
+                                            <div className = "detailField"> {colour}</div>
+                                        </div>
+                                        <div className = "detailsRow">
+                                            <div className = "detailLabel">Model: </div>
+                                            <div className = "detailField"> {model}</div>
+                                        </div>
+
+                                        {/* BUTTON HERE */}
+                                        <button className = "detailsBook hvr-sweep-to-right" onClick={() => onClick()}>Book here</button>
+                                    </div>
                                 </div>
                             }
                         </div>

@@ -23,22 +23,6 @@ import settingsLogo from '../addons/settings.png';
 import openMenu from '../addons/OpenMenu.svg';
 import closeMenu from '../addons/CloseMenu.svg';
 
-function hideButton(){
-    var btn = document.getElementById('logOutBtn');
-    
-    if(btn.style.visibility == 'hidden') {
-        btn.style.visibility = 'visible';
-        return true;
-    }
-
-    if(btn.style.visibility == 'visible') {
-        btn.style.visibility = 'hidden';
-        return true;
-    }
-
-    btn.style.visibility = 'visible';
-}
-
 const SideBarMobile = () => {
   
     //create initial menuCollapse state using useState hook
@@ -57,10 +41,10 @@ const SideBarMobile = () => {
                     <div className="closemenu" onClick={menuIconClick}>
                         {/* changing menu collapse icon on click */}
                         {menuCollapse ? (
-                            <img src ={openMenu}  className = "arrow" onClick = {hideButton}></img>
+                            <img src ={openMenu}  className = "arrow"></img>
                         ) : (
                             <div>
-                                <img src = {closeMenu} className = "arrow" onClick = {hideButton}></img>
+                                <img src = {closeMenu} className = "arrow" ></img>
                                 <div className="logoText">
                                     <img></img>
                                     <br></br>

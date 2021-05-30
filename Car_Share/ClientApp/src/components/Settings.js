@@ -54,7 +54,14 @@ export default function Settings() {
                     <div className="settingsPage">
                         <div className="delete">
                             <div className="deleteAccount">Do you wish to delete your account?</div>
-                            <button onClick={() => onClick()} className="deleteBtn hvr-sweep-to-right-red">Delete Account</button>
+                            <button onClick={() => {
+                                const confirmBox = window.confirm(
+                                  "Are you sure you want to Delete your Account? This Action is not reversible."
+                                )
+                                if (confirmBox === true) {
+                                  onClick();
+                                }
+                              }} className="deleteBtn hvr-sweep-to-right-red">Delete Account</button>
                         </div>
                     </div>
                 </div>
