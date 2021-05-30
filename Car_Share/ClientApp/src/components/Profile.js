@@ -10,6 +10,10 @@ export default function Profile() {
   const [userPhone, setUserPhone] = useState()
   const [userPassword, setUserPassword] = useState()
   const [userConfirmPassword, setUserConfirmPassword] = useState()
+  const [userNewPassword, setUserNewPassword] = useState("")
+  const [userNewConfirmPassword, setUserNewConfirmPassword] = useState("")
+  const [passwordConfirmation, setPasswordConfirmation] = useState("")
+  const [passwordConfirmationError, setPasswordConfirmationError] = useState(false)
   // const [userDetails, setUserDetails] = useState(
   //   {
   //     userId: 1,
@@ -177,10 +181,6 @@ export default function Profile() {
                     type="password" className="profileText" placeholder="  Confirm Password"></input>
                 </div>
               </div>
-<<<<<<< Updated upstream
-              <br></br>
-              <button onClick={() => onClick()} className="saveProfile hvr-sweep-to-right">Save Changes</button>
-=======
               <span>Leave passwords field blank if no change is desired.</span>
               <div>
                 {passwordConfirmationError && <span style={{ color: 'red' }}>Wrong Password!</span>}
@@ -200,7 +200,6 @@ export default function Profile() {
               </div>
 
 
->>>>>>> Stashed changes
             </div>
           </div>
         </div>
