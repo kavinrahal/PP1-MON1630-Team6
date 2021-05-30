@@ -15,7 +15,7 @@ namespace CarShare.Models
         [Required, StringLength(50), Display(Name = "Customer Name")]
         public string CustomerName { get; set; }
 
-        [StringLength(50)]
+        [Required, StringLength(50), ForeignKey("Login")]
         public string Email { get; set; }
 
         [StringLength(50)]

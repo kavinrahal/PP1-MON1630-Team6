@@ -51,10 +51,12 @@ namespace CarShare
                 configuration.RootPath = "ClientApp/build";
             });
 
+            // Add scoped references for the API services
             services.AddScoped<CustomerService>();
             services.AddScoped<CarService>();
             services.AddScoped<BookingService>();
             services.AddScoped<TransactionService>();
+            services.AddScoped<LoginService>();
             services.AddReact();
 
             services.AddRazorPages();

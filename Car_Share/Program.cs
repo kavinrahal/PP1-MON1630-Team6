@@ -21,6 +21,7 @@ namespace CarShare
                 var services = scope.ServiceProvider;
                 try
                 {
+                    // Build database with seeded data
                     SeedData.Initialize(services);
                 }
                 catch (Exception ex)

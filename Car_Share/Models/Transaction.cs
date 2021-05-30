@@ -12,7 +12,7 @@ namespace CarShare.Models
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TransactionID { get; set; }
 
-        [Required, ForeignKey("Account"), Display(Name = "Account Number")]
+        [Required, ForeignKey("Customer"), Display(Name = "Customer Number")]
         public int CustomerID { get; set; }
         public virtual Customer Customer { get; set; }
 

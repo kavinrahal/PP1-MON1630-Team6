@@ -27,15 +27,5 @@ namespace CarShare.Models
         public DateTime EndTime { get; set; }
 
         public bool Active { get; set; }
-
-        /*public Booking(int customerID, int carID, decimal amount, DateTime startTime, DateTime endTime)
-        {
-            CustomerID = customerID;
-            CarID = carID;
-            Amount = amount;
-            StartTime = startTime;
-            EndTime = endTime;
-            Active = true;
-        }*/
     }
 }
