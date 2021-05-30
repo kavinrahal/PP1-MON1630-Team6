@@ -42,6 +42,42 @@ namespace CarShare.Data
                         CustomerID = customer1,
                         PasswordHash = "Password"
                     });
+                var customer2 = customerService.Add(
+                    new Customer()
+                    {
+                        CustomerName = "Jack Smith",
+                        Email = "jsmith@mail.com",
+                        Address = "4 Small Rd",
+                        City = "Maryborough",
+                        State = "VIC",
+                        PostCode = "3300",
+                        Phone = "+61 0000 4568"
+                    });
+                var login2 = loginService.Add(
+                    new Login()
+                    {
+                        Email = "jsmith@mail.com",
+                        CustomerID = customer2,
+                        PasswordHash = "Abc123"
+                    });
+                var customer3 = customerService.Add(
+                    new Customer()
+                    {
+                        CustomerName = "Mary Rutherford",
+                        Email = "mrutherford@mail.com",
+                        Address = "20 Creek Lane",
+                        City = "Epping",
+                        State = "VIC",
+                        PostCode = "3214",
+                        Phone = "+61 0000 7001"
+                    });
+                var login3 = loginService.Add(
+                    new Login()
+                    {
+                        Email = "mrutherford@mail.com",
+                        CustomerID = customer3,
+                        PasswordHash = "Password20"
+                    });
 
                 // -----Cars-----
                 var car1 = carService.Add(
@@ -101,7 +137,7 @@ namespace CarShare.Data
                         Amount = 100,
                         StartTime = new DateTime(2021,05,27,0,0,0),
                         EndTime = new DateTime(2021,05,27,12,0,0),
-                        Active = true
+                        Active = false
                     });
                 
                 transactionService.Add(new Transaction(customer1, 100, "Rental Payment"));
