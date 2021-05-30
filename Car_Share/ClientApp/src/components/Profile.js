@@ -1,26 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import './styles/Profile.css';
 import { ViewportProvider, WhichSideBar } from './ViewPort_Helper';
+import { useHistory } from "react-router";
 
 export default function Profile() {
   const [userDetails, setUserDetails] = useState()
-  const [userName, setUserName] = useState()
-  const [userEmail, setUserEmail] = useState()
-  const [userAddress, setUserAddress] = useState()
-  const [userPhone, setUserPhone] = useState()
-  const [userPassword, setUserPassword] = useState()
-  const [userConfirmPassword, setUserConfirmPassword] = useState()
-  // const [userDetails, setUserDetails] = useState(
-  //   {
-  //     userId: 1,
-  //     name: "Kavin Abeysinghe",
-  //     address: "420, A'Beckett Street",
-  //     email: "kavinrahal@gmail.com",
-  //     phoneNum: "0402001311"
-  //   }
-  // )
-  const [errors, setErrors] = useState(new Map);
+  const [userName, setUserName] = useState("")
+  const [userEmail, setUserEmail] = useState("")
+  const [userAddress, setUserAddress] = useState("")
+  const [userPhone, setUserPhone] = useState("")
+  const [userPassword, setUserPassword] = useState("")
 
+  const [userNewPassword, setUserNewPassword] = useState("")
+  const [userNewConfirmPassword, setUserNewConfirmPassword] = useState("")
+  const [passwordConfirmation, setPasswordConfirmation] = useState("")
+  const [passwordConfirmationError, setPasswordConfirmationError] = useState(false)
+
+  const [passwordChange, setPasswordChange] = useState(false)
+  const [put, setPut] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [updated, setUpdated] = useState(false)
+
+  const [errors, setErrors] = useState(new Map);
+  const history = useHistory();
   useEffect(() => {
     let url = "https://localhost:5001/api/customer/"
     let customerID = sessionStorage.getItem('customerID')
@@ -43,7 +45,7 @@ export default function Profile() {
       .catch(error => {
         console.log(error)
       }).finally(() => {
-        // setLoading(false)
+        setLoading(false)
       })
 
   }, [])
@@ -60,8 +62,7 @@ export default function Profile() {
         retVal = false
       }
     }
-
-    if (userPassword != userConfirmPassword) {
+    if (userNewPassword != userNewConfirmPassword) {
       alert("Passwords must be the same")
       retVal = false
     }
@@ -76,36 +77,65 @@ export default function Profile() {
   }
 
   const onClick = () => {
-    if (validate()) {
-      const updatedCustomer = {
-        customerID: sessionStorage.getItem('customerID'),
-        customerName: userName,
-        email: userEmail,
-        address: userAddress,
-        phone: userPhone,
-        password: userPassword,
+    if (passwordConfirmation == userPassword) {
+      setPasswordConfirmationError(false)
+
+      if (validate()) {
+        if (userNewPassword != "" && userNewConfirmPassword != "") {
+          setUserPassword(userNewPassword)
+          setPasswordChange(true)
+        }
+        setPut(true)
+
+      } else {
+        setPut(false)
+        console.log('failed')
       }
-      console.log(updatedCustomer)
-      let url = "https://localhost:5001/api/customer/"
-      let customerID = sessionStorage.getItem('customerID')
-      const res = fetch(url + customerID, {
-        method: "PUT",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(updatedCustomer),
-      })
-        .then((response) => {
-          if (response.ok) {
-            alert("Successfully Saved");
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
     } else {
-      console.log('failed')
+      setPasswordConfirmationError(true)
     }
+
+  }
+
+  if (put) {
+    const updatedCustomer = {
+      customerID: sessionStorage.getItem('customerID'),
+      customerName: userName,
+      email: userEmail,
+      address: userAddress,
+      phone: userPhone,
+      password: userPassword,
+    }
+    console.log("PUT")
+    console.log(updatedCustomer)
+
+    let url = "https://localhost:5001/api/customer/"
+    let customerID = sessionStorage.getItem('customerID')
+    const res = fetch(url + customerID, {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(updatedCustomer),
+    })
+      .then((response) => {
+        if (response.ok) {
+          setPut(false)
+          setUpdated(true)
+          //If password change, relogin
+          if (passwordChange) {
+            setPasswordChange(false)
+            alert("Password updated, please login again with new password");
+            history.push({
+              pathname: '/',
+            });
+          }
+
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
 
@@ -125,9 +155,11 @@ export default function Profile() {
           <div className="profilePage">
             <div className="profileQuote">You can check and change any of your details here!</div>
             <div className="profileDetails">
+              {loading && <span>Loading Details</span>}
+              {updated && <span style={{ color: 'green' }}>Details Updated!</span>}
               <div className="profileNames">
                 <div className="profileFirst">
-                  <div className="profileLabel">Change Name<span class="errorMessage">  {errors.get("userName")} </span></div>
+                  <div className="profileLabel">Change Name<span className="errorMessage">  {errors.get("userName")} </span></div>
                   <input
                     value={userName}
                     onChange={(e) => setUserName(e.target.value)}
@@ -136,7 +168,7 @@ export default function Profile() {
                     placeholder="  User Name"></input>
                 </div>
                 <div className="profileLast">
-                  <div className="profileLabel">Change Address <span class="errorMessage">  {errors.get("userAddress")} </span></div>
+                  <div className="profileLabel">Change Address <span className="errorMessage">  {errors.get("userAddress")} </span></div>
                   <input
                     value={userAddress}
                     onChange={(e) => setUserAddress(e.target.value)}
@@ -146,14 +178,14 @@ export default function Profile() {
               <br></br>
               <div className="profileContact">
                 <div className="profileSignUpEmail">
-                  <div className="profileLabel">Change Email <span class="errorMessage">  {errors.get("userEmail")} </span></div>
+                  <div className="profileLabel">Change Email <span className="errorMessage">  {errors.get("userEmail")} </span></div>
                   <input
                     value={userEmail}
                     onChange={(e) => setUserEmail(e.target.value)}
                     type="email" className="profileText" placeholder="  User Email"></input>
                 </div>
                 <div className="profilePhone">
-                  <div className="profileLabel">Change Phone Number <span class="errorMessage">  {errors.get("userPhone")} </span></div>
+                  <div className="profileLabel">Change Phone Number <span className="errorMessage">  {errors.get("userPhone")} </span></div>
                   <input
                     value={userPhone}
                     onChange={(e) => setUserPhone(e.target.value)}
@@ -161,24 +193,43 @@ export default function Profile() {
                 </div>
               </div>
               <br></br>
+
               <div className="profilePasswords">
                 <div className="profileSignUpPassword">
                   <div className="profileLabel">Change Password</div>
                   <input
-                    value={userPassword}
-                    onChange={(e) => setUserPassword(e.target.value)}
+                    value={userNewPassword}
+                    onChange={(e) => setUserNewPassword(e.target.value)}
                     type="password" className="profileText" placeholder="  User Password"></input>
                 </div>
                 <div className="profileConfirmPassword">
                   <div className="profileLabel">Confirm New Password</div>
                   <input
-                    value={userConfirmPassword}
-                    onChange={(e) => setUserConfirmPassword(e.target.value)}
+                    value={userNewConfirmPassword}
+                    onChange={(e) => setUserNewConfirmPassword(e.target.value)}
                     type="password" className="profileText" placeholder="  Confirm Password"></input>
                 </div>
               </div>
+              <span>leave passwords field blank if no change desired</span>
               <br></br>
-              <button onClick={() => onClick()} className="saveProfile hvr-sweep-to-right">Save Changes</button>
+              <br></br>
+              <div>
+                {passwordConfirmationError && <span style={{ color: 'red' }}>wrong password</span>}
+                <div style={{ 'font-weight': 'bold' }}>Enter Current Password to Save Changes</div>
+                <input
+                  value={passwordConfirmation}
+                  onChange={(e) => setPasswordConfirmation(e.target.value)}
+                  type="password" className="profileText" placeholder="  Current Password">
+
+                </input>
+
+                <div>
+                  <br></br>
+                  <button onClick={() => onClick()} className="saveProfile hvr-sweep-to-right">Save Changes</button>
+                </div>
+              </div>
+
+
             </div>
           </div>
         </div>
