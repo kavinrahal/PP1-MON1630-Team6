@@ -14,7 +14,6 @@ namespace CarShare.Data
             // Can't inject parameterised dependencies if EFCore doesn't handle the calling of a method
             // (this method is called manually from Main()), so manually summoning them
 
-            var loginService = serviceProvider.GetRequiredService<LoginService>();
             var customerService = serviceProvider.GetRequiredService<CustomerService>();
             var carService = serviceProvider.GetRequiredService<CarService>();
             var bookingService = serviceProvider.GetRequiredService<BookingService>();
@@ -36,13 +35,6 @@ namespace CarShare.Data
                         Phone = "+61 0123 4567",
                         Password = "abc123"
                     });
-                var login1 = loginService.Add(
-                    new Login()
-                    {
-                        Email = "jtest123@mail.com",
-                        CustomerID = customer1,
-                        PasswordHash = "Password"
-                    });
                 var customer2 = customerService.Add(
                     new Customer()
                     {
@@ -55,13 +47,6 @@ namespace CarShare.Data
                         Phone = "+61 0000 4568",
                         Password = "abc123"
                     });
-                var login2 = loginService.Add(
-                    new Login()
-                    {
-                        Email = "jsmith@mail.com",
-                        CustomerID = customer2,
-                        PasswordHash = "Abc123"
-                    });
                 var customer3 = customerService.Add(
                     new Customer()
                     {
@@ -73,13 +58,6 @@ namespace CarShare.Data
                         PostCode = "3214",
                         Phone = "+61 0000 7001",
                         Password = "abc123"
-                    });
-                var login3 = loginService.Add(
-                    new Login()
-                    {
-                        Email = "mrutherford@mail.com",
-                        CustomerID = customer3,
-                        PasswordHash = "Password20"
                     });
 
                 // -----Cars-----

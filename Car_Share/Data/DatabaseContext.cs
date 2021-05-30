@@ -13,7 +13,6 @@ namespace CarShare.Data
             _options = options;
         }
         // Build DB context for each model
-        public DbSet<Login> Login { get; set; }
         public DbSet<Customer> Customer { get; set; }
         public DbSet<Car> Car { get; set; }
         public DbSet<Transaction> Transaction { get; set; }

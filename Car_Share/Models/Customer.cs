@@ -15,9 +15,9 @@ namespace CarShare.Models
         [Required, StringLength(50), Display(Name = "Customer Name")]
         public string CustomerName { get; set; }
 
-        [Required, StringLength(50), ForeignKey("Login")]
+        [Required, StringLength(50)]
         public string Email { get; set; }
-        [Required, StringLength(64), Display(Name = "Password")]
+        [Required, StringLength(64)]
         public string Password { get; set; }
 
         [StringLength(50)]
@@ -35,8 +35,8 @@ namespace CarShare.Models
         [Required, StringLength(15), RegularExpression(@"^\+61 [0-9]{4} [0-9]{4}$")]
         public string Phone { get; set; }
 
+        // Reference customer history for bookings & transactions for quick access
         public virtual List<Booking> Bookings { get; set; }
-
         public virtual List<Transaction> Transactions { get; set; }
     }
 }
