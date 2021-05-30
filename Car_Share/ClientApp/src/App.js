@@ -12,6 +12,7 @@ import ViewAllCars from "./components/ViewAllCars";
 import CurrentBooking from "./components/CurrentBooking";
 import MakeBooking from "./components/MakeBooking";
 import SearchPage from "./components/SearchPage";
+import Settings from "./components/Settings";
 import PrivateRoute from './PrivateRoute'
 export default class App extends Component {
   static displayName = App.name;
@@ -31,6 +32,7 @@ export default class App extends Component {
             <PrivateRoute path="/currentBooking" exact component={CurrentBooking} />
             <PrivateRoute path="/make_booking" exact component={MakeBooking} />
             <PrivateRoute path="/search_page" exact component={SearchPage} />
+            <PrivateRoute path = "/settings" exact component = {Settings}/>
           </Switch>
         </div>
       </Router>

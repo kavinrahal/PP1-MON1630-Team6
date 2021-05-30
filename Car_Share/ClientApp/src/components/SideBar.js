@@ -43,7 +43,7 @@ function SideBar() {
                     <MenuItem><Link to="booking_history"><img className="historyLogo" src={historyLogo}></img>History</Link></MenuItem>
                     <MenuItem><Link to="profile"><img className="profileLogo" src={profileLogo}></img>Profile</Link></MenuItem>
                     <MenuItem><img className="reportLogo" src={reportLogo}></img>Report a Problem</MenuItem>
-                    <MenuItem><img className="settingsLogo" src={settingsLogo}></img>Settings</MenuItem>
+                    <MenuItem><Link to = "settings"><img className="settingsLogo" src={settingsLogo}></img>Settings</Link></MenuItem>
                     <br></br>
                     <button onClick={() => onClick()} className="logOutBtn hvr-sweep-to-right-red"><Link className="logText" to="/">SIGN OUT</Link></button>
                 </Menu>
