@@ -6,7 +6,7 @@ import { useHistory } from "react-router";
 export default function Profile() {
   const [userDetails, setUserDetails] = useState("")
   const [userName, setUserName] = useState("")
-  const [userEmail, setUserEmail] = useState()
+  const [userEmail, setUserEmail] = useState("")
   const [userAddress, setUserAddress] = useState("")
   const [userPhone, setUserPhone] = useState("")
   const [userPassword, setUserPassword] = useState("")
@@ -82,8 +82,6 @@ export default function Profile() {
     if (passwordConfirmation == userDetails.password) {
       setPasswordConfirmationError(false)
       if (validate()) {
-        console.log(userDetails.password)
-        console.log(passwordConfirmation)
         if (userNewPassword != "" && userNewConfirmPassword != "") { // Means Password is being updated
           setPasswordChange(true)
           setUserPassword(userNewPassword)
