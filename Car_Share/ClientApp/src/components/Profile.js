@@ -148,7 +148,7 @@ export default function Profile() {
             <div className="profileQuote">You can check and change any of your details here!</div>
             <div className="profileDetails">
               {loading && <span>Loading</span>}
-              {updated && <span style={{ color: 'green' }}>Details Updated</span>}
+              {updated && <span style={{ color: 'green' }}>Details Updated, name will be updated when log in again</span>}
               <div className="profileNames">
 
                 <div className="profileFirst">
