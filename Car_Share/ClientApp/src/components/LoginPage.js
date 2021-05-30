@@ -55,7 +55,7 @@ function LoginPage() {
 
 
             for (let index = 0; index < res.length; index++) {
-                if (email == res[index].email && password == res[index].email) {
+                if (email == res[index].email && password == res[index].password) {
                     //Login successful
                     found = true;
                     // reset fields

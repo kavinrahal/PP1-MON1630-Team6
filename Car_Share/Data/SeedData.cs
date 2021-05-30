@@ -21,7 +21,7 @@ namespace CarShare.Data
             var transactionService = serviceProvider.GetRequiredService<TransactionService>();
 
             // Look for any logins (just as a litmus for a seeded database). If none, proceed
-            if (!loginService.GetAll().Any())
+            if (!customerService.GetAll().Any())
             {
                 // -----Customers + Login-----
                 var customer1 = customerService.Add(
@@ -33,7 +33,8 @@ namespace CarShare.Data
                         City = "Springfield",
                         State = "VIC",
                         PostCode = "3000",
-                        Phone = "+61 0123 4567"
+                        Phone = "+61 0123 4567",
+                        Password = "abc123"
                     });
                 var login1 = loginService.Add(
                     new Login()
@@ -51,7 +52,8 @@ namespace CarShare.Data
                         City = "Maryborough",
                         State = "VIC",
                         PostCode = "3300",
-                        Phone = "+61 0000 4568"
+                        Phone = "+61 0000 4568",
+                        Password = "abc123"
                     });
                 var login2 = loginService.Add(
                     new Login()
@@ -69,7 +71,8 @@ namespace CarShare.Data
                         City = "Epping",
                         State = "VIC",
                         PostCode = "3214",
-                        Phone = "+61 0000 7001"
+                        Phone = "+61 0000 7001",
+                        Password = "abc123"
                     });
                 var login3 = loginService.Add(
                     new Login()
