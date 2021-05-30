@@ -1,5 +1,4 @@
-﻿using CarShare.Areas.Identity.Data;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using CarShare.Models;
 namespace CarShare.Data
