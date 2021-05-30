@@ -21,5 +21,8 @@ Database Name:	rmit-car-share-db.database.windows.net
 Connection String (ASP.NET): "Server=rmit-car-share-db.database.windows.net;Database=car_share_db;Uid=car-share-root;Password=RmitProgramming123!;Trusted_Connection=False"
 Subscription ID: 75043b52-2cea-4cde-860a-28cf0e335b13
 
+Target Framework: net5.0
+Target Runtime: Portable
+Service Dependency: SQL Server Database
 
 t. PP1-MON1630-Team6
