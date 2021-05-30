@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import DatePicker from "react-datepicker";
-
+import { Link } from 'react-router-dom';
 import moment from 'moment'
 import "react-datepicker/dist/react-datepicker.css";
 import './styles/ViewAllCars.css';
@@ -339,8 +339,8 @@ export default function MakeBooking(props) {
         active: true,
       };
 
-      console.log(booking)
-      console.log(carDetails)
+      // console.log(booking)
+      // console.log(carDetails)
       const res = await fetch("https://localhost:5001/api/booking", {
         method: "POST",
         headers: {
@@ -387,7 +387,6 @@ export default function MakeBooking(props) {
                 <div className="blueT">Scheme</div>
               </div>
             </div>
-            {!props.location.state && <div>Display Links for View Car and Search since no car selected</div>}
             <div className="allCars">
               <div className='filterSection'>
                 <MakeBookingDisplayElement key={carDetails.carID} element={carDetails} />
@@ -395,39 +394,45 @@ export default function MakeBooking(props) {
               {dateError && <div> Error: Start Date cannot be after End Date </div>}
               <div className='displaySection'>
                 Availaibilty
-                <div>
-                  Start
+
+                 {!props.location.state && <div>No car selected! Choose one from
+              <Link to="/viewAllCars" className="btn btn-primary">all cars</Link>
+              or from <Link to="/search_page" className="btn btn-primary">searching</Link>
+              !</div>}
+
+                {props.location.state &&
+                  <div>
+                    Start
                   <DatePicker selected={datepickerStartDate} value={datepickerStartDate} onChange={date => handleDatepickerStart(date)} minDate={new Date()} />
                   End
                   <DatePicker selected={datepickerEndDate} value={datepickerEndDate} onChange={date => handleDatepickerEnd(date)} minDate={new Date()} />
-                  <div>
-                    <select className="startTime" value={selectBoxStartTime} onChange={(e) => handleSelectBoxStart(e.target.value)}>
-                      <option value="" >Start Time</option>
-                      {availableStartArray.map((start) => (
-                        <option value={start} >{start}</option>
-                      ))
-                      }
-                    </select>
-                  </div>
-
-                  {availableEndArray.length > 0 &&
-
                     <div>
-                      <select className="endTime" value={selectBoxEndTime} onChange={(e) => handleSelectBoxEnd(e.target.value)}>
-                        <option value="" >End Time</option>
-                        {availableEndArray.map((end) => (
-                          <option value={end} >{end}</option>
+                      <select className="startTime" value={selectBoxStartTime} onChange={(e) => handleSelectBoxStart(e.target.value)}>
+                        <option value="" >Start Time</option>
+                        {availableStartArray.map((start) => (
+                          <option value={start} >{start}</option>
                         ))
                         }
                       </select>
-                      <button onClick={() => onClick()}>Book Now</button>
                     </div>
 
-
-                  }
-                </div>
+                    {availableEndArray.length > 0 &&
+                      <div>
+                        <select className="endTime" value={selectBoxEndTime} onChange={(e) => handleSelectBoxEnd(e.target.value)}>
+                          <option value="" >End Time</option>
+                          {availableEndArray.map((end) => (
+                            <option value={end} >{end}</option>
+                          ))
+                          }
+                        </select>
+                        <button onClick={() => onClick()}>Book Now</button>
+                      </div>
+                    }
+                  </div>}
               </div>
             </div>
+
+
           </div>
         </div>
       </ViewportProvider >

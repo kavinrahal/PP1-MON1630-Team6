@@ -19,9 +19,9 @@ function BookingHistory() {
             .then(data => {
                 let tmp = []
                 for (let index = 0; index < data.length; index++) {
-                    // if (data[index].customerID == sessionStorage.getItem('customerID')) {
-                    if (data[index].customerID == 1) {
-                        if (data[index].active == true) {
+                    if (data[index].customerID == sessionStorage.getItem('customerID')) {
+                        // if (data[index].customerID == 1) {
+                        if (data[index].active == false) {
                             tmp.push(data[index])
                         }
                     }

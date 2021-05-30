@@ -1,25 +1,113 @@
-import React, { Component, useState } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-import SideBar from './SideBar';
-import SideBarMobile from './SideBarMobile';
+import React, { useEffect, useState } from 'react';
 import './styles/Profile.css';
 import { ViewportProvider, WhichSideBar } from './ViewPort_Helper';
 
 export default function Profile() {
-  const [userDetails, setUserDetails] = useState(
-    {
-      userId: 1,
-      name: "Kavin Abeysinghe",
-      address: "420, A'Beckett Street",
-      email: "kavinrahal@gmail.com",
-      phoneNum: "0402001311"
+  const [userDetails, setUserDetails] = useState()
+  const [userName, setUserName] = useState()
+  const [userEmail, setUserEmail] = useState()
+  const [userAddress, setUserAddress] = useState()
+  const [userPhone, setUserPhone] = useState()
+  const [userPassword, setUserPassword] = useState()
+  const [userConfirmPassword, setUserConfirmPassword] = useState()
+  // const [userDetails, setUserDetails] = useState(
+  //   {
+  //     userId: 1,
+  //     name: "Kavin Abeysinghe",
+  //     address: "420, A'Beckett Street",
+  //     email: "kavinrahal@gmail.com",
+  //     phoneNum: "0402001311"
+  //   }
+  // )
+  const [errors, setErrors] = useState(new Map);
+
+  useEffect(() => {
+    let url = "https://localhost:5001/api/customer/"
+    let customerID = sessionStorage.getItem('customerID')
+    fetch(url + customerID)
+      .then(response => {
+        if (response.ok) {
+          return response.json()
+        }
+        throw response
+      })
+      .then(data => {
+        console.log(data)
+        setUserDetails(data)
+        setUserName(data.customerName)
+        setUserEmail(data.email)
+        setUserAddress(data.address)
+        setUserPhone(data.phone)
+        setUserPassword(data.password)
+      })
+      .catch(error => {
+        console.log(error)
+      }).finally(() => {
+        // setLoading(false)
+      })
+
+  }, [])
+  const validate = () => {
+    let retVal = true
+    let fieldsName = ['userName', 'userEmail', 'userAddress', 'userPhone']
+    let fields = [userName, userEmail, userAddress, userPhone]
+    let error_sections = new Map()
+
+    for (let k = 0; k < fields.length; k++) {
+      if (fields[k] == "") {
+        error_sections.set(fieldsName[k], "Cannot change to Empty")
+        console.log(fieldsName[k])
+        retVal = false
+      }
     }
-  )
+
+    if (userPassword != userConfirmPassword) {
+      alert("Passwords must be the same")
+      retVal = false
+    }
+    // Check for phone regex to match databse
+    const regex = new RegExp('^\\+61 [0-9]{4} [0-9]{4}$');
+    if (userPhone != "" && !regex.test(userPhone)) {
+      alert("Phone number must in form of '+61 0000 0000'")
+      retVal = false
+    }
+    setErrors(error_sections)
+    return retVal
+  }
+
+  const onClick = () => {
+    if (validate()) {
+      const updatedCustomer = {
+        customerID: sessionStorage.getItem('customerID'),
+        customerName: userName,
+        email: userEmail,
+        address: userAddress,
+        phone: userPhone,
+        password: userPassword,
+      }
+      console.log(updatedCustomer)
+      let url = "https://localhost:5001/api/customer/"
+      let customerID = sessionStorage.getItem('customerID')
+      const res = fetch(url + customerID, {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(updatedCustomer),
+      })
+        .then((response) => {
+          if (response.ok) {
+            alert("Successfully Saved");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      console.log('failed')
+    }
+  }
+
 
   return (
     <ViewportProvider>
@@ -39,38 +127,58 @@ export default function Profile() {
             <div className="profileDetails">
               <div className="profileNames">
                 <div className="profileFirst">
-                  <div className="profileLabel">Change Name</div>
-                  <input type="text" className="profileText" placeholder="  User First"></input>
+                  <div className="profileLabel">Change Name<span class="errorMessage">  {errors.get("userName")} </span></div>
+                  <input
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
+                    type="text"
+                    className="profileText"
+                    placeholder="  User Name"></input>
                 </div>
                 <div className="profileLast">
-                  <div className="profileLabel">Change Address</div>
-                  <input type="text" className="profileText" placeholder="  User Address"></input>
+                  <div className="profileLabel">Change Address <span class="errorMessage">  {errors.get("userAddress")} </span></div>
+                  <input
+                    value={userAddress}
+                    onChange={(e) => setUserAddress(e.target.value)}
+                    type="text" className="profileText" placeholder="  User Address"></input>
                 </div>
               </div>
               <br></br>
               <div className="profileContact">
                 <div className="profileSignUpEmail">
-                  <div className="profileLabel">Change Email</div>
-                  <input type="email" className="profileText" placeholder="  User Email"></input>
+                  <div className="profileLabel">Change Email <span class="errorMessage">  {errors.get("userEmail")} </span></div>
+                  <input
+                    value={userEmail}
+                    onChange={(e) => setUserEmail(e.target.value)}
+                    type="email" className="profileText" placeholder="  User Email"></input>
                 </div>
                 <div className="profilePhone">
-                  <div className="profileLabel">Change Phone Number</div>
-                  <input type="text" className="profileText" placeholder="  User Phone"></input>
+                  <div className="profileLabel">Change Phone Number <span class="errorMessage">  {errors.get("userPhone")} </span></div>
+                  <input
+                    value={userPhone}
+                    onChange={(e) => setUserPhone(e.target.value)}
+                    type="text" className="profileText" placeholder="  User Phone"></input>
                 </div>
               </div>
               <br></br>
               <div className="profilePasswords">
                 <div className="profileSignUpPassword">
                   <div className="profileLabel">Change Password</div>
-                  <input type="password" className="profileText" placeholder="  User Password"></input>
+                  <input
+                    value={userPassword}
+                    onChange={(e) => setUserPassword(e.target.value)}
+                    type="password" className="profileText" placeholder="  User Password"></input>
                 </div>
                 <div className="profileConfirmPassword">
                   <div className="profileLabel">Confirm New Password</div>
-                  <input type="password" className="profileText" placeholder="  Confirm Password"></input>
+                  <input
+                    value={userConfirmPassword}
+                    onChange={(e) => setUserConfirmPassword(e.target.value)}
+                    type="password" className="profileText" placeholder="  Confirm Password"></input>
                 </div>
               </div>
               <br></br>
-              <button className="saveProfile hvr-sweep-to-right">Save Changes</button>
+              <button onClick={() => onClick()} className="saveProfile hvr-sweep-to-right">Save Changes</button>
             </div>
           </div>
         </div>
