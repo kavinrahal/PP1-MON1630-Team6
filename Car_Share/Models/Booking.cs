@@ -25,7 +25,7 @@ namespace CarShare.Models
 
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-        // Boolean check to handle wether the booking has been cancelled or not
+        // Boolean check to handle whether the booking has been cancelled or not
         public bool Active { get; set; }
     }
 }
