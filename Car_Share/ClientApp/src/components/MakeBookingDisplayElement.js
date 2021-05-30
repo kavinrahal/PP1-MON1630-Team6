@@ -1,9 +1,10 @@
 import React from 'react';
+import './styles/MakeBooking.css';
 
 const MakeBookingDisplayElement = ({ element }) => {
     return (
-        <div className='history_element'>
-
+        <div className='bookingElement'>
+            <h2>Details of Selected Car</h2>
             <div>License Plate:</div>
             <p>{element.rego}</p>
             <div>Make & Model:</div>

@@ -177,8 +177,30 @@ export default function Profile() {
                     type="password" className="profileText" placeholder="  Confirm Password"></input>
                 </div>
               </div>
+<<<<<<< Updated upstream
               <br></br>
               <button onClick={() => onClick()} className="saveProfile hvr-sweep-to-right">Save Changes</button>
+=======
+              <span>Leave passwords field blank if no change is desired.</span>
+              <div>
+                {passwordConfirmationError && <span style={{ color: 'red' }}>Wrong Password!</span>}
+                <div style={{ 'font-weight': 'bold' }}>Enter Current Password to Save Changes</div>
+                <div className = "saveChanges">
+                  <input
+                    value={passwordConfirmation}
+                    onChange={(e) => setPasswordConfirmation(e.target.value)}
+                    type="password" className="profileText" placeholder="  Current Password">
+
+                  </input>
+
+                  <div>
+                    <button onClick={() => onClick()} className="saveProfile hvr-sweep-to-right">Save Changes</button>
+                  </div>
+                </div>
+              </div>
+
+
+>>>>>>> Stashed changes
             </div>
           </div>
         </div>

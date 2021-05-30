@@ -19,7 +19,7 @@ const CatDetailsElement = ({ element }) => {
             <p>Color : {element.colour}</p>
             <p>Car Type : {element.bodyType}</p>
 
-            <button onClick={() => onClick()}>Book here</button>
+            <button className = "carBookk hvr-sweep-to-right" onClick={() => onClick()}>Book here</button>
         </div>
 
     )

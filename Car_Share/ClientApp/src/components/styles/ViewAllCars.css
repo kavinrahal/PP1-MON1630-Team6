@@ -74,6 +74,7 @@
     overflow-y: scroll;
     margin-top: 5px;
     margin-left: -5px;
+    width: 100%;
 }
 
 .orderBtn{
@@ -116,6 +117,17 @@
     width: 99%;
     margin: 5px;  
     padding: 10px 20px;
+}
+
+.carBookk{
+    background: #1D1E5B;
+    border-radius: 5px;
+    color: white;
+    border-style: solid;
+    border-width: 0.5px;
+    border-color: white;
+    margin-right: 5px;
+    height: 30px;
 }
 
 

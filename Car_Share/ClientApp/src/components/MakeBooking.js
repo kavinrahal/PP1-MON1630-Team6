@@ -3,56 +3,13 @@ import DatePicker from "react-datepicker";
 import { Link } from 'react-router-dom';
 import moment from 'moment'
 import "react-datepicker/dist/react-datepicker.css";
-import './styles/ViewAllCars.css';
+import './styles/MakeBooking.css';
 
 import { ViewportProvider, WhichSideBar } from './ViewPort_Helper';
 import MakeBookingDisplayElement from './MakeBookingDisplayElement'
 
 export default function MakeBooking(props) {
   const [carDetails, setCarDetails] = useState([])
-  // const [carDetails, setCarDetails] = useState([
-
-  //   {
-  //     id: 1,
-  //     rego: 'dummy_rego1',
-  //     make: 'dummy_make1',
-  //     model: 'dummy_model1',
-  //     body: 'dummy_body1',
-  //     colour: 'dummy_colour'
-  //   },
-  //   {
-  //     id: 2,
-  //     rego: 'dummy_rego2',
-  //     make: 'dummy_make2',
-  //     model: 'dummy_model2',
-  //     body: 'dummy_body2',
-  //     colour: 'dummy_colour1'
-  //   },
-  //   {
-  //     id: 3,
-  //     rego: 'dummy_rego3',
-  //     make: 'dummy_make3',
-  //     model: 'dummy_model3',
-  //     body: 'dummy_body3',
-  //     colour: 'dummy_colour'
-  //   },
-  //   {
-  //     id: 4,
-  //     rego: 'dummy_rego3',
-  //     make: 'dummy_make3',
-  //     model: 'dummy_model3',
-  //     body: 'dummy_body3',
-  //     colour: 'dummy_colour'
-  //   },
-  //   {
-  //     id: 5,
-  //     rego: 'dummy_rego2',
-  //     make: 'dummy_make2',
-  //     model: 'dummy_model2',
-  //     body: 'dummy_body2',
-  //     colour: 'dummy_colour1'
-  //   },
-  // ])
 
   useEffect(() => {
     if (props.location.state) {
@@ -77,53 +34,6 @@ export default function MakeBooking(props) {
   const [dateError, setDateError] = useState(false);
 
   const [bookingHistories, setBookingHistories] = useState([])
-  // const [bookingHistories, setBookingHistories] = useState([
-  //   {
-  //     booking_id: 1,
-  //     customer_id: 1,
-  //     car_details: {
-  //       car_id: 1,
-  //       make: "Toyota",
-  //       model: "Supra",
-  //       body: "Coupe",
-  //       colour: "Red"
-  //     },
-  //     startTime: '2021-06-03T01:00:00.000',
-  //     endTime: '2021-06-03T06:00:00.000',
-  //     price: 450,
-  //     completed: 'in progress'
-  //   },
-  //   {
-  //     booking_id: 2,
-  //     customer_id: 2,
-  //     car_details: {
-  //       car_id: 1,
-  //       make: "Toyota",
-  //       model: "Supra",
-  //       body: "Coupe",
-  //       colour: "Red"
-  //     },
-  //     startTime: '2021-05-30T12:00:00.000',
-  //     endTime: '2021-05-30T18:00:00.000',
-  //     price: 450,
-  //     completed: 'in progress'
-  //   },
-  //   {
-  //     booking_id: 1,
-  //     customer_id: 1,
-  //     car_details: {
-  //       car_id: 1,
-  //       make: "Toyota",
-  //       model: "Supra",
-  //       body: "Coupe",
-  //       colour: "Red"
-  //     },
-  //     startTime: '2021-05-30T20:00:00.000',
-  //     endTime: '2021-05-30T22:00:00.000',
-  //     price: 450,
-  //     completed: 'in progress'
-  //   },
-  // ])
 
 
 
@@ -350,22 +260,14 @@ export default function MakeBooking(props) {
       })
         .then((response) => {
           if (response.ok) {
-            alert("Successfully Registered ! \n\nPlease Login to continue.");
-            // Reset data
-            // setCustomerName("");
-            // setEmail("");
-            // setAddress("");
-            // setPhone("");
-            // setPassword("");
-            // setConfirmPassword("");
+            alert("Booking has been placed Successfully!");
 
-            // Redirect to Login page
 
           }
         })
         .catch((error) => {
 
-          // console.log(error);
+          console.log(error);
         });
     } else {
       //error
@@ -388,56 +290,72 @@ export default function MakeBooking(props) {
               </div>
             </div>
             <div className="allCars">
-              <div className='filterSection'>
+              <div className='makeBookingResult'>
                 <MakeBookingDisplayElement key={carDetails.carID} element={carDetails} />
               </div>
-              {dateError && <div> Error: Start Date cannot be after End Date </div>}
-              <div className='displaySection'>
-                Availaibilty
+              {dateError && <h4> Error: Start Date cannot be after End Date </h4>}
+              <div className='makeBookingDisplay'>
+                <div className = "avail">Availability</div>
 
-                 {!props.location.state && <div>No car selected! Choose one from
-              <Link to="/viewAllCars" className="btn btn-primary">all cars</Link>
-              or from <Link to="/search_page" className="btn btn-primary">searching</Link>
-              !</div>}
+                 {!props.location.state && 
+                  <div className = "noCarSelect">
+                    <div className = "noCar">No car selected! Choose one from</div>
+                    <div className = "noCarBtn">
+                      <Link to="/viewAllCars" className="noBtn">All Cars</Link>
+                      <div className = "or">Or</div>
+                      <Link to="/search_page" className="noBtn">Search For Car</Link>
+                      <br></br>
+                    </div>
+                  </div>}
 
                 {props.location.state &&
-                  <div>
-                    Start
-                  <DatePicker selected={datepickerStartDate} value={datepickerStartDate} onChange={date => handleDatepickerStart(date)} minDate={new Date()} />
-                  End
-                  <DatePicker selected={datepickerEndDate} value={datepickerEndDate} onChange={date => handleDatepickerEnd(date)} minDate={new Date()} />
-                    <div>
-                      <select className="startTime" value={selectBoxStartTime} onChange={(e) => handleSelectBoxStart(e.target.value)}>
-                        <option value="" >Start Time</option>
-                        {availableStartArray.map((start) => (
-                          <option value={start} >{start}</option>
-                        ))
-                        }
-                      </select>
+                  <div className = "chooseDate">
+                    <div className = "datesss">
+                      <div className = "dateText">Start</div>
+                      <DatePicker className = "filterLocation" selected={datepickerStartDate} value={datepickerStartDate} onChange={date => handleDatepickerStart(date)} minDate={new Date()} />
+                      <div className = "dateText">End</div>
+                      <DatePicker className = "filterLocation" selected={datepickerEndDate} value={datepickerEndDate} onChange={date => handleDatepickerEnd(date)} minDate={new Date()} />
                     </div>
 
-                    {availableEndArray.length > 0 &&
-                      <div>
-                        <select className="endTime" value={selectBoxEndTime} onChange={(e) => handleSelectBoxEnd(e.target.value)}>
-                          <option value="" >End Time</option>
-                          {availableEndArray.map((end) => (
-                            <option value={end} >{end}</option>
+    
+                    <div className = "timeSelect">
+                      <div className = "timeStart">
+                        <select className="startTime filterLocation" value={selectBoxStartTime} onChange={(e) => handleSelectBoxStart(e.target.value)}>
+                          <option value="" >Start Time</option>
+                          {availableStartArray.map((start) => (
+                            <option value={start} >{start}</option>
                           ))
                           }
                         </select>
-                        <button onClick={() => onClick()}>Book Now</button>
                       </div>
-                    }
-                  </div>}
-              </div>
+
+                      {availableEndArray.length > 0 &&
+                        <div className = "timeStart">
+                          <select className="endTime filterLocation" value={selectBoxEndTime} onChange={(e) => handleSelectBoxEnd(e.target.value)}>
+                            <option value="" >End Time</option>
+                            {availableEndArray.map((end) => (
+                              <option value={end} >{end}</option>
+                            ))
+                            }
+                            
+                          </select>
+                          <button className = "bookkBtn " onClick={() => onClick()}>Book Now</button>
+                          <br></br>
+                        </div>
+                      }
+
+                      </div>
+                    </div>}
+                    
+                  </div>
             </div>
 
 
           </div>
         </div>
       </ViewportProvider >
-    );
+
     </div >
 
-  )
+  );
 }

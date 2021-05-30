@@ -133,7 +133,7 @@ function LoginPage() {
                                 required></input>
                         </div>
                         <br></br>
-                        {loginFailed && <div className="errorMessage" > login failed, please try again </div>}
+                        {loginFailed && <div className="errorMessage" > Login failed, Please try again. </div>}
                         <button className="loginBtn" onClick={() => handleLogin()}>Log In</button>
                         <div className="or">or</div>
                         <div className="join">
