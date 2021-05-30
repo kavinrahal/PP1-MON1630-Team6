@@ -23,18 +23,25 @@ Car renting made easy. Order a car while on the move!
 Made with ASP.NET Core 5, React, an Azure SQL Server, and Entity Framework Core.  
 
 ## RELEASE NOTES ##
-v1.0 (30/05/2021)
-Initial release!!!
-Includes:
-	-user registration
-	-authenticated login system
-	-car booking
-	-rental history
-	-car listings
-	-car location system
-	-editable account information
-	-account deletion
-	-fully functioning API data integration
+v3.0 (30/05/2021)
+Final release!!!
+-Added user registration
+-Implemented authenticated login system
+-Added car booking page
+-Added rental history page
+-Added car listings page
+-Added car location system (Google API)
+-Made a page for editing account information
+-Included a button for account deletion
+-Fully implemented API data integration
+
+v2.0 (21/03/21)
+-Implemented Carshare website design
+-Setup Azure db and setup initial customer controllers
+
+v1.0 (15/03/21)
+-Initial implementation of ASP.NET MVC React web application.
+
 
 ## Installation ##
 Editing the application will require a Visual Studio subscription.
