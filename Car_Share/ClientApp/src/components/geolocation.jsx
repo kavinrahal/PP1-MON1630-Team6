@@ -1,10 +1,8 @@
-import React, {useEffect, useState } from 'react';
+import React, {useEffect, useState, useRef } from 'react';
 import { GoogleMap,  Marker, InfoWindow, useJsApiLoader } from '@react-google-maps/api';
-import DropdownBar from './dropdownBar';
 import carData from "./carData.json";
 
 export const MapContainer = () => {
-
 
     const mapStyles = {
         width: '400px',
@@ -12,8 +10,10 @@ export const MapContainer = () => {
     };
 
     const [currentPos, setCurrentPos] = useState({});
-    const [selected, setSelected] = useState({});
-    const [showMarker, setShowMarker] = useState(false);
+    const [selected, setSelected] = useState({});   
+    const [map, setMap] = React.useState(null);
+    const uniqueType = getUnique(carData, 'type'); 
+    const [DDselected, setDDSelected] = useState(carData);
 
     const getCurrentPos = position => {
         const currentPos = {
@@ -30,6 +30,32 @@ export const MapContainer = () => {
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(getCurrentPos);
     });
+    
+    function getUnique(arr, comp) {
+        const unique = arr
+        .map(e => e[comp])
+        .map((e, i, final) => final.indexOf(e) === i && i)
+        .filter(e => arr[e])
+        .map(e => arr[e]);
+
+        return unique;
+    }
+
+    function handleChange(e) {
+        const val = e.target.value
+        setDDSelected(carData.find((item) => item.type === val));
+    }
+
+    const filterByType = e => {
+        const filtered = carData.filter(item => {
+            if(e.target.value === item.type) {
+                return(
+                    <Marker />
+                )
+            }
+        })
+        console.log(filtered)
+    }
 
     return RenderMap()
 
@@ -38,8 +64,6 @@ export const MapContainer = () => {
             id: 'google-map-script',
             googleMapsApiKey: "AIzaSyDIjzYEK-Jozakh-bWq0Qpn1bVKLl4NCzg"
         })
-    
-        const [map, setMap] = React.useState(null)
 
         const onLoad = React.useCallback(function callback(map) {
             const bounds = new window.google.maps.LatLngBounds();
@@ -58,7 +82,8 @@ export const MapContainer = () => {
                     zoom={15}
                     center={currentPos}
                     onLoad={onLoad}
-                    onUnmount={onUnmount}>
+                    onUnmount={onUnmount}
+                >
                     
                 {
                     currentPos.lat && (
@@ -66,10 +91,10 @@ export const MapContainer = () => {
                     )
                 }
 
-                {
+                { 
                     carData.map(item => {
                         return (
-                        <Marker key={item.name} position={item.location} onClick={() => onSelect(item)}/>
+                            <Marker key={item.name} position={item.location} onClick={() => onSelect(item)}/>
                         )
                     })
                 }
@@ -93,7 +118,14 @@ export const MapContainer = () => {
                 }
             </GoogleMap>
             <div style={{width:200}}>
-                <DropdownBar/>
+            <select value={DDselected.type} onChange={handleChange} onClick={filterByType}>
+                    {
+                        uniqueType.map(item => ( 
+                        <option value={item.type}>
+                        {item.type}
+                        </option>
+                    ))}
+                </select>
             </div>
         </div>  
         )  : <></>
