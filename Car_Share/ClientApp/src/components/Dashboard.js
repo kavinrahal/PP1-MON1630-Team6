@@ -73,10 +73,12 @@ export default function Dashboard() {
                   <img className="cityB" src={cityback}></img>
                 </div>
               </Link>
+              <Link to = "/locateCar">
               <div className="dashBtn locateParking hvr-grow">
                 <div className="dashBtnText">Locate Parking</div>
                 <div className="dashBtnLogo"><img className="locateLogo" src={locateLogo} ></img></div>
               </div>
+              </Link>
               <Link to="/viewAllCars">
                 <div className='dashBtn allCarss hvr-grow'>
                   <div className="dashBtnText">View All Cars</div>
