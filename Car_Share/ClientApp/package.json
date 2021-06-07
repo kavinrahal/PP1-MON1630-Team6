@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@googlemaps/js-api-loader": "^1.11.3",
+    "@react-google-maps/api": "^2.1.1",
+    "axios": "^0.21.1",
     "bootstrap": "^4.1.3",
     "hover.css": "^2.3.2",
+    "google-maps-react": "^2.0.6",
     "jquery": "^3.4.1",
     "merge": "^1.2.1",
     "oidc-client": "^1.9.0",
@@ -14,12 +18,15 @@
     "react-dom": "^16.0.0",
     "react-icons": "^4.2.0",
     "react-pro-sidebar": "^0.6.0",
+    "react-sticky": "^6.0.3",
+    "react-google-maps": "^9.4.5",
     "react-router-bootstrap": "^0.25.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.1",
-    "react-sticky": "^6.0.3",
+    "react-scripts": "^4.0.3",
+    "react-select": "^4.3.1",
     "reactstrap": "^8.4.1",
-    "rimraf": "^2.7.1"
+    "rimraf": "^2.7.1",
+    "scripts": "^0.1.0"
   },
   "devDependencies": {
     "ajv": "^6.9.1",

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <file url="file://$PROJECT_DIR$" libraries="{PP1-MON1630-Team6/node_modules}" />
+    <file url="file://$PROJECT_DIR$/Car_Share/ClientApp" libraries="{PP1-MON1630-Team6/Car_Share/ClientApp/node_modules}" />
+    <file url="PROJECT" libraries="{PP1-MON1630-Team6/Car_Share/ClientApp/node_modules, PP1-MON1630-Team6/node_modules}" />
+  </component>
+</project>
