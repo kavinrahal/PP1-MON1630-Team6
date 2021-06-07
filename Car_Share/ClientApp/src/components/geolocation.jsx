@@ -1,14 +1,16 @@
 import React, {useEffect, useState, useRef } from 'react';
 import { GoogleMap,  Marker, InfoWindow, useJsApiLoader, useGoogleMap } from '@react-google-maps/api';
 import carData from "./carData.json";
+import { ViewportProvider, WhichSideBar } from './ViewPort_Helper';
+import './styles/GeoLocation.css';
 
 var directionsDisplay = new window.google.maps.DirectionsRenderer();
 
 export const MapContainer = () => {
 
     const mapStyles = {
-        width: '400px',
-        height: '400px'
+        width: '600px',
+        height: '800px'
     };
 
     const [currentPos, setCurrentPos] = useState({});
@@ -107,99 +109,115 @@ export const MapContainer = () => {
 
             return isLoaded ? (
             <div>
-                <GoogleMap
-                    mapContainerStyle={mapStyles}
-                    zoom={15}
-                    center={currentPos}
-                    onLoad={onLoad}
-                    onUnmount={onUnmount}
-                >
-                
-                    
-                {
-                    currentPos.lat && (
-                        <Marker position={currentPos}/>
-                    )
-                    
-                }
-                {   
-                    selected.location &&
-                    (
-                    <InfoWindow
-                        position={currentPos}
-                        clickable={true}
-                        onCloseClick={() => setSelected({})}
-                    >
-                    <>
-                    <p>Current Position</p>
-                    
-                    </>
-                    </InfoWindow>
-                    )
-                }
+                <ViewportProvider>
+                    <div className = "locateWrapper">
+                    <WhichSideBar className = "sideB"/>
+                        <div className = "locate">
+                            <div className="rowProfile">
+                                <div className="profileTitle">Locate Parking</div>
+                                <div className="pageTitleL">
+                                    <div className="blueT">Car</div>
+                                    <div className="yellowT">Share</div>
+                                    <div className="blueT">Scheme</div>
+                                </div>
+                            </div>
+                            <div className = "locatePage">
+                                <GoogleMap
+                                    mapContainerStyle={mapStyles}
+                                    zoom={15}
+                                    center={currentPos}
+                                    onLoad={onLoad}
+                                    onUnmount={onUnmount}
+                                >
+                                
+                                    
+                                {
+                                    currentPos.lat && (
+                                        <Marker position={currentPos}/>
+                                    )
+                                    
+                                }
+                                {   
+                                    selected.location &&
+                                    (
+                                    <InfoWindow
+                                        position={currentPos}
+                                        clickable={true}
+                                        onCloseClick={() => setSelected({})}
+                                    >
+                                    <>
+                                    <p>Current Position</p>
+                                    
+                                    </>
+                                    </InfoWindow>
+                                    )
+                                }
 
-                { 
-                     carData.map(item => {
-                        if (DDselected.type == item.type){
-                            return (
-                                <Marker key={item.name} position={item.location} onClick={() => onSelect(item)}/>
-                            )
-                        }
+                                { 
+                                    carData.map(item => {
+                                        if (DDselected.type == item.type){
+                                            return (
+                                                <Marker key={item.name} position={item.location} onClick={() => onSelect(item)}/>
+                                            )
+                                        }
 
-                        if(DDselected.type == null){
-                            return (
-                                <Marker key={item.name} position={item.location} onClick={() => onSelect(item)}/>
-                            )
-                        }
-                    })
-                }
-                
-                {   
-                    selected.location && 
-                    (
-                    <InfoWindow
-                        position={selected.location}
-                        clickable={true}
-                        onClick = {calcRoute(currentPos, selected.location)}
-                        onCloseClick={() => setSelected({})}
-                    >
-                    <>
-                    <p>{selected.name}</p>
-                    <p>{"Type: " + selected.type}</p>
-                    <p>{"Make: " + selected.make}</p>
-                    <p>{"Model: " + selected.model}</p>
-                    
-                    </>
-                    </InfoWindow>
-                    )
-                }
+                                        if(DDselected.type == null){
+                                            return (
+                                                <Marker key={item.name} position={item.location} onClick={() => onSelect(item)}/>
+                                            )
+                                        }
+                                    })
+                                }
+                                
+                                {   
+                                    selected.location && 
+                                    (
+                                    <InfoWindow
+                                        position={selected.location}
+                                        clickable={true}
+                                        onClick = {calcRoute(currentPos, selected.location)}
+                                        onCloseClick={() => setSelected({})}
+                                    >
+                                    <>
+                                    <p>{selected.name}</p>
+                                    <p>{"Type: " + selected.type}</p>
+                                    <p>{"Make: " + selected.make}</p>
+                                    <p>{"Model: " + selected.model}</p>
+                                    
+                                    </>
+                                    </InfoWindow>
+                                    )
+                                }
 
-                
-                </GoogleMap>
-            <div style={{width:200}}>
-            <select value={DDselected.type} onChange={handleChange} onClick={filterByType}>
-                    {
-                        uniqueType.map(item => ( 
-                        <option value={item.type}>
-                        {item.type}
-                        </option>
-                    ))}
-                </select>
-            </div>
-            {
-                selected.location && 
-                <div className = "selectedCar">
-                    <div className = "cardeets">
-                            <h2>Car Details</h2>
-                            <p>{selected.name}</p>
-                            <p>Distance: {haversine_distance().toFixed(2)} km</p>
-                            <p>{"Type: " + selected.type}</p>
-                            <p>{"Make: " + selected.make}</p>
-                            <p>{"Model: " + selected.model}</p>
+                                
+                                </GoogleMap>
+                                <div style={{width:200}}>
+                                <select value={DDselected.type} onChange={handleChange} onClick={filterByType}>
+                                        {
+                                            uniqueType.map(item => ( 
+                                            <option value={item.type}>
+                                            {item.type}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                                {
+                                    selected.location && 
+                                    <div className = "selectedCar">
+                                        <div className = "cardeets">
+                                                <h2>Car Details</h2>
+                                                <p>{selected.name}</p>
+                                                <p>Distance: {haversine_distance().toFixed(2)} km</p>
+                                                <p>{"Type: " + selected.type}</p>
+                                                <p>{"Make: " + selected.make}</p>
+                                                <p>{"Model: " + selected.model}</p>
+                                        </div>
+                                    </div>
+                                }
+                        </div>
                     </div>
                 </div>
-            }
-            
+            </ViewportProvider>
         </div>  
         )  : <></>
     }
