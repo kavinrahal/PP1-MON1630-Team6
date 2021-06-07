@@ -35,6 +35,7 @@ export default class App extends Component {
             <PrivateRoute path="/make_booking" exact component={MakeBooking} />
             <PrivateRoute path="/search_page" exact component={SearchPage} />
             <PrivateRoute path = "/settings" exact component = {Settings}/>
+            <PrivateRoute path = "/locate" exact component = {geolocation}/>
           </Switch>
         </div>
       </Router>
