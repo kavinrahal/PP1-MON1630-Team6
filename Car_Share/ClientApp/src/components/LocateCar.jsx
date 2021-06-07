@@ -2,7 +2,7 @@ import React, {useEffect, useState, useRef } from 'react';
 import carData from "./carData.json";
 import { GoogleMap,  Marker, InfoWindow, useJsApiLoader, useGoogleMap } from '@react-google-maps/api';
 
-var directionsDisplay = new window.google.maps.DirectionsRenderer();
+
 
 export const LocateCar = () => {
 
@@ -16,8 +16,10 @@ export const LocateCar = () => {
     const [map, setMap] = React.useState(null);
     const uniqueType = getUnique(carData, 'type'); 
     const [DDselected, setDDSelected] = useState(carData);
+    const google = window.google;
 
-    var directionsService = new window.google.maps.DirectionsService();
+    var directionsService = new google.maps.DirectionsService();
+    var directionsDisplay = new google.maps.DirectionsRenderer();
 
     const getCurrentPos = position => {
         const currentPos = {
@@ -91,7 +93,7 @@ export const LocateCar = () => {
         
         const { isLoaded } = useJsApiLoader({
             id: 'google-map-script',
-            googleMapsApiKey: "AIzaSyDIjzYEK-Jozakh-bWq0Qpn1bVKLl4NCzg"
+            googleMapsApiKey: "AIzaSyAq-mxKgMUXjrP3kQwv9qsoh3HVw8Nbtes"
         })
 
         const onLoad = React.useCallback(function callback(map) {

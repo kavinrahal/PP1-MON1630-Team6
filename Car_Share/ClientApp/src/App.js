@@ -14,7 +14,7 @@ import MakeBooking from "./components/MakeBooking";
 import SearchPage from "./components/SearchPage";
 import Settings from "./components/Settings";
 import PrivateRoute from './PrivateRoute'
-import LocateCar from "./components/LocateCar";
+import LocateCar from "./components/LocateCar.jsx";
 export default class App extends Component {
   static displayName = App.name;
 
