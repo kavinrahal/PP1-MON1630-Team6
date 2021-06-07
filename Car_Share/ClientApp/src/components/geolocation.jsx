@@ -1,11 +1,11 @@
 import React, {useEffect, useState, useRef } from 'react';
 import { GoogleMap,  Marker, InfoWindow, useJsApiLoader, useGoogleMap } from '@react-google-maps/api';
-import { DirectionsRenderer, DirectionsService} from '@react-google-maps/api';
 import carData from "./carData.json";
+
+var directionsDisplay = new window.google.maps.DirectionsRenderer();
 
 export const MapContainer = () => {
 
-    const google = window.google = window.google ? window.google : {};
     const mapStyles = {
         width: '400px',
         height: '400px'
@@ -16,6 +16,8 @@ export const MapContainer = () => {
     const [map, setMap] = React.useState(null);
     const uniqueType = getUnique(carData, 'type'); 
     const [DDselected, setDDSelected] = useState(carData);
+
+    var directionsService = new window.google.maps.DirectionsService();
 
     const getCurrentPos = position => {
         const currentPos = {
@@ -72,26 +74,21 @@ export const MapContainer = () => {
         return d;
     }
 
-    
-
-    function calcRoute() {
-        var directionsDisplay = new google.maps.DirectionsRenderer();
-        var directionsService = new google.maps.DirectionsService();
-        var start = new google.maps.LatLng(37.334818, -121.884886);
-        var end = new google.maps.LatLng(37.441883, -122.143019);
+    function calcRoute(start, finish) {
         var request = {
             origin: start,
-            destination: end,
-            travelMode: google.maps.TravelMode.DRIVING
+            destination: finish,
+            travelMode: window.google.maps.TravelMode.WALKING,
         };
         directionsService.route(request, function (response, status) {
-            if (status == google.maps.DirectionsStatus.OK) {
+            if (status == window.google.maps.DirectionsStatus.OK) {
                 directionsDisplay.setDirections(response);
             }
         });
     }            
 
     function RenderMap() {
+        
         const { isLoaded } = useJsApiLoader({
             id: 'google-map-script',
             googleMapsApiKey: "AIzaSyDIjzYEK-Jozakh-bWq0Qpn1bVKLl4NCzg"
@@ -99,9 +96,10 @@ export const MapContainer = () => {
 
         const onLoad = React.useCallback(function callback(map) {
             const bounds = new window.google.maps.LatLngBounds();
-
             setMap(map)
         }, [])
+
+        directionsDisplay.setMap(map);
         
         const onUnmount = React.useCallback(function callback(map) {
             setMap(null)
@@ -116,10 +114,27 @@ export const MapContainer = () => {
                     onLoad={onLoad}
                     onUnmount={onUnmount}
                 >
+                
                     
                 {
                     currentPos.lat && (
                         <Marker position={currentPos}/>
+                    )
+                    
+                }
+                {   
+                    selected.location &&
+                    (
+                    <InfoWindow
+                        position={currentPos}
+                        clickable={true}
+                        onCloseClick={() => setSelected({})}
+                    >
+                    <>
+                    <p>Current Position</p>
+                    
+                    </>
+                    </InfoWindow>
                     )
                 }
 
@@ -145,6 +160,7 @@ export const MapContainer = () => {
                     <InfoWindow
                         position={selected.location}
                         clickable={true}
+                        onClick = {calcRoute(currentPos, selected.location)}
                         onCloseClick={() => setSelected({})}
                     >
                     <>
@@ -152,7 +168,7 @@ export const MapContainer = () => {
                     <p>{"Type: " + selected.type}</p>
                     <p>{"Make: " + selected.make}</p>
                     <p>{"Model: " + selected.model}</p>
-                    <button onClick = {calcRoute()}>Calc</button>
+                    
                     </>
                     </InfoWindow>
                     )
