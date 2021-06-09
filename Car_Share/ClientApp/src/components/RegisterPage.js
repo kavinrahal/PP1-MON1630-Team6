@@ -50,6 +50,9 @@ function RegisterPage() {
         return retVal
     }
 
+    var passwordHash = require('password-hash');
+    var hashedPassword = passwordHash.generate(password);
+
     const handleSubmit = async (e) => {
         // e.preventDefault();
         if (validate()) {
@@ -58,9 +61,9 @@ function RegisterPage() {
                 email: email,
                 address: address,
                 phone: phone,
-                password: password,
+                password: hashedPassword,
             };
-            // console.log(JSON.stringify(customer));
+            console.log(JSON.stringify(customer));
 
             const res = await fetch("https://localhost:5001/api/customer", {
                 method: "POST",

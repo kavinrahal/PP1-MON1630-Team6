@@ -5,6 +5,7 @@ import { ViewportProvider, WhichSideBar } from './ViewPort_Helper';
 import './styles/GeoLocation.css';
 
 var directionsDisplay = new window.google.maps.DirectionsRenderer();
+var directionsService = new window.google.maps.DirectionsService();
 
 export const MapContainer = () => {
 
@@ -19,7 +20,7 @@ export const MapContainer = () => {
     const uniqueType = getUnique(carData, 'type'); 
     const [DDselected, setDDSelected] = useState(carData);
 
-    var directionsService = new window.google.maps.DirectionsService();
+    
 
     const getCurrentPos = position => {
         const currentPos = {

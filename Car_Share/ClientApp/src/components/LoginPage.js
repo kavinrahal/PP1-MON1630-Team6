@@ -38,6 +38,7 @@ function LoginPage() {
         return retVal
     }
 
+    var passwordHash = require('password-hash');
 
     const handleLogin = async () => {
         if (validate()) {
@@ -55,7 +56,7 @@ function LoginPage() {
 
 
             for (let index = 0; index < res.length; index++) {
-                if (email == res[index].email && password == res[index].password) {
+                if (email == res[index].email && passwordHash.verify(password, res[index].password)) {
                     //Login successful
                     found = true;
                     // reset fields
