@@ -44,7 +44,7 @@ function LoginPage() {
         if (validate()) {
             setIsLoggingIn(true)
             let found = false;
-            const res = await fetch("https://localhost:5001/api/customer")
+            const res = await fetch(window.location.href + "/api/customer")
                 .then(response => {
                     if (response.ok) {
                         return response.json()

@@ -10,7 +10,7 @@ function ViewAllCars() {
     const [carDetails, setCarDetails] = useState([])
 
     useEffect(() => {
-        fetch("https://localhost:5001/api/car")
+        fetch(window.location.href + "/api/car")
             .then(response => {
                 if (response.ok) {
                     return response.json()

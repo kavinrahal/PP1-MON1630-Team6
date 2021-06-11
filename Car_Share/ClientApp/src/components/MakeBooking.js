@@ -251,7 +251,7 @@ export default function MakeBooking(props) {
 
       // console.log(booking)
       // console.log(carDetails)
-      const res = await fetch("https://localhost:5001/api/booking", {
+        const res = await fetch(window.location.href + "/api/booking", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
