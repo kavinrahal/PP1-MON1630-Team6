@@ -4,15 +4,15 @@ import './styles/MakeBooking.css';
 const MakeBookingDisplayElement = ({ element }) => {
     return (
         <div className='bookingElement'>
-            <div className = "makeBTitle">Details of Selected Car</div>
+            <h2>Details of Selected Car</h2>
             <div>License Plate:</div>
-            <div className = "elementEl">{element.rego}</div>
+            <p>{element.rego}</p>
             <div>Make & Model:</div>
-            <div className = "elementEl">{element.make} {element.model}</div>
+            <p>{element.make} {element.model}</p>
             <div>Colour:</div>
-            <div className = "elementEl">{element.colour}</div>
+            <p>{element.colour}</p>
             <div>Body Type:</div>
-            <div className = "elementEl">{element.bodyType}</div>
+            <p>{element.bodyType}</p>
         </div>
 
     )

@@ -24,8 +24,8 @@ export default function CurrentBooking(){
                 body: "Coupe",
                 colour: "Red"
             },
-            start_time: '2021-06-09T18:30:00.000+05:30',
-            end_time: '2021-06-10T12:05:00.000+05:30',
+            start_time: '2021-05-23T18:30:00.000+05:30',
+            end_time: '2021-05-23T12:05:00.000+05:30',
             price: 450,
             completed: 'in progress'
         }

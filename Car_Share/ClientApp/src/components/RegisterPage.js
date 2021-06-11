@@ -50,7 +50,6 @@ function RegisterPage() {
         return retVal
     }
 
-    // Password Hashing
     var passwordHash = require('password-hash');
     var hashedPassword = passwordHash.generate(password);
 
@@ -64,9 +63,9 @@ function RegisterPage() {
                 phone: phone,
                 password: hashedPassword,
             };
-            // console.log(JSON.stringify(customer));
+            console.log(JSON.stringify(customer));
 
-            const res = await fetch("https://carshare20210529215628.azurewebsites.net/api/customer", {
+            const res = await fetch("https://localhost:5001/api/customer", {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json",
@@ -133,7 +132,7 @@ function RegisterPage() {
                             <div className="names">
                                 <div className="first">
                                     <div className="signUpLabel">
-                                        Name <span className="errorMessage"> {errors.get("customerName")} </span>
+                                        Name <span class="errorMessage"> {errors.get("customerName")} </span>
                                     </div>
                                     < input
                                         value={customerName}

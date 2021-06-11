@@ -38,6 +38,12 @@
     width: 100%;
 }
 
+.bookingTitle{
+    font-size: 60px;
+    margin-left: 25px;
+    color: #040C4F;
+}
+
 .pageTitle{
     display: flex;
     flex-direction: row;

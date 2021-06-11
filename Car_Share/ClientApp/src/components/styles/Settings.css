@@ -66,19 +66,3 @@
     align-self: center;
 }
 
-@media(max-width:1200px){
-    .SettingsWrapper{
-        background-position-x: 50px, 0;
-    }
-
-    .profileTitle{
-        margin-top: 30px;
-    }
-}
-
-@media(max-width:600px){
-    .settingsTitle{
-        visibility: hidden;
-    }
-}
-

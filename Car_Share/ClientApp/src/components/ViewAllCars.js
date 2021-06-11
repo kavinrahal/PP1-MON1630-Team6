@@ -10,7 +10,7 @@ function ViewAllCars() {
     const [carDetails, setCarDetails] = useState([])
 
     useEffect(() => {
-        fetch("https://carshare20210529215628.azurewebsites.net/api/car")
+        fetch("https://localhost:5001/api/car")
             .then(response => {
                 if (response.ok) {
                     return response.json()
@@ -123,7 +123,7 @@ function ViewAllCars() {
                 <WhichSideBar />
                 <div className="viewAllCars">
                     <div className="rowBooking">
-                        <div className="viewAllCarsTitle">View All Cars</div>
+                        <div className="bookingTitle">View All Cars</div>
                         <div className="pageTitle">
                             <div className="blueT">Car</div>
                             <div className="yellowT">Share</div>
@@ -131,42 +131,38 @@ function ViewAllCars() {
                         </div>
                     </div>
                     <div className="allCars">
-                        <div className='filterCarSection'>
-                            <div className = "filterBoxes">
-                                <select className="filterBox" value={make} onChange={(e) => setMake(e.target.value)}>
-                                    <option value="" >Filter by Make</option>
-                                    {populateMake.map((loc) => (
-                                        <option key={loc} value={loc} >{loc}</option>
-                                    ))
-                                    }
-                                </select>
-                                <select className="filterBox" value={model} onChange={(e) => setModel(e.target.value)}>
-                                    <option value="" >Filter by Model</option>
-                                    {populateModel.map((car) => (
-                                        <option key={car} value={car} >{car}</option>
-                                    ))
-                                    }
-                                </select>
-                                <select className="filterBox" value={bodyType} onChange={(e) => setBodyType(e.target.value)}>
-                                    <option value="" >Filter by Body</option>
-                                    {populateBody.map((car) => (
-                                        <option key={car} value={car} >{car}</option>
-                                    ))
-                                    }
-                                </select>
-                                <select className="filterBox" value={colour} onChange={(e) => setColour(e.target.value)}>
-                                    <option value="" >Filter by Colour</option>
-                                    {populateColour.map((car) => (
-                                        <option key={car} value={car} >{car}</option>
-                                    ))
-                                    }
-                                </select>
-                            </div>
-                            <div className = "filterCarButtons">
-                                <button className="filterCarBtn hvr-sweep-to-right" onClick={() => onClick()}>Filter</button>
-                                <button className="filterCarBtn hvr-sweep-to-right" onClick={() => clear()}>Clear</button>
-                                <button className="orderCarBtn hvr-sweep-to-right" onClick={() => sort()}>Asc/Desc</button>
-                            </div>
+                        <div className='filterSection'>
+                            <button className="orderBtn hvr-sweep-to-right" onClick={() => sort()}>Asc/Desc</button>
+                            <select className="filterBox" value={make} onChange={(e) => setMake(e.target.value)}>
+                                <option value="" >Filter by Make</option>
+                                {populateMake.map((loc) => (
+                                    <option key={loc} value={loc} >{loc}</option>
+                                ))
+                                }
+                            </select>
+                            <select className="filterBox" value={model} onChange={(e) => setModel(e.target.value)}>
+                                <option value="" >Filter by Model</option>
+                                {populateModel.map((car) => (
+                                    <option key={car} value={car} >{car}</option>
+                                ))
+                                }
+                            </select>
+                            <select className="filterBox" value={bodyType} onChange={(e) => setBodyType(e.target.value)}>
+                                <option value="" >Filter by Body</option>
+                                {populateBody.map((car) => (
+                                    <option key={car} value={car} >{car}</option>
+                                ))
+                                }
+                            </select>
+                            <select className="filterBox" value={colour} onChange={(e) => setColour(e.target.value)}>
+                                <option value="" >Filter by Colour</option>
+                                {populateColour.map((car) => (
+                                    <option key={car} value={car} >{car}</option>
+                                ))
+                                }
+                            </select>
+                            <button className="filterBtn hvr-sweep-to-right" onClick={() => onClick()}>Filter</button>
+                            <button className="filterBtn hvr-sweep-to-right" onClick={() => clear()}>Clear</button>
                         </div>
 
                         {loading && <div className='history_element'><h4 style={{ textAlign: "center" }}>Loading...</h4></div>}

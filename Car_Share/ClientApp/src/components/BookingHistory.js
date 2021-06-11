@@ -9,7 +9,7 @@ function BookingHistory() {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        fetch("https://carshare20210529215628.azurewebsites.net/api/booking")
+        fetch("https://localhost:5001/api/booking")
             .then(response => {
                 if (response.ok) {
                     return response.json()
@@ -116,29 +116,25 @@ function BookingHistory() {
                     </div>
                     <div className="booking">
                         <div className='filterSection'>
-                            <div className = "filters">
-                                <select className="filterLocation" value={locationFilter} onChange={(e) => setLocationFilter(e.target.value)}>
+                            <button className="orderBtn hvr-sweep-to-right" onClick={() => sort()}>Asc/Desc</button>
+                            <select className="filterLocation" value={locationFilter} onChange={(e) => setLocationFilter(e.target.value)}>
 
-                                    <option value="" >Filter by Location</option>
-                                    {populateLocation.map((loc) => (
-                                        <option key={loc} value={loc} >{loc}</option>
-                                    ))
-                                    }
-                                </select>
+                                <option value="" >Filter by Location</option>
+                                {populateLocation.map((loc) => (
+                                    <option key={loc} value={loc} >{loc}</option>
+                                ))
+                                }
+                            </select>
 
-                                <select className="filterCar" value={carFilter} onChange={(e) => setCarFilter(e.target.value)}>
-                                    <option value="" >Filter by Car</option>
-                                    {populateCar.map((car) => (
-                                        <option key={car} value={car} >{car}</option>
-                                    ))
-                                    }
-                                </select>
-                            </div>
-                            <div className = "filterButtons">
-                                <button className="filterBtn hvr-sweep-to-right" onClick={() => onClick()}>Filter</button>
-                                <button className="filterBtn hvr-sweep-to-right" onClick={() => reset()}>Clear</button>
-                                <button className="orderBtn hvr-sweep-to-right" onClick={() => sort()}>Asc/Desc</button>
-                            </div>
+                            <select className="filterCar" value={carFilter} onChange={(e) => setCarFilter(e.target.value)}>
+                                <option value="" >Filter by Car</option>
+                                {populateCar.map((car) => (
+                                    <option key={car} value={car} >{car}</option>
+                                ))
+                                }
+                            </select>
+                            <button className="filterBtn hvr-sweep-to-right" onClick={() => onClick()}>Filter</button>
+                            <button className="filterBtn hvr-sweep-to-right" onClick={() => reset()}>Clear</button>
                         </div>
 
                         {loading && <div className='history_element'><h4 style={{ textAlign: "center" }}>Loading...</h4></div>}
