@@ -65,7 +65,7 @@ function RegisterPage() {
             };
             console.log(JSON.stringify(customer));
 
-            const res = await fetch(window.location.href + "/api/customer", {
+            const res = await fetch(window.location.hostname + "/api/customer", {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json",

@@ -16,6 +16,7 @@ namespace CarShare.Data
         public DbSet<Car> Car { get; set; }
         public DbSet<Transaction> Transaction { get; set; }
         public DbSet<Booking> Booking { get; set; }
+        public DbSet<Location> Location { get; set; }
 
         // Add in relationship rules
         protected override void OnModelCreating(ModelBuilder builder)
@@ -27,6 +28,7 @@ namespace CarShare.Data
             // Money datatype has no built-in minimum attribute
             builder.Entity<Transaction>()
                 .HasCheckConstraint("CH_Transaction_Amount", "Amount > 0");
+            builder.Entity<Car>().HasOne(a => a.Location);
         }
     }
 }

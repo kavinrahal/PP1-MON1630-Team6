@@ -56,6 +56,7 @@ namespace CarShare
             services.AddScoped<CarService>();
             services.AddScoped<BookingService>();
             services.AddScoped<TransactionService>();
+            services.AddScoped<LocationService>();
             services.AddReact();
 
             services.AddRazorPages();

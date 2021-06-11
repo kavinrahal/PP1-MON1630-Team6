@@ -4,6 +4,7 @@ using System.Linq;
 using System;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+
 namespace CarShare.Data
 {
     public static class SeedData
@@ -17,6 +18,7 @@ namespace CarShare.Data
             var carService = serviceProvider.GetRequiredService<CarService>();
             var bookingService = serviceProvider.GetRequiredService<BookingService>();
             var transactionService = serviceProvider.GetRequiredService<TransactionService>();
+            var locationService = serviceProvider.GetRequiredService<LocationService>();
 
             // Look for any logins (just as a litmus for a seeded database). If none, proceed
             if (!customerService.GetAll().Any())
@@ -67,9 +69,14 @@ namespace CarShare.Data
                         Rego = "ABC123",
                         Make = "Ford",
                         Model = "Falcon",
-                        Colour = "Dark Blue",
-                        Location = new Location(-37.806753727670696, 144.96647411498648)
+                        Colour = "Dark Blue"
                     });
+                locationService.Add(new Location
+                {
+                    CarID = car1,
+                    Lat = -37.806232410726125,
+                    Lng = 144.9640279403357
+                });
                 var car2 = carService.Add(
                     new Car()
                     {
@@ -77,9 +84,14 @@ namespace CarShare.Data
                         Rego = "DYT243",
                         Make = "Mazda",
                         Model = "CX-9",
-                        Colour = "Red",
-                        Location = new Location(-37.806232410726125,144.9640279403357)
+                        Colour = "Red"
                     });
+                locationService.Add(new Location
+                {
+                    CarID = car1,
+                    Lat = -37.806232410726125,
+                    Lng = 144.9640279403357
+                });
                 var car3 = carService.Add(
                     new Car()
                     {
@@ -87,9 +99,14 @@ namespace CarShare.Data
                         Rego = "EFG602",
                         Make = "Toyota",
                         Model = "Hilux",
-                        Colour = "White",
-                        Location = new Location(-37.807631057639924, 144.96642315300124)
+                        Colour = "White"
                     });
+                locationService.Add(new Location
+                {
+                    CarID = car1,
+                    Lat = -37.807631057639924,
+                    Lng = 144.9640279403357
+                });
                 var car4 = carService.Add(
                     new Car()
                     {
@@ -97,9 +114,14 @@ namespace CarShare.Data
                         Rego = "GEH906",
                         Make = "Renault",
                         Model = "Master",
-                        Colour = "Black",
-                        Location = new Location(-37.80811633954623, 144.9680190673663)
+                        Colour = "Black"
                     });
+                locationService.Add(new Location
+                {
+                    CarID = car4,
+                    Lat = -37.80811633954623,
+                    Lng = 144.9680190673663
+                });
                 var car5 = carService.Add(
                     new Car()
                     {
@@ -107,9 +129,14 @@ namespace CarShare.Data
                         Rego = "ZMF829",
                         Make = "Toyota",
                         Model = "Corolla",
-                        Colour = "White",
-                        Location = new Location(-37.80811633954623, 144.9680190673663)
+                        Colour = "White"
                     });
+                locationService.Add(new Location
+                {
+                    CarID = car5,
+                    Lat = -37.806232410726125,
+                    Lng = 144.9640279403357
+                });
 
                 // -----Bookings + transactions (payments for booking)-----
 

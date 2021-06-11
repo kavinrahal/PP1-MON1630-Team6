@@ -24,18 +24,10 @@ namespace CarShare.Models
         public string Colour { get; init; }
         [StringLength(20), Display(Name = "Operating Schedule")]
         public string Schedule { get; init; }
-        public Location Location { get; init; }
+
+        
+        public virtual Location Location { get; init; }
         // Reference booking history for quick access
         public virtual List<Booking> Bookings { get; init; }
-    }
-    public class Location
-    {
-        public double lat { get; set; }
-        public double lng { get; set; }
-        public Location(double lat, double lng)
-        {
-            this.lat = lat;
-            this.lng = lng;
-        }
     }
 }

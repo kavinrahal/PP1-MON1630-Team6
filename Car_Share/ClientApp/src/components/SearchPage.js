@@ -20,7 +20,7 @@ function SearchPage() {
     const [carDetails, setCarDetails] = useState([])
 
     useEffect(() => {
-        fetch(window.location.href + "/api/car")
+        fetch(window.location.hostname + "/api/car")
             .then(response => {
                 if (response.ok) {
                     return response.json()
