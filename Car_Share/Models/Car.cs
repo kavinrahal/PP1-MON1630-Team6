@@ -30,9 +30,9 @@ namespace CarShare.Models
     }
     public class Location
     {
-        public string lat { get; set; }
-        public string lng { get; set; }
-        public Location(string lat, string lng)
+        public float lat { get; set; }
+        public float lng { get; set; }
+        public Location(float lat, float lng)
         {
             this.lat = lat;
             this.lng = lng;
