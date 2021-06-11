@@ -20,7 +20,7 @@ function SearchPage() {
     const [carDetails, setCarDetails] = useState([])
 
     useEffect(() => {
-        fetch("https://localhost:5001/api/car")
+        fetch("https://carshare20210529215628.azurewebsites.net/api/car")
             .then(response => {
                 if (response.ok) {
                     return response.json()
@@ -76,7 +76,7 @@ function SearchPage() {
                 <WhichSideBar />
                 <div className="viewAllCars">
                     <div className="rowBooking">
-                        <div className="bookingTitle">Search</div>
+                        <div className="bookingTitle">Search for Car</div>
                         <div className="pageTitle">
                             <div className="blueT">Car</div>
                             <div className="yellowT">Share</div>
@@ -84,7 +84,7 @@ function SearchPage() {
                         </div>
                     </div>
                     <div className="allCars">
-                        <div className='filterSection'>
+                        <div className='filterCarSection'>
                             <div className="searchFilter">
                                 {/* STYLE ERROR MESSAGE HERE */}
                                 {!found && !loading && !initial && <div> Could not find a car with entered ID </div>}

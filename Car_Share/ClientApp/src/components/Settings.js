@@ -14,7 +14,7 @@ import { useHistory } from "react-router";
 export default function Settings() {
     const history = useHistory();
     const onClick = () => {
-        let url = "https://localhost:5001/api/customer/"
+        let url = "https://carshare20210529215628.azurewebsites.net/api/customer/"
         let customerID = sessionStorage.getItem('customerID')
         const res = fetch(url + customerID, {
             method: "DELETE",

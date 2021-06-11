@@ -44,7 +44,7 @@ function LoginPage() {
         if (validate()) {
             setIsLoggingIn(true)
             let found = false;
-            const res = await fetch("https://localhost:5001/api/customer")
+            const res = await fetch("https://carshare20210529215628.azurewebsites.net/api/customer")
                 .then(response => {
                     if (response.ok) {
                         return response.json()
