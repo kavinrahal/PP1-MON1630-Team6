@@ -23,16 +23,19 @@ namespace CarShare.Models
         [Required, StringLength(20)]
         public string Colour { get; init; }
         [StringLength(20), Display(Name = "Operating Schedule")]
-        // Fuel statistics
         public string Schedule { get; init; }
-        [Display(Name = "Fuel Capacity")]
-        public int Fcap { get; init; }
-        [Display(Name = "Fuel Amount")]
-        public int Famo { get; init; }
-        [StringLength(20), Display(Name = "Fuel Type")]
-        public string Ftyp { get; init; }
+        public Location Location { get; init; }
         // Reference booking history for quick access
         public virtual List<Booking> Bookings { get; init; }
-
+    }
+    public class Location
+    {
+        public string lat { get; set; }
+        public string lng { get; set; }
+        public Location(string lat, string lng)
+        {
+            this.lat = lat;
+            this.lng = lng;
+        }
     }
 }
