@@ -1,13 +1,33 @@
 import React, {useEffect, useState, useRef } from 'react';
 import { GoogleMap,  Marker, InfoWindow, useJsApiLoader, useGoogleMap } from '@react-google-maps/api';
-import carData from "./carData.json";
+// import carDetails from "./carDetails.json";
 import { ViewportProvider, WhichSideBar } from './ViewPort_Helper';
 import './styles/GeoLocation.css';
 
 var directionsDisplay = new window.google.maps.DirectionsRenderer();
 var directionsService = new window.google.maps.DirectionsService();
 
-export const MapContainer = () => {
+var carDetails = '';
+export default function MapContainer(){
+
+    const [carDetails, setCarDetails] = useState([])
+
+    useEffect(() => {
+        fetch("/api/car")
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                }
+                throw response
+            })
+            .then(data => {
+                setCarDetails(data)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }, [])
+
 
     const mapStyles = {
         width: '100%',
@@ -17,8 +37,8 @@ export const MapContainer = () => {
     const [currentPos, setCurrentPos] = useState({});
     const [selected, setSelected] = useState({});   
     const [map, setMap] = React.useState(null);
-    const uniqueType = getUnique(carData, 'type'); 
-    const [DDselected, setDDSelected] = useState(carData);
+    const uniqueType = getUnique(carDetails, 'bodyType'); 
+    const [DDselected, setDDSelected] = useState(carDetails);
 
     
 
@@ -50,12 +70,12 @@ export const MapContainer = () => {
 
     function handleChange(e) {
         const val = e.target.value
-        setDDSelected(carData.find((item) => item.type === val));
+        setDDSelected(carDetails.find((item) => item.bodyType === val));
     }
 
     const filterByType = e => {
-        const filtered = carData.filter(item => {
-            if(e.target.value === item.type) {
+        const filtered = carDetails.filter(item => {
+            if(e.target.value === item.bodyType) {
                 return(
                     <Marker />
                 )
@@ -126,11 +146,11 @@ export const MapContainer = () => {
                                 <div className = "selectType">
                                     <div className = "selectZeCar">
                                     <div className = "typeSelectTitle">Select Car Type</div>
-                                        <select className="filterLocation filterType" value={DDselected.type} onChange={handleChange} onClick={filterByType}>
+                                        <select className="filterLocation filterType" value={DDselected.bodyType} onChange={handleChange} onClick={filterByType}>
                                             {
                                                 uniqueType.map(item => ( 
-                                                <option value={item.type}>
-                                                {item.type}
+                                                <option value={item.bodyType}>
+                                                {item.bodyType}
                                                 </option>
                                             ))}
                                         </select>
@@ -169,14 +189,14 @@ export const MapContainer = () => {
                                     }
 
                                     { 
-                                        carData.map(item => {
-                                            if (DDselected.type == item.type){
+                                        carDetails.map(item => {
+                                            if (DDselected.bodyType == item.bodyType){
                                                 return (
                                                     <Marker key={item.name} position={item.location} onClick={() => onSelect(item)}/>
                                                 )
                                             }
 
-                                            if(DDselected.type == null){
+                                            if(DDselected.bodyType == null){
                                                 return (
                                                     <Marker key={item.name} position={item.location} onClick={() => onSelect(item)}/>
                                                 )
@@ -195,7 +215,7 @@ export const MapContainer = () => {
                                         >
                                         <>
                                         <p>{selected.name}</p>
-                                        <p>{"Type: " + selected.type}</p>
+                                        <p>{"Type: " + selected.bodyType}</p>
                                         <p>{"Make: " + selected.make}</p>
                                         <p>{"Model: " + selected.model}</p>
                                         
@@ -214,7 +234,7 @@ export const MapContainer = () => {
                                                 <h2>Car Details</h2>
                                                 <p>{selected.name}</p>
                                                 <p>Distance: {haversine_distance().toFixed(2)} km</p>
-                                                <p>{"Type: " + selected.type}</p>
+                                                <p>{"Type: " + selected.bodyType}</p>
                                                 <p>{"Make: " + selected.make}</p>
                                                 <p>{"Model: " + selected.model}</p>
                                                 <button className = "bookFoundCar hvr-sweep-to-right-white">Book Car</button>
@@ -232,6 +252,4 @@ export const MapContainer = () => {
 
     
 }
- 
-export default MapContainer;
 
