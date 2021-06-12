@@ -9,7 +9,7 @@ function BookingHistory() {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        fetch(window.location.hostname + "/api/booking")
+        fetch("/api/booking")
             .then(response => {
                 if (response.ok) {
                     return response.json()
