@@ -1,3 +1,17 @@
+.makeBooking{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin-top: 20px;
+}
+
+.elementEl{
+    margin-bottom: 5px;
+}
+
 .bookingElement{
     width: 100%;
     display: flex;
@@ -35,8 +49,29 @@
     color: #1C1D57;
 }
 
-.makeBookingDisplay{
+.orBook {
     width: 70%;
+    margin: .7em auto;
+    overflow: hidden;
+    text-align: center;
+    font-weight:300;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.43);
+}
+.orBook:before, .orBook:after {
+    content: "";
+    display: inline-block;
+    width: 50%;
+    margin: 0 .5em 0 -55%;
+    vertical-align: middle;
+    border-bottom: 1px solid;
+}
+.orBook:after {
+    margin: 0 -55% 0 .5em;
+}
+
+.makeBookingDisplay{
+    width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -107,8 +142,9 @@
     margin-right: 5px;
 }
 
-.startTime, .endTime{
+.startTime, .endTime, .datePick{
     height: 35px;
+    width: 90%;
 }
 
 .bookkBtn{
@@ -120,4 +156,128 @@
     border-color: white;
     margin-right: 5px;
     height: 30px;
+    margin-bottom: 10px;
+    width: 40%;
+}
+
+.timeStart{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    justify-content: center;
+}
+
+.makeBTitle{
+    margin-top: 15px;
+    font-size: 40px;
+    color: white;
+    text-align: center;
+}
+
+@media(max-width:1200px){
+    .MakeBookingWrapper{
+        background-position-x: 50px, 0;
+    }
+}
+
+@media(max-width:780px){
+
+    .makeBookingResult {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .makeBTitle{
+        font-size: 25px;
+    }
+
+    .datesss{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    .timeSelect{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .timeStart{
+        margin-top: 15px;
+        width: 100%;
+    }
+
+    .bookkBtn{
+        background: #1D1E5B;
+        border-radius: 15px;
+        color: white;
+        border-style: solid;
+        border-width: 0.5px;
+        border-color: white;
+        margin-right: 5px;
+        height: 50px;
+        margin-bottom: 10px;
+        width: 60%;
+    }
+
+    .noCarSelect {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .noCar{
+        margin-bottom: 10px;
+    }
+
+    .noCarBtn {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .noBtn{
+        width: 80%;
+        height: 48px;
+        background: linear-gradient(90deg, #BB2B7A 0%, #5F3090 100%, #E9C2F9 100%);
+        border-radius: 5px;
+        border-style: none;
+        color: white;
+        font-size: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .noBtn:hover{
+        width: 311px;
+        height: 48px;
+        background: white;
+        border-radius: 5px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #5F3090 ;
+        color: #BB2B7A ;
+        font-size: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    
+
+}
+
+@media(max-width:600px){
+    .pageTitle{
+        visibility: hidden;
+    }
 }

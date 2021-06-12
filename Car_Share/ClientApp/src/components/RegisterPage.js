@@ -50,6 +50,7 @@ function RegisterPage() {
         return retVal
     }
 
+    // Password Hashing
     var passwordHash = require('password-hash');
     var hashedPassword = passwordHash.generate(password);
 
@@ -63,7 +64,7 @@ function RegisterPage() {
                 phone: phone,
                 password: hashedPassword,
             };
-            console.log(JSON.stringify(customer));
+            // console.log(JSON.stringify(customer));
 
             const res = await fetch("/api/customer", {
                 method: "POST",
@@ -132,7 +133,7 @@ function RegisterPage() {
                             <div className="names">
                                 <div className="first">
                                     <div className="signUpLabel">
-                                        Name <span class="errorMessage"> {errors.get("customerName")} </span>
+                                        Name <span className="errorMessage"> {errors.get("customerName")} </span>
                                     </div>
                                     < input
                                         value={customerName}

@@ -289,7 +289,7 @@ export default function MakeBooking(props) {
                 <div className="blueT">Scheme</div>
               </div>
             </div>
-            <div className="allCars">
+            <div className="makeBooking">
               <div className='makeBookingResult'>
                 <MakeBookingDisplayElement key={carDetails.carID} element={carDetails} />
               </div>
@@ -302,7 +302,7 @@ export default function MakeBooking(props) {
                     <div className = "noCar">No car selected! Choose one from</div>
                     <div className = "noCarBtn">
                       <Link to="/viewAllCars" className="noBtn">All Cars</Link>
-                      <div className = "or">Or</div>
+                      <div className = "orBook">Or</div>
                       <Link to="/search_page" className="noBtn">Search For Car</Link>
                       <br></br>
                     </div>
@@ -312,9 +312,9 @@ export default function MakeBooking(props) {
                   <div className = "chooseDate">
                     <div className = "datesss">
                       <div className = "dateText">Start</div>
-                      <DatePicker className = "filterLocation" selected={datepickerStartDate} value={datepickerStartDate} onChange={date => handleDatepickerStart(date)} minDate={new Date()} />
+                      <DatePicker className = "datePick filterLocation" selected={datepickerStartDate} value={datepickerStartDate} onChange={date => handleDatepickerStart(date)} minDate={new Date()} />
                       <div className = "dateText">End</div>
-                      <DatePicker className = "filterLocation" selected={datepickerEndDate} value={datepickerEndDate} onChange={date => handleDatepickerEnd(date)} minDate={new Date()} />
+                      <DatePicker className = "datePick filterLocation" selected={datepickerEndDate} value={datepickerEndDate} onChange={date => handleDatepickerEnd(date)} minDate={new Date()} />
                     </div>
 
     
@@ -339,13 +339,16 @@ export default function MakeBooking(props) {
                             }
                             
                           </select>
-                          <button className = "bookkBtn " onClick={() => onClick()}>Book Now</button>
                           <br></br>
                         </div>
                       }
+                      
 
                       </div>
+                      <button className = "bookkBtn hvr-sweep-to-right" onClick={() => onClick()}>Book Now</button>
                     </div>}
+
+                    
                     
                   </div>
             </div>

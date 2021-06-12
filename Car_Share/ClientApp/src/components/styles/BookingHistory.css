@@ -89,9 +89,14 @@
     right: 1.5%;
 }
 
+.filters{
+    height: 100%;
+}
+
 .filterLocation, .filterCar{
     border-radius: 5px;
     margin-right: 5px;
+    height: 100%;
 }
 
 .filterBtn{
@@ -115,6 +120,91 @@
     width: 99%;
     margin: 5px;  
     padding: 10px 20px;
+}
+
+@media(max-width:1200px){
+    .BookingHistoryWrapper{
+        background-position-x: 50px, 0;
+    }
+}
+
+@media(max-width:780px){
+
+    .bookingPage{
+        overflow-y: scroll;
+    }
+    .blueT {
+        color: #040C4F;
+        font-size: 20px;
+    }
+
+    .pageTitle{
+        height: 0px;
+    }
+
+    .bookingTitle{
+        font-size: 40px;
+        margin-left: 10px;
+    }
+
+    .filterSection{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .filters {
+        height: 50px;
+        width: 100%;
+        display: flex;
+    }
+
+    .filterLocation, .filterCar {
+        border-radius: 5px;
+        margin-right: 5px;
+        height: 100%;
+        width: 50%;
+    }
+
+    .filterButtons{
+        width: 100%;
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    .filterBtn{
+        background: #1D1E5B;
+        border-radius: 5px;
+        color: white;
+        border-style: solid;
+        border-width: 0.5px;
+        border-color: white;
+        height: 50px;
+        margin-right: 0px;
+        width: 32%;
+    }
+
+    .orderBtn{
+        background: #1D1E5B;
+        border-radius: 5px;
+        color: white;
+        border-style: solid;
+        border-width: 0.5px;
+        border-color: white;
+        height: 50px;
+        width: 32%;
+        right: 0;
+        position: relative;
+    }
+
+}
+
+@media(max-width:600px){
+    .pageTitle{
+        visibility: hidden;
+    }
 }
 
 

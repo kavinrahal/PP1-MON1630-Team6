@@ -26,7 +26,7 @@ export default function Profile() {
   const [errors, setErrors] = useState(new Map);
 
   useEffect(() => {
-    let url = "https://localhost:5001/api/customer/"
+    let url = "https://carshare20210529215628.azurewebsites.net/api/customer/"
     let customerID = sessionStorage.getItem('customerID')
     fetch(url + customerID)
       .then(response => {
@@ -105,7 +105,7 @@ export default function Profile() {
       password: userPassword,
     }
     console.log(updatedCustomer)
-    let url = "https://localhost:5001/api/customer/"
+    let url = "https://carshare20210529215628.azurewebsites.net/api/customer/"
     let customerID = sessionStorage.getItem('customerID')
     const res = fetch(url + customerID, {
       method: "PUT",

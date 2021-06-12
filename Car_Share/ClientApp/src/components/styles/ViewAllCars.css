@@ -43,7 +43,7 @@
     width: 100%;
 }
 
-.bookingTitle{
+.viewAllCarsTitle{
     font-size: 60px;
     margin-left: 25px;
     color: #040C4F;
@@ -65,10 +65,26 @@
     height: 80%;
 }
 
-.filterSection{
+.filterCarSection{
     display: flex;
     flex-direction: row;
+    width: 95%;
 }
+
+.filterBoxes{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+
+.filterBox {
+    border-radius: 5px;
+    margin-right: 5px;
+    height: 100%;
+}
+
 
 .displaySection{
     overflow-y: scroll;
@@ -77,7 +93,7 @@
     width: 100%;
 }
 
-.orderBtn{
+.orderCarBtn{
     background: #1D1E5B;
     border-radius: 5px;
     color: white;
@@ -95,7 +111,7 @@
     margin-right: 5px;
 }
 
-.filterBtn{
+.filterCarBtn{
     background: #1D1E5B;
     border-radius: 5px;
     color: white;
@@ -117,6 +133,8 @@
     width: 99%;
     margin: 5px;  
     padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .carBookk{
@@ -128,6 +146,129 @@
     border-color: white;
     margin-right: 5px;
     height: 30px;
+    width: 20%;
+}
+
+@media(max-width:1200px){
+    .ViewAllCarsWrapper{
+        background-position-x: 50px, 0;
+    }
+}
+
+@media(max-width:780px){
+
+    .allCars{
+        margin-top: 15px;
+    }
+
+    .bookingPage{
+        overflow-y: scroll;
+    }
+    .blueT {
+        color: #040C4F;
+        font-size: 20px;
+    }
+
+    .pageTitle{
+        height: 0px;
+    }
+
+    .viewAllCarsTitle{
+        font-size: 40px;
+        margin-left: 10px;
+        color: #040C4F;
+    }
+
+    .filterCarSection{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .filterBoxes{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        margin-bottom: 15px;
+    }
+
+    .filterBox {
+        height: 50px;
+        width: 50%;
+        display: flex;
+    }
+
+    .filterCarButtons{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .filterLocation, .filterCar {
+        border-radius: 5px;
+        margin-right: 5px;
+        height: 100%;
+        width: 50%;
+    }
+
+    .filterButtons{
+        width: 100%;
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    .filterCarBtn{
+        background: #1D1E5B;
+        border-radius: 5px;
+        color: white;
+        border-style: solid;
+        border-width: 0.5px;
+        border-color: white;
+        height: 50px;
+        margin-right: 0px;
+        width: 32%;
+    }
+
+    .orderCarBtn{
+        background: #1D1E5B;
+        border-radius: 5px;
+        color: white;
+        border-style: solid;
+        border-width: 0.5px;
+        border-color: white;
+        height: 50px;
+        width: 32%;
+        right: 0;
+        position: relative;
+    }
+
+    .displaySection{
+        width: 95%;
+        margin-top: 15px;
+    }
+
+    .carBookk{
+        background: #1D1E5B;
+        border-radius: 15px;
+        color: white;
+        border-style: solid;
+        border-width: 0.5px;
+        border-color: white;
+        margin-right: 5px;
+        height: 50px;
+        width: 70%;
+        align-self: center;
+    }
+
+}
+
+@media(max-width:600px){
+    .pageTitle{
+        visibility: hidden;
+    }
 }
 
 
