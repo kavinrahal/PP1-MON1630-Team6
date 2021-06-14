@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import DatePicker from "react-datepicker";
+import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import moment from 'moment'
 import "react-datepicker/dist/react-datepicker.css";
@@ -9,11 +10,12 @@ import { ViewportProvider, WhichSideBar } from './ViewPort_Helper';
 import MakeBookingDisplayElement from './MakeBookingDisplayElement'
 
 export default function MakeBooking(props) {
+  const historyB = useHistory();
   const [carDetails, setCarDetails] = useState([])
 
   useEffect(() => {
     if (props.location.state) {
-      console.log(props.location.state.car)
+      //console.log(props.location.state.car)
       setCarDetails(props.location.state.car)
       setBookingHistories(props.location.state.car.bookings)
       setAvailableStartArray([])
@@ -249,26 +251,34 @@ export default function MakeBooking(props) {
         active: true,
       };
 
+      historyB.push({
+        pathname: '/booking_receipt',
+        // search: '?update=true',  // query string
+        state: {  // location state
+            booking: booking,
+        },
+      });
+
       // console.log(booking)
       // console.log(carDetails)
-        const res = await fetch("/api/booking", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(booking),
-      })
-        .then((response) => {
-          if (response.ok) {
-            alert("Booking has been placed Successfully!");
+      //   const res = await fetch("/api/booking", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-type": "application/json",
+      //   },
+      //   body: JSON.stringify(booking),
+      // })
+      //   .then((response) => {
+      //     if (response.ok) {
+      //       alert("Booking has been placed Successfully!");
 
 
-          }
-        })
-        .catch((error) => {
+      //     }
+      //   })
+      //   .catch((error) => {
 
-          console.log(error);
-        });
+      //     console.log(error);
+      //   });
     } else {
       //error
     }

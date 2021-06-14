@@ -7,7 +7,6 @@ import './styles/GeoLocation.css';
 var directionsDisplay = new window.google.maps.DirectionsRenderer();
 var directionsService = new window.google.maps.DirectionsService();
 
-var carDetails = '';
 export default function MapContainer(){
 
     const [carDetails, setCarDetails] = useState([])

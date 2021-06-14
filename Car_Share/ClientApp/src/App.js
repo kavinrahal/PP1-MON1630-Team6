@@ -15,6 +15,7 @@ import SearchPage from "./components/SearchPage";
 import Settings from "./components/Settings";
 import PrivateRoute from './PrivateRoute'
 import geolocation from './components/geolocation';
+import BookingReceipt from "./components/BookingReceipt";
 
 export default class App extends Component {
   static displayName = App.name;
@@ -36,6 +37,7 @@ export default class App extends Component {
             <PrivateRoute path="/search_page" exact component={SearchPage} />
             <PrivateRoute path = "/settings" exact component = {Settings}/>
             <PrivateRoute path = "/locate" exact component = {geolocation}/>
+            <PrivateRoute path = "/booking_receipt" exact component = {BookingReceipt}/>
           </Switch>
         </div>
       </Router>
