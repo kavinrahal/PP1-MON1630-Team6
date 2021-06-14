@@ -231,7 +231,7 @@ export default function MapContainer(){
                                     selected.location && 
                                     <div className = "selectedCar">
                                         <div className = "cardeets">
-                                                <h2>Car Details</h2>
+                                                <h2>{selected.rego}</h2>
                                                 <p>{selected.name}</p>
                                                 <p>Distance: {haversine_distance().toFixed(2)} km</p>
                                                 <p>{"Type: " + selected.bodyType}</p>

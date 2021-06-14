@@ -251,7 +251,7 @@ export default function MakeBooking(props) {
 
       // console.log(booking)
       // console.log(carDetails)
-        const res = await fetch("https://carshare20210529215628.azurewebsites.net/api/booking", {
+        const res = await fetch("/api/booking", {
         method: "POST",
         headers: {
           "Content-type": "application/json",

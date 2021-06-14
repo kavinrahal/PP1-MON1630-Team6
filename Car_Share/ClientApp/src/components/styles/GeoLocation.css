@@ -162,3 +162,65 @@
     transform: scaleX(1);
     border-radius: 5px;
 }
+
+@media(max-width:1200px){
+    .locateWrapper{
+        background-position-x: 50px, 0;
+    }
+}
+
+@media(max-width:780px){
+
+    .locatePage{
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: column;
+    }
+    .blueT {
+        color: #040C4F;
+        font-size: 20px;
+    }
+
+    .pageTitle{
+        height: 0px;
+    }
+
+    .profileTitle{
+        font-size: 40px;
+    }
+
+    .selectType{
+        height: 40%;
+        width: 50%;
+        align-self: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .filterLocation{
+        height: 30%;
+    }
+
+    .selectZeCar{
+        height: 100%;
+    }
+
+    .mapContainer{
+        width: 90%;
+        height: 100%;
+    }
+
+    .mapResults{
+        align-self: center;
+        width: 50%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+@media(max-width:600px){
+    .pageTitleL{
+        visibility: hidden;
+    }
+}
+
