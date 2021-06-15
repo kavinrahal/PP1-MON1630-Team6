@@ -241,14 +241,73 @@ export default function MakeBooking(props) {
 
   // ================ END OF AVAILABILITY ALGO =======================
 
+  const [carDetailsAll, setCarDetailsAll] = useState([]);
+  const [address, setAddress] = useState('');
+
+  var lat = '';
+  var long = '';
+
+  useEffect(() => {
+      fetch("/api/car")
+          .then(response => {
+              if (response.ok) {
+                  return response.json()
+              }
+              throw response
+          })
+          .then(data => {
+              setCarDetailsAll(data)
+          })
+          .catch(error => {
+              console.log(error)
+          })
+  }, [])
+    
+    var rego_num = carDetails.carID;
+    var arrayLength = carDetailsAll.length;
+    for (var i = 0; i < arrayLength; i++) {
+        if (carDetailsAll[i].carID == rego_num) {
+            lat = carDetailsAll[i].location.lat;
+            long = carDetailsAll[i].location.lng;
+    }
+    }
+
+    var geocoder  = new window.google.maps.Geocoder(); 
+    var location  = new window.google.maps.LatLng(lat, long);   
+    
+    geocoder.geocode({'latLng': location}, function (results, status) 
+    {
+        if(status == window.google.maps.GeocoderStatus.OK) {
+            setAddress(results[0].formatted_address); 
+        }
+    });
+
+    const dateOneObj = new Date(startTimeToPost);
+    const dateTwoObj = new Date(endTimeToPost);
+    const milliseconds = Math.abs(dateTwoObj - dateOneObj);
+    const hours = milliseconds / 36e5;
+    var price = 0;
+
+    if(hours <= 4){
+        //for trips 4 hours or under. $20 per hour
+        price = 20*hours;
+    }
+    else{
+        //for trips more than 4 hours, same rate till 4 hours and $10 for each hour after
+        price = 80 + (10*(hours - 4));
+    }
+
   const onClick = async () => {
     if (selectBoxEndTime != '') {
+      console.log('got here');
       const booking = {
         customerID: sessionStorage.getItem("customerID"),
         carID: carDetails.carID,
         startTime: startTimeToPost,
         endTime: endTimeToPost,
         active: true,
+        location: address,
+        cost: price
       };
 
       historyB.push({
@@ -259,7 +318,7 @@ export default function MakeBooking(props) {
         },
       });
 
-      // console.log(booking)
+      
       // console.log(carDetails)
       //   const res = await fetch("/api/booking", {
       //   method: "POST",
