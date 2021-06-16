@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ViewportProvider, WhichSideBar } from './ViewPort_Helper';
+import { useHistory } from "react-router";
 import BookingHistoryElement from './BookingHistoryElement';
 // import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import PaypalExpressBtn from 'react-paypal-express-checkout';
 import './styles/BookingReceipt.css';
 
 export default function BookingReceipt(props){
+
+    const history = useHistory();
 
     const [bookingDetails, setBookingDetails] = useState([]);
 
@@ -30,6 +33,9 @@ export default function BookingReceipt(props){
                     .then((response) => {
                       if (response.ok) {
                         alert("Booking has been placed Successfully!");
+                        history.push({
+                            pathname: '/dashboard',
+                        });
                       }
                     })
                     .catch((error) => {

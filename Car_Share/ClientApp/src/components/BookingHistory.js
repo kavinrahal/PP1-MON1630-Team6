@@ -148,7 +148,7 @@ function BookingHistory() {
                                 {displayHistorys.length > 0 ?
                                     displayHistorys.map((history) => (
                                         <BookingHistoryElement className='history_element' key={history.bookingID} element={history} />))
-                                    : <h5 className='history_element' style={{ textAlign: 'center', background: '#f4f4f4' }} >No Available Slots found!</h5>
+                                    : <h5 className='history_element' style={{ textAlign: 'center', background: '#f4f4f4', color: 'black'}} >You have no prior bookings!</h5>
                                 }
 
                             </div>}
