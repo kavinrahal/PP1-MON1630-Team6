@@ -1,0 +1,68 @@
+.AboutUsWrapper{
+    display: flex;
+    flex-direction: column;
+    background: url('../../addons/circlebg.svg'), linear-gradient(54.94deg, #1C1D57 24.38%, #161892 99.99%);
+    color: white;
+    height: 100vh;
+    background-position: left top, 0;
+    background-repeat: no-repeat;
+}
+
+.rowAbout{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-self: flex-start;
+    width: 100%;
+}
+
+.aboutUsTitle{
+    font-size: 60px;
+    margin-left: 20px;
+}
+
+.aboutDesc{
+    align-self: center;
+    width: 70%;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 25px;
+}
+
+.team{
+    text-align: center;
+    margin-top: 30px;
+}
+
+.thankYou{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15px;
+}
+
+@media(max-width:780px){
+    .aboutUsTitle{
+        font-size: 50px;
+        margin-left: 20px;
+        margin-top: 40px;
+        text-align: center;
+    }
+
+    .aboutDesc{
+        align-self: center;
+        width: 80%;
+        margin-top: auto;
+        margin-bottom: auto;
+        font-size: 20px;
+    }
+
+    .thankYou{
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 15px;
+    }
+}

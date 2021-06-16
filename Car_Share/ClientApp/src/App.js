@@ -16,6 +16,7 @@ import Settings from "./components/Settings";
 import PrivateRoute from './PrivateRoute'
 import geolocation from './components/geolocation';
 import BookingReceipt from "./components/BookingReceipt";
+import AboutUs from "./components/AboutUs";
 
 export default class App extends Component {
   static displayName = App.name;
@@ -27,7 +28,6 @@ export default class App extends Component {
           <Switch>
             <Route path="/" exact component={LoginPage}></Route>
             <Route path="/register" exact component={RegisterPage}></Route>
-            {/* <Route path="/dashboard" exact component={Dashboard}></Route> */}
             <PrivateRoute path="/dashboard" component={Dashboard} />
             <PrivateRoute path="/profile" exact component={Profile} />
             <PrivateRoute path="/booking_history" exact component={BookingHistory} />
@@ -38,6 +38,7 @@ export default class App extends Component {
             <PrivateRoute path = "/settings" exact component = {Settings}/>
             <PrivateRoute path = "/locate" exact component = {geolocation}/>
             <PrivateRoute path = "/booking_receipt" exact component = {BookingReceipt}/>
+            <Route path = "/aboutUs" exact component = {AboutUs}/>
           </Switch>
         </div>
       </Router>

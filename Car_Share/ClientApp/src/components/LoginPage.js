@@ -105,7 +105,7 @@ function LoginPage() {
                         <div className="with">With Just a Few Clicks.</div>
                         <img className="midlogo" src={Image}></img>
                     </div>
-                    <div className="about">Get to know more about us!</div>
+                    <Link to = "/aboutUs" className="about">Get to know more about us!</Link>
                 </div>
                 <div className="column">
                     <div className="loginSignup">
