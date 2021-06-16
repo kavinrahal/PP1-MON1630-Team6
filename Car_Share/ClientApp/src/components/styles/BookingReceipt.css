@@ -1,0 +1,104 @@
+.BookingReceiptWrapper{
+    display: flex;
+    flex-direction: row;
+    background: url('../../addons/Circle\ bg.svg'), url('../../addons/CityExtBack.svg');
+    background-size: 30%, 100%;
+    background-position-x: 250px;
+    background-position-y: 0, bottom;
+    background-repeat: no-repeat;
+}
+
+.bookingReceipt{
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    flex-direction: column;
+}
+
+.rowBooking{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-self: flex-start;
+    width: 100%;
+}
+
+.bookingReceiptTitle{
+    font-size: 60px;
+    margin-left: 25px;
+    color: #040C4F;
+}
+
+.receipt{
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    align-self: center;
+    height: 80%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.receiptQuote{
+    background: #f4f4f4;
+    width: 99%;
+    margin-right: 5px;  
+    margin-left: 5px;
+    padding: 0px 10px;
+    font-size: 15px;
+    color: #040C4F;
+    
+}
+
+
+
+.receiptQuoteTitle{
+    background: #f4f4f4;
+    width: 99%;
+    margin-right: 5px;  
+    margin-left: 5px;
+    padding: 0px 10px;
+    font-size: 20px;
+    color: #040C4F;
+    font-weight: bold;
+}
+
+.receiptQuoteCenter{
+    background: #f4f4f4;
+    width: 99%;
+    margin-right: 5px;  
+    margin-left: 5px;
+    padding: 0px 10px;
+    font-size: 20px;
+    color: #040C4F;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+
+.paypalBtn{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+@media(max-width:1200px){
+    .BookingReceiptWrapper{
+        background-position-x: 50px, 0;
+    }
+}
+
+@media(max-width:780px){
+    .bookingReceiptTitle{
+        font-size: 40px;
+        margin-left: 15px;
+        margin-top: 45px;
+        color: #040C4F;
+        margin-bottom: 20px;
+    }
+}

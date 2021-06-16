@@ -113,9 +113,11 @@
 .history_element {
     animation: 1s ease-out 0s 1 slideUp;
     animation-duration: 0.5s;
-    background: #f4f4f4;
-    background-position: right;
-    background-size: 100px, 100px;
+    background: url('../../addons/bookingLogo.png'), #1D1E5B;
+    background-position: 90%, 0;
+    background-size: 20%, 0;
+    background-repeat: no-repeat;
+    color: white;
     background-repeat: no-repeat;
     width: 99%;
     margin: 5px;  

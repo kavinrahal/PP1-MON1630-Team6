@@ -4,6 +4,7 @@ import { ViewportProvider, WhichSideBar } from './ViewPort_Helper';
 import BookingHistoryElement from './BookingHistoryElement';
 // import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import PaypalExpressBtn from 'react-paypal-express-checkout';
+import './styles/BookingReceipt.css';
 
 export default function BookingReceipt(props){
 
@@ -55,10 +56,41 @@ export default function BookingReceipt(props){
 			sandbox:    'AZW__BJSOkDYLgbREOxhZt-VAWbHwIqu6iayHvB_fNwvYBCZx8nEgTtfIgbXVw3aRH6lBV-DMQlnUDyG',
             production: '',
 		}
+
+        const style = {
+            size: 'medium',
+            color: 'gold',
+            shape: 'pill',
+            label: 'paypal'
+        }
+
+
     return(
-        <div>
-            <BookingHistoryElement className='history_element' key={bookingDetails.bookingID} element={bookingDetails}></BookingHistoryElement>
-            <PaypalExpressBtn env={env} client={client} currency={currency} total={total} onError={onError} onSuccess={onSuccess} onCancel={onCancel} />
+        <ViewportProvider>
+        <div className="BookingReceiptWrapper">
+            <WhichSideBar/>
+            <div className = "bookingReceipt">
+                <div className="rowBooking">
+                    <div className="bookingReceiptTitle">Booking Summary</div>
+                    <div className="pageTitle">
+                    <div className="blueT">Car</div>
+                    <div className="yellowT">Share</div>
+                    <div className="blueT">Scheme</div>
+                    </div>
+                </div>
+                <div className = "receipt">
+                    <BookingHistoryElement className='history_element' key={bookingDetails.bookingID} element={bookingDetails}></BookingHistoryElement>
+                    <div className = "receiptQuoteTitle">Cost Summary</div>
+                    <div className = "receiptQuote">1 - 4 hours: $20/hour</div>
+                    <div className = "receiptQuote">4+ hours: $20/hour till 4 hours, $10/hour for every hour after</div>
+                    <br></br>
+                    <div className = "receiptQuoteCenter">Click the button below to continue to your payment through PayPal!</div>
+                    <div className = "paypalBtn">
+                        <PaypalExpressBtn className = "paypalEx" env={env} client={client} currency={currency} total={total} onError={onError} onSuccess={onSuccess} onCancel={onCancel} style = {style}/>
+                    </div>
+                </div>
+            </div>
         </div>
+        </ViewportProvider>
     );
 }

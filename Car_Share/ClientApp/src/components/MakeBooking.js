@@ -299,7 +299,6 @@ export default function MakeBooking(props) {
 
   const onClick = async () => {
     if (selectBoxEndTime != '') {
-      console.log('got here');
       const booking = {
         customerID: sessionStorage.getItem("customerID"),
         carID: carDetails.carID,
@@ -317,27 +316,6 @@ export default function MakeBooking(props) {
             booking: booking,
         },
       });
-
-      
-      // console.log(carDetails)
-      //   const res = await fetch("/api/booking", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-type": "application/json",
-      //   },
-      //   body: JSON.stringify(booking),
-      // })
-      //   .then((response) => {
-      //     if (response.ok) {
-      //       alert("Booking has been placed Successfully!");
-
-
-      //     }
-      //   })
-      //   .catch((error) => {
-
-      //     console.log(error);
-      //   });
     } else {
       //error
     }
