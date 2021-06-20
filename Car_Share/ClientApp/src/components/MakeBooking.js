@@ -12,10 +12,30 @@ import MakeBookingDisplayElement from './MakeBookingDisplayElement'
 export default function MakeBooking(props) {
   const historyB = useHistory();
   const [carDetails, setCarDetails] = useState([])
+  const [bookingExist, setBookingExist] = useState(false)
+  const [loading, setLoading] = useState(true)
+
 
   useEffect(() => {
-    if (props.location.state) {
-      //console.log(props.location.state.car)
+
+    var booking_exist = false;
+    async function fetchData() {
+      // fetch from back end, if user already has a booking, redirect to current booking
+      const res = await fetch("/api/booking")
+      const data = await res.json();
+
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].customerID == sessionStorage.getItem('customerID')) {
+          if (data[i].active == true) {
+            booking_exist = true;
+            setBookingExist(booking_exist)
+          }
+        }
+      }
+      setLoading(false)
+    }
+    fetchData();
+    if (!booking_exist && props.location.state) {
       setCarDetails(props.location.state.car)
       setBookingHistories(props.location.state.car.bookings)
       setAvailableStartArray([])
@@ -49,7 +69,7 @@ export default function MakeBooking(props) {
       setDatepickerStartDate(new Date)
       setDatepickerEndDate(new Date)
       setDateError(true)
-      console.log("Hs")
+      // console.log("Hs")
     }
     setAvailableStartArray([])
     setAvailableEndArray([])
@@ -58,13 +78,13 @@ export default function MakeBooking(props) {
   }
 
   const handleDatepickerEnd = (date) => {
-    console.log("END" + moment(date).format("LLL"))
-    console.log(moment(datepickerStartDate).format("LLLL"))
+    // console.log("END" + moment(date).format("LLL"))
+    // console.log(moment(datepickerStartDate).format("LLLL"))
     if (moment(date).isSameOrAfter(moment(datepickerStartDate))) {
       setDateError(false)
       setDatepickerEndDate(date)
     } else {
-      console.log("H")
+      // console.log("H")
       setDatepickerStartDate(new Date)
       setDatepickerEndDate(new Date)
       setDateError(true)
@@ -248,54 +268,53 @@ export default function MakeBooking(props) {
   var long = '';
 
   useEffect(() => {
-      fetch("/api/car")
-          .then(response => {
-              if (response.ok) {
-                  return response.json()
-              }
-              throw response
-          })
-          .then(data => {
-              setCarDetailsAll(data)
-          })
-          .catch(error => {
-              console.log(error)
-          })
-  }, [])
-    
-    var rego_num = carDetails.carID;
-    var arrayLength = carDetailsAll.length;
-    for (var i = 0; i < arrayLength; i++) {
-        if (carDetailsAll[i].carID == rego_num) {
-            lat = carDetailsAll[i].location.lat;
-            long = carDetailsAll[i].location.lng;
-    }
-    }
-
-    var geocoder  = new window.google.maps.Geocoder(); 
-    var location  = new window.google.maps.LatLng(lat, long);   
-    
-    geocoder.geocode({'latLng': location}, function (results, status) 
-    {
-        if(status == window.google.maps.GeocoderStatus.OK) {
-            setAddress(results[0].formatted_address); 
+    fetch("/api/car")
+      .then(response => {
+        if (response.ok) {
+          return response.json()
         }
-    });
+        throw response
+      })
+      .then(data => {
+        setCarDetailsAll(data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }, [])
 
-    const dateOneObj = new Date(startTimeToPost);
-    const dateTwoObj = new Date(endTimeToPost);
-    const milliseconds = Math.abs(dateTwoObj - dateOneObj);
-    const hours = milliseconds / 36e5;
-    var price = 0;
+  var rego_num = carDetails.carID;
+  var arrayLength = carDetailsAll.length;
+  for (var i = 0; i < arrayLength; i++) {
+    if (carDetailsAll[i].carID == rego_num) {
+      lat = carDetailsAll[i].location.lat;
+      long = carDetailsAll[i].location.lng;
+    }
+  }
 
-    if(hours <= 4){
-        //for trips 4 hours or under. $20 per hour
-        price = 20*hours;
+  var geocoder = new window.google.maps.Geocoder();
+  var location = new window.google.maps.LatLng(lat, long);
+
+  geocoder.geocode({ 'latLng': location }, function (results, status) {
+    if (status == window.google.maps.GeocoderStatus.OK) {
+      setAddress(results[0].formatted_address);
     }
-    else{
-        //for trips more than 4 hours, same rate till 4 hours and $10 for each hour after
-        price = 80 + (10*(hours - 4));
-    }
+  });
+
+  const dateOneObj = new Date(startTimeToPost);
+  const dateTwoObj = new Date(endTimeToPost);
+  const milliseconds = Math.abs(dateTwoObj - dateOneObj);
+  const hours = milliseconds / 36e5;
+  var price = 0;
+
+  if (hours <= 4) {
+    //for trips 4 hours or under. $20 per hour
+    price = 20 * hours;
+  }
+  else {
+    //for trips more than 4 hours, same rate till 4 hours and $10 for each hour after
+    price = 80 + (10 * (hours - 4));
+  }
 
   const onClick = async () => {
     if (selectBoxEndTime != '') {
@@ -313,7 +332,7 @@ export default function MakeBooking(props) {
         pathname: '/booking_receipt',
         // search: '?update=true',  // query string
         state: {  // location state
-            booking: booking,
+          booking: booking,
         },
       });
     } else {
@@ -342,31 +361,46 @@ export default function MakeBooking(props) {
               </div>
               {dateError && <h4> Error: Start Date cannot be after End Date </h4>}
               <div className='makeBookingDisplay'>
-                <div className = "avail">Availability</div>
+                <div className="avail">Availability</div>
 
-                 {!props.location.state && 
-                  <div className = "noCarSelect">
-                    <div className = "noCar">No car selected! Choose one from</div>
-                    <div className = "noCarBtn">
+                {loading && <div> Loading </div>}
+
+                {
+                  bookingExist && !loading &&
+                  <div>
+                    <div style={{ color: "red" }}>
+                      Booking already exist, complete or cancel your current booking to make a new one.
+                    </div>
+                    <div className="noCarSelect">
+                      <Link to="/currentBooking" className="noBtn">Current Booking</Link>
+                      <br />
+                    </div>
+                  </div>
+                }
+
+                {!props.location.state && !bookingExist && !loading &&
+                  <div className="noCarSelect">
+                    <div className="noCar">No car selected! Choose one from</div>
+                    <div className="noCarBtn">
                       <Link to="/viewAllCars" className="noBtn">All Cars</Link>
-                      <div className = "orBook">Or</div>
+                      <div className="orBook">Or</div>
                       <Link to="/search_page" className="noBtn">Search For Car</Link>
                       <br></br>
                     </div>
                   </div>}
 
                 {props.location.state &&
-                  <div className = "chooseDate">
-                    <div className = "datesss">
-                      <div className = "dateText">Start</div>
-                      <DatePicker className = "datePick filterLocation" selected={datepickerStartDate} value={datepickerStartDate} onChange={date => handleDatepickerStart(date)} minDate={new Date()} />
-                      <div className = "dateText">End</div>
-                      <DatePicker className = "datePick filterLocation" selected={datepickerEndDate} value={datepickerEndDate} onChange={date => handleDatepickerEnd(date)} minDate={new Date()} />
+                  <div className="chooseDate">
+                    <div className="datesss">
+                      <div className="dateText">Start</div>
+                      <DatePicker className="datePick filterLocation" selected={datepickerStartDate} value={datepickerStartDate} onChange={date => handleDatepickerStart(date)} minDate={new Date()} />
+                      <div className="dateText">End</div>
+                      <DatePicker className="datePick filterLocation" selected={datepickerEndDate} value={datepickerEndDate} onChange={date => handleDatepickerEnd(date)} minDate={new Date()} />
                     </div>
 
-    
-                    <div className = "timeSelect">
-                      <div className = "timeStart">
+
+                    <div className="timeSelect">
+                      <div className="timeStart">
                         <select className="startTime filterLocation" value={selectBoxStartTime} onChange={(e) => handleSelectBoxStart(e.target.value)}>
                           <option value="" >Start Time</option>
                           {availableStartArray.map((start) => (
@@ -377,27 +411,27 @@ export default function MakeBooking(props) {
                       </div>
 
                       {availableEndArray.length > 0 &&
-                        <div className = "timeStart">
+                        <div className="timeStart">
                           <select className="endTime filterLocation" value={selectBoxEndTime} onChange={(e) => handleSelectBoxEnd(e.target.value)}>
                             <option value="" >End Time</option>
                             {availableEndArray.map((end) => (
                               <option value={end} >{end}</option>
                             ))
                             }
-                            
+
                           </select>
                           <br></br>
                         </div>
                       }
-                      
 
-                      </div>
-                      <button className = "bookkBtn hvr-sweep-to-right" onClick={() => onClick()}>Book Now</button>
-                    </div>}
 
-                    
-                    
-                  </div>
+                    </div>
+                    <button className="bookkBtn hvr-sweep-to-right" onClick={() => onClick()}>Book Now</button>
+                  </div>}
+
+
+
+              </div>
             </div>
 
 
