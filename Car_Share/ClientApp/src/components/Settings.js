@@ -20,6 +20,7 @@ export default function Settings() {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json",
+                ApiKey: "CarShareRmit"
             },
         })
             .then((response) => {

@@ -49,7 +49,11 @@ export class FetchData extends Component {
   }
 
   async populateWeatherData() {
-    const response = await fetch('customer');
+      const response = await fetch('customer', {
+          headers: {
+              ApiKey: 'CarShareRmit'
+          }
+      });
     const data = await response.json();
     this.setState({ customers: data, loading: false });
   }

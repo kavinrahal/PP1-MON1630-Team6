@@ -14,7 +14,11 @@ export default function CurrentBooking() {
         // Fetch data for current booking
         async function fetchData() {
             var booking_exist = false;
-            const res = await fetch("/api/booking")
+            const res = await fetch("/api/booking", {
+                headers: {
+                    ApiKey: 'CarShareRmit'
+                }
+            })
             const data = await res.json();
             // console.log(data)
 
@@ -65,6 +69,7 @@ export default function CurrentBooking() {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json",
+                ApiKey: 'CarShareRmit'
             }
         })
         if (res.ok) {

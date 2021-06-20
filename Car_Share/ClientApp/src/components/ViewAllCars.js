@@ -10,7 +10,11 @@ function ViewAllCars() {
     const [carDetails, setCarDetails] = useState([])
 
     useEffect(() => {
-        fetch("/api/car")
+        fetch("/api/car", {
+            headers: {
+                ApiKey: 'CarShareRmit'
+            }
+        })
             .then(response => {
                 if (response.ok) {
                     return response.json()

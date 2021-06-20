@@ -21,7 +21,11 @@ export default function MakeBooking(props) {
     var booking_exist = false;
     async function fetchData() {
       // fetch from back end, if user already has a booking, redirect to current booking
-      const res = await fetch("/api/booking")
+        const res = await fetch("/api/booking", {
+            headers: {
+                ApiKey: 'CarShareRmit'
+            }
+        })
       const data = await res.json();
 
       for (let i = 0; i < data.length; i++) {

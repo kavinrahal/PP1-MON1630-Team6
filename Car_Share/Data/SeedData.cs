@@ -126,7 +126,7 @@ namespace CarShare.Data
                     new Car()
                     {
                         BodyType = "Coupe",
-                        Rego = "ZMF829",
+                        Rego = "ZXL249",
                         Make = "Toyota",
                         Model = "Corolla",
                         Colour = "White"
@@ -134,6 +134,81 @@ namespace CarShare.Data
                 locationService.Add(new Location
                 {
                     CarID = car5,
+                    Lat = -37.806232410726125,
+                    Lng = 144.9640279403357
+                });
+                var car6 = carService.Add(
+                    new Car()
+                    {
+                        BodyType = "Coupe",
+                        Rego = "XXZ102",
+                        Make = "Toyota",
+                        Model = "Corolla",
+                        Colour = "Black"
+                    });
+                locationService.Add(new Location
+                {
+                    CarID = car6,
+                    Lat = -37.806232410726125,
+                    Lng = 144.9640279403357
+                });
+                var car7 = carService.Add(
+                    new Car()
+                    {
+                        BodyType = "Coupe",
+                        Rego = "ZMF829",
+                        Make = "Toyota",
+                        Model = "Corolla",
+                        Colour = "Grey"
+                    });
+                locationService.Add(new Location
+                {
+                    CarID = car7,
+                    Lat = -37.806232410726125,
+                    Lng = 144.9640279403357
+                });
+                var car8 = carService.Add(
+                    new Car()
+                    {
+                        BodyType = "Sedan",
+                        Rego = "QUE294",
+                        Make = "Toyota",
+                        Model = "Camry",
+                        Colour = "Black"
+                    });
+                locationService.Add(new Location
+                {
+                    CarID = car8,
+                    Lat = -37.806232410726125,
+                    Lng = 144.9640279403357
+                });
+                var car9 = carService.Add(
+                    new Car()
+                    {
+                        BodyType = "Utility Vehicle",
+                        Rego = "ZZZ231",
+                        Make = "Toyota",
+                        Model = "Hilux",
+                        Colour = "White"
+                    });
+                locationService.Add(new Location
+                {
+                    CarID = car9,
+                    Lat = -37.806232410726125,
+                    Lng = 144.9640279403357
+                });
+                var car10 = carService.Add(
+                    new Car()
+                    {
+                        BodyType = "SUV",
+                        Rego = "IPO823",
+                        Make = "Kia",
+                        Model = "Sorento",
+                        Colour = "White"
+                    });
+                locationService.Add(new Location
+                {
+                    CarID = car10,
                     Lat = -37.806232410726125,
                     Lng = 144.9640279403357
                 });

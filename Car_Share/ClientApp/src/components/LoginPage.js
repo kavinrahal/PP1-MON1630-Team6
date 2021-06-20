@@ -44,7 +44,11 @@ function LoginPage() {
         if (validate()) {
             setIsLoggingIn(true)
             let found = false;
-            const res = await fetch("/api/customer")
+            const res = await fetch("/api/customer", {
+                headers: {
+                    ApiKey: 'CarShareRmit'
+                }
+            })
                 .then(response => {
                     if (response.ok) {
                         return response.json()
