@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 // import Geocode from "react-geocode";
 
-export default function BookingHistoryElement( {element} ){
+export default function BookingHistoryElement({ element }) {
     var options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
     let startdate = new Date(element.startTime).toLocaleDateString([], options);
     let enddate = new Date(element.endTime).toLocaleDateString([], options);
@@ -14,7 +14,7 @@ export default function BookingHistoryElement( {element} ){
                 <p>  End: {enddate},</p>
                 <p>  Car ID: {element.carID}</p>
                 <p>  Pickup Location: {element.location}</p>
-                <p> Price of Trip: ${element.cost}</p>
+                <p> Price of Trip: ${element.amount}</p>
             </div>
         </div>
 

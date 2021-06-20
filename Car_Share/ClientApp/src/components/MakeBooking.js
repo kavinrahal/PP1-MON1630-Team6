@@ -325,7 +325,7 @@ export default function MakeBooking(props) {
         endTime: endTimeToPost,
         active: true,
         location: address,
-        cost: price
+        amount: price
       };
 
       historyB.push({

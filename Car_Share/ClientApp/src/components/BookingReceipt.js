@@ -54,7 +54,7 @@ export default function BookingReceipt(props) {
 
     let env = 'sandbox';
     let currency = 'AUD';
-    let total = bookingDetails.cost;  // this is the total amount to charge
+    let total = bookingDetails.amount;  // this is the total amount to charge
 
     const client = {
         sandbox: 'AZW__BJSOkDYLgbREOxhZt-VAWbHwIqu6iayHvB_fNwvYBCZx8nEgTtfIgbXVw3aRH6lBV-DMQlnUDyG',
