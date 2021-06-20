@@ -25,6 +25,7 @@ export default function BookingReceipt(props) {
             method: "POST",
             headers: {
                 "Content-type": "application/json",
+                ApiKey: "CarShareRmit"
             },
             body: JSON.stringify(bookingDetails),
         })

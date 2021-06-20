@@ -70,6 +70,7 @@ function RegisterPage() {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json",
+                    ApiKey: "CarShareRmit"
                 },
                 body: JSON.stringify(customer),
             })

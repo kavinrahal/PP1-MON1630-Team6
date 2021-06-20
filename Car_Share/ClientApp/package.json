@@ -68,5 +68,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5001"
+  "proxy": "https://carshare20210529215628.azurewebsites.net/"
 }

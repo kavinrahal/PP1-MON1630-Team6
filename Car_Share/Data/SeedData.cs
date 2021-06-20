@@ -88,7 +88,7 @@ namespace CarShare.Data
                     });
                 locationService.Add(new Location
                 {
-                    CarID = car1,
+                    CarID = car2,
                     Lat = -37.806232410726125,
                     Lng = 144.9640279403357
                 });
@@ -103,7 +103,7 @@ namespace CarShare.Data
                     });
                 locationService.Add(new Location
                 {
-                    CarID = car1,
+                    CarID = car3,
                     Lat = -37.807631057639924,
                     Lng = 144.9640279403357
                 });
