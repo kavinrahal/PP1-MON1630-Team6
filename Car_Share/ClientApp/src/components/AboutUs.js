@@ -1,9 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
+    BrowserRouter as Link
 } from "react-router-dom";
 import './styles/AboutUs.css';
 

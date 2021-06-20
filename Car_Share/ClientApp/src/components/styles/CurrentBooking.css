@@ -55,7 +55,7 @@
     height: 100%;
 }
 
-.countDown{
+.countdown{
     color: white;
     font-size: 45px;
     text-align: center;
@@ -86,7 +86,6 @@
     animation-duration: 1s;
     width: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100%;
@@ -110,8 +109,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;
-    width: 50%;
+    height: 250px;
+    width: 250px;
     font-size: 25px;
     text-align: center;
     margin: 5px;
@@ -126,23 +125,145 @@
     font-weight: bold;
 }
 
-.buttonCont{
+.bDeet{
+    font-size: 20px;
+}
+
+/* .buttonCont{
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 90%;
     align-self: center;
-}
+} */
 
 .cancelCurrentBooking{
     width: 200px;
-    height: 60px;
+    height: 50px;
     background-color: #EE0F0F;
     color: white;
     font-size: 21px;
     border-radius: 5px;
     border-style: none;
     transition: 0.5px;
-    align-self: center;
-    margin-top: 20px;
+    margin-top: 5px;
+}
+
+.currBooking{
+    display: flex;
+    flex-direction: column;
+}
+
+.currDetails{
+    display: flex;
+    flex-direction: column;
+}
+
+.currButtons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+@media(max-width:1200px){
+    .CurrentBookingWrapper{
+        background-position-x: 50px;
+    }
+}
+
+@media(max-width:600px){
+    .pageTitle{
+        visibility: hidden;
+    }
+}
+
+@media(max-width:767px){
+
+    .currentBookingTitle{
+        color: white;
+        font-size: 40px;
+        margin-left: 25px;
+    }
+
+    .countdown{
+        color: white;
+        font-size: 30px;
+        background: none;
+        text-align: center;
+        width: 80%;
+    }
+
+    .inProgress{
+        animation: fadeIn 2s;
+        animation-iteration-count: infinite;
+        color: green;
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    .bookingDetails{
+        animation: 1s ease-out 0s 1 slideUp;
+        animation-duration: 1s;
+        /* width: 100%; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        background: white;
+        border-radius: 30px 30px 0px 0px;
+    }
+
+    .currButtons{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .deets{
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        color: #040C4F;
+        margin-top: 30px;
+        align-items: center;
+        width: 90%;
+        height: 60%;
+    }
+
+    .cDetails, .bDetails{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 200px;
+        width: 200px;
+        font-size: 25px;
+        text-align: center;
+        border-radius: 5px;
+        background: rgba(255, 255, 255);
+        filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
+    }
+
+    .bTitle, .cTitle{
+        font-size: 25px;
+        text-align: center;
+        font-weight: bold;
+    }
+    
+    .bDeet{
+        font-size: 20px;
+    }
+
+    .cancelCurrentBooking{
+        width: 200px;
+        height: 50px;
+        background-color: #EE0F0F;
+        color: white;
+        font-size: 21px;
+        border-radius: 15px;
+        border-style: none;
+        transition: 0.5px;
+        margin-top: 5px;
+    }
 }

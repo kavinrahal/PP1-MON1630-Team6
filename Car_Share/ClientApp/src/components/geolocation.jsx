@@ -1,8 +1,8 @@
-import React, {useEffect, useState, useRef } from 'react';
-import { GoogleMap,  Marker, InfoWindow, useJsApiLoader, useGoogleMap } from '@react-google-maps/api';
-// import carDetails from "./carDetails.json";
+import React, {useEffect, useState} from 'react';
+import { GoogleMap,  Marker, InfoWindow, useJsApiLoader} from '@react-google-maps/api';
 import { ViewportProvider, WhichSideBar } from './ViewPort_Helper';
 import './styles/GeoLocation.css';
+import { useHistory } from "react-router-dom";
 
 var directionsDisplay = new window.google.maps.DirectionsRenderer();
 var directionsService = new window.google.maps.DirectionsService();
@@ -10,6 +10,7 @@ var directionsService = new window.google.maps.DirectionsService();
 export default function MapContainer(){
 
     const [carDetails, setCarDetails] = useState([])
+    const history = useHistory();
 
     useEffect(() => {
         fetch("/api/car")
@@ -51,6 +52,16 @@ export default function MapContainer(){
 
     const onSelect = item => {
         setSelected(item);
+    }
+
+    const onClick = () => {
+        history.push({
+            pathname: '/make_booking',
+            state: {  // location state
+                car: selected,
+            },
+        });
+
     }
 
     useEffect(() => {
@@ -236,7 +247,7 @@ export default function MapContainer(){
                                                 <p>{"Type: " + selected.bodyType}</p>
                                                 <p>{"Make: " + selected.make}</p>
                                                 <p>{"Model: " + selected.model}</p>
-                                                <button className = "bookFoundCar hvr-sweep-to-right-white">Book Car</button>
+                                                <button className = "bookFoundCar hvr-sweep-to-right-white" onClick={() => onClick()}>Book Car</button>
                                         </div>
                                     </div>
                                 }

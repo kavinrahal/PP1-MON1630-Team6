@@ -54,6 +54,7 @@ The application requires Javascript to be activated in the browser to run.
 ## Running Instructions ##
 Publish the web application directly to your Azure portal via Visual Studio.
 Be sure to pay for your Azure subscription, otherwise the website can be taken down & your data frozen.
+In order to make a dummy payment using the PayPal API, it is required that the user has a Sandbox PayPal Account.
 
 ## Links ##
 Github: https://github.com/kavinrahal/PP1-MON1630-Team6

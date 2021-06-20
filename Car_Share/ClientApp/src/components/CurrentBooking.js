@@ -48,6 +48,7 @@ export default function CurrentBooking() {
                         // setEndTime(data[i].endTime)            
                     }
                 }
+                console.log(currentBooking);
             }
             setLoading(false)
         }
@@ -148,37 +149,41 @@ export default function CurrentBooking() {
 
                     <div className="current">
                         {loading
-                            ? <div className="terminate" > loading </div>
+                            ? <div className="terminate" > Loading... </div>
                             :
-                            <div><Countdown date={Date.now() + difference} renderer={renderer} /></div>
+                            <div className = "countdown"><Countdown date={Date.now() + difference} renderer={renderer} /></div>
                         }
 
                         <div className="bookingDetails">
 
                             {currentBooking != '' && !loading ?
-                                <div>
-                                    <div className="deets">
-                                        <div className="bDetails hvr-grow">
-                                            <div className="bTitle">Booking Details</div>
-                                            <div>Booking ID: {currentBooking.bookingID}</div>
-                                            <div>Start Time: {stringStart}</div>
-                                            <div>End Time: {stringEnd}</div>
-                                            <div>Fair: ${currentBooking.price}</div>
-                                        </div>
-                                        <div className="cDetails hvr-grow">
-                                            <div className="cTitle">Car Details</div>
-                                            <div>Car ID: {currentBooking.carID}</div>
-                                            <div>Make: {currentBooking.car.make}</div>
-                                            <div>Model: {currentBooking.car.model}</div>
-                                            <div>Body: {currentBooking.car.bodyType}</div>
-                                            <div>Colour: {currentBooking.car.colour}</div>
+                                <div className = "currBooking">
+                                    <div className = "currDetails">
+                                        <div className="deets">
+                                            <div className="bDetails hvr-grow">
+                                                <div className="bTitle">Booking Details</div>
+                                                <div className = "bDeet">Booking ID: {currentBooking.bookingID}</div>
+                                                <div className = "bDeet">Start Time: {stringStart}</div>
+                                                <div className = "bDeet">End Time: {stringEnd}</div>
+                                                <div className = "bDeet">Fair: ${currentBooking.price}</div>
+                                            </div>
+                                            <div className="cDetails hvr-grow">
+                                                <div className="cTitle">Car Details</div>
+                                                <div className = "bDeet">Car ID: {currentBooking.carID}</div>
+                                                <div className = "bDeet">Make: {currentBooking.car.make}</div>
+                                                <div className = "bDeet">Model: {currentBooking.car.model}</div>
+                                                <div className = "bDeet">Body: {currentBooking.car.bodyType}</div>
+                                                <div className = "bDeet">Colour: {currentBooking.car.colour}</div>
+                                            </div>
                                         </div>
 
-                                        <div className="buttonCont">
-                                            {hideResults ? <button onClick={() => onCancel()} className="cancelCurrentBooking hvr-sweep-to-right-red">CANCEL BOOKING</button> : null}
-                                        </div>
-                                        <div className="buttonCont">
-                                            {hideResults ? <button onClick={() => onReturn()} className="cancelCurrentBooking hvr-sweep-to-right-red">REturn BOOKING</button> : null}
+                                        <div className = "currButtons">
+                                            <div className="buttonCont">
+                                                {hideResults ? <button onClick={() => onCancel()} className="cancelCurrentBooking hvr-sweep-to-right-red">CANCEL BOOKING</button> : null}
+                                            </div>
+                                            <div className="buttonCont">
+                                                {hideResults ? <button onClick={() => onReturn()} className="cancelCurrentBooking hvr-sweep-to-right-red">RETURN BOOKING</button> : null}
+                                            </div>
                                         </div>
                                     </div>
 
@@ -186,7 +191,7 @@ export default function CurrentBooking() {
 
                                 : !loading &&
                                 <div className="noCarSelect">
-                                    <div className="noCar">No booking current made!</div>
+                                    <div className="noCar">No Current Booking Made!</div>
                                     <div className="noCarBtn">
                                         <Link to="/viewAllCars" className="noBtn">All Cars</Link>
                                         <div className="orBook">Or</div>
