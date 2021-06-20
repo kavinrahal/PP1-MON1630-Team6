@@ -9,7 +9,11 @@ function BookingHistory() {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        fetch("/api/booking")
+        fetch("/api/booking", {
+            headers: {
+                ApiKey: 'CarShareRmit'
+            }
+        })
             .then(response => {
                 if (response.ok) {
                     return response.json()

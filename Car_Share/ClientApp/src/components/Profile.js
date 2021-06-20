@@ -28,7 +28,11 @@ export default function Profile() {
   useEffect(() => {
     let url = "https://carshare20210529215628.azurewebsites.net/api/customer/"
     let customerID = sessionStorage.getItem('customerID')
-    fetch(url + customerID)
+      fetch(url + customerID, {
+          headers: {
+              ApiKey: 'CarShareRmit'
+          }
+      })
       .then(response => {
         if (response.ok) {
           return response.json()
@@ -110,7 +114,8 @@ export default function Profile() {
     const res = fetch(url + customerID, {
       method: "PUT",
       headers: {
-        "Content-type": "application/json",
+          "Content-type": "application/json",
+          ApiKey: "CarShareRmit"
       },
       body: JSON.stringify(updatedCustomer),
     })

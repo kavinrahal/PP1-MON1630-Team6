@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cors;
 using CarShare.Models;
 using CarShare.Services;
+using CarShare.Attributes;
 
 namespace CarShare.Controllers
 {
@@ -11,6 +12,7 @@ namespace CarShare.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("ReactPolicy")]
+    [ApiKey]
     public class TransactionController : ControllerBase
     {
         private readonly TransactionService transactionService;
