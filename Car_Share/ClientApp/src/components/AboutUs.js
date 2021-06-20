@@ -1,6 +1,9 @@
 import React from 'react';
 import {
-    BrowserRouter as Link
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
 } from "react-router-dom";
 import './styles/AboutUs.css';
 
