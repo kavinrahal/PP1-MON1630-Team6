@@ -363,7 +363,7 @@ export default function MakeBooking(props) {
               <div className='makeBookingDisplay'>
                 <div className="avail">Availability</div>
 
-                {loading && <div> Loading </div>}
+                {loading && <h4> Loading </h4>}
 
                 {
                   bookingExist && !loading &&

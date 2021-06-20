@@ -40,10 +40,10 @@ function SearchPage() {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        var rego_num = Number(rego);
+        var rego_num = rego;
         var arrayLength = carDetails.length;
         for (var i = 0; i < arrayLength; i++) {
-            if (carDetails[i].carID == rego_num) {
+            if (carDetails[i].rego == rego_num) {
                 setCar(carDetails[i])
                 setMake(carDetails[i].make)
                 setModel(carDetails[i].model)
@@ -90,11 +90,11 @@ function SearchPage() {
                                 {!found && !loading && !initial && <div> Could not find a car with entered ID </div>}
 
                                 
-                                <div className="searchTitle">Search Using the Registration ID of Car</div>
+                                <div className="searchTitle">Search Using the License Plate Number of Car</div>
                                 {/* STYLE FORM HERE */}
 
                                 <form className = "carSearchForm" onSubmit={onSubmit}>
-                                    <input className = "searchBar" type="text" placeholder=" E.g. 2" value={rego} onChange={(e) => setRego(e.target.value)}></input>
+                                    <input className = "searchBar" type="text" placeholder=" E.g. ABC123" value={rego} onChange={(e) => setRego(e.target.value)}></input>
                                     {loading && <h5>Loading...</h5>}
                                     {!loading && <input className = "carSearchBtn hvr-sweep-to-right"  type="submit" value="Search"></input>}
                                 </form>

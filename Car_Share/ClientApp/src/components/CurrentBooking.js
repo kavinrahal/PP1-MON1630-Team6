@@ -10,27 +10,6 @@ export default function CurrentBooking() {
     const [loading, setLoading] = useState(true)
     const [notYetStart, setNotYetStart] = useState(false)
 
-    // const [currentBooking, setCurrentBooking] = useState(
-    //     {
-    //         booking_id: 1,
-    //         carID: 2,
-    //         car: {
-    //             car_id: 1,
-    //             make: "Toyota",
-    //             model: "Supra",
-    //             bodyType: "Coupe",
-    //             colour: "Red"
-    //         },
-    //         startTime: '2022-06-09T18:30:00.000+05:30',
-    //         endTime: '2022-06-10T12:05:00.000+05:30',
-    //         price: 450,
-    //         completed: 'in progress'
-    //     }
-    // )
-    // const [startTime, setStartTime] = useState('')
-    // const [endTime, setEndTime] = useState('')
-
-
     useEffect(() => {
         // Fetch data for current booking
         async function fetchData() {
@@ -61,22 +40,6 @@ export default function CurrentBooking() {
     const Completionist = () => <span className="terminate">Please Return Car Now.</span>;
 
     const [hideResults, setHideResults] = React.useState(true);
-
-    const renderer = ({ hours, minutes, seconds, completed }) => {
-        if (completed) {
-            setHideResults(true);
-            // Render a complete state
-            return <Completionist />;
-        } else {
-            // Render a countdown
-            return (
-                <span className="countDown">
-                    <div className="inProgress">IN PROGRESS</div>
-                    {hours}:{minutes}:{seconds}
-                </span>
-            );
-        }
-    };
 
     if (!loading && currentBooking != '') {
         var startTime = currentBooking.startTime;
@@ -138,6 +101,22 @@ export default function CurrentBooking() {
         }
     }
 
+    const renderer = ({ hours, minutes, seconds, completed }) => {
+        if (completed) {
+            setHideResults(true);
+            // Render a complete state
+            return <Completionist />;
+        } else {
+            // Render a countdown
+            return (
+                <span className="countDown">
+                    <div className="inProgress">IN PROGRESS</div>
+                    {hours}:{minutes}:{seconds}
+                </span>
+            );
+        }
+    };
+
     return (
         <ViewportProvider>
             <div className="CurrentBookingWrapper">
@@ -154,7 +133,7 @@ export default function CurrentBooking() {
 
                     <div className="current">
                         {loading
-                            ? <div className="terminate" > Loading... </div>
+                            ? <div className="loadingCurr" > Loading... </div>
                             :
                             <div className="countdown"><Countdown date={Date.now() + difference} renderer={renderer} /></div>
                         }
@@ -199,7 +178,7 @@ export default function CurrentBooking() {
 
                                 : !loading &&
                                 <div className="noCarSelect">
-                                    <div className="noCar">No Current Booking Made!</div>
+                                    <h2>No Current Booking Made!</h2>
                                     <div className="noCarBtn">
                                         <Link to="/viewAllCars" className="noBtn">All Cars</Link>
                                         <div className="orBook">Or</div>
